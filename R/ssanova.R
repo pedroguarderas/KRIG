@@ -1,11 +1,4 @@
 #___________________________________________________________________________________________________
-library(pracma)
-
-#___________________________________________________________________________________________________
-kernel<-function( x, y ) min(x,y)
-x<-seq(0,1,length.out=100)
-
-#___________________________________________________________________________________________________
 # Vector with integrated values
 vect_integrate_kern<-function( x, k, a, b, method = 'Kronrod' ) {
   integra<-function( x, k, a, b ) integral( k, xmin = a, xmax = b, method = method, y = x )
@@ -14,10 +7,6 @@ vect_integrate_kern<-function( x, k, a, b, method = 'Kronrod' ) {
 }
 
 #___________________________________________________________________________________________________
-options( stringsAsFactors = FALSE )
-kernels<-data.frame( id = 1:2, kern = c( 'kernel', 'kernel' ), linf = c(0,0), lsup = c(1,1) )
-X<-data.frame( x1 = x, x2 = x )
-
 array_integrate_kern<-function( kernels, X ) {
   Y<-NULL
   for ( i in 1:ncol(X) ) { # i<-1
@@ -25,6 +14,4 @@ array_integrate_kern<-function( kernels, X ) {
   }
   return( Y )
 }
-
-Y<-array_integrate_kern( kernels, X )
 
