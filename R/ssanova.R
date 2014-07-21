@@ -10,8 +10,15 @@ vect_integrate_kern<-function( x, k, a, b, method = 'Kronrod' ) {
 array_integrate_kern<-function( kernels, X ) {
   Y<-NULL
   for ( i in 1:ncol(X) ) { # i<-1
-    Y<-cbind( Y, vect_integrate_kern( X[,i], kernels[i,2], kernels[i,3], kernels[i,4] ) )
+    Y<-cbind( Y, vect_integrate_kern( X[,i],  )
   }
   return( Y )
 }
 
+#___________________________________________________________________________________________________
+kern_integral<-function( kernels ) {
+  a<-NULL
+  for ( i in 1:nrow(kernels) ) {
+    a<-c( a, integral2( kernels[i,2], kernels[i,3], kernels[i,4], kernels[i,3], kernels[i,4] ) )
+  }
+}
