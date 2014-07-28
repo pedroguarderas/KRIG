@@ -21,5 +21,6 @@ kern_integral<-function( kernels ) {
   for ( i in 1:nrow(kernels) ) {
     a<-c( a, integral2( kernels[i,2], kernels[i,3], kernels[i,4], kernels[i,3], kernels[i,4] ) )
   }
+  return( a )
 }
 
