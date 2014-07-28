@@ -19,7 +19,7 @@ array_integrate_kern<-function( kernels, X ) {
 kern_integral<-function( kernels ) {
   a<-NULL
   for ( i in 1:nrow(kernels) ) {
-    a<-c( a, integral2( kernels[i,2], kernels[i,3], kernels[i,4], kernels[i,3], kernels[i,4] ) )
+    a<-c( a, integral2( kernels[i,2], kernels[i,3], kernels[i,4], kernels[i,3], kernels[i,4] )$Q )
   }
   return( a )
 }
