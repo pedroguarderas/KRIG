@@ -10,7 +10,7 @@ vect_integrate_kern<-function( x, k, a, b, method = 'Kronrod' ) {
 gamma_integrate<-function( x, k, a, b, method = 'Kronrod' ) {
   K<-function( s, x, y ) return( k(x,s) * k(s,y) )
   integra<-function( x, k, a, b ) {
-      return( integral( k, xmin = a, xmax = b, method = 'Kronrod', x = x[1], y = x[2] ) )
+      return( integral( k, xmin = a, xmax = b, method = method, x = x[1], y = x[2] ) )
   }
   G<-apply( x, 1, FUN = integra, K, a, b )
   return( G )
