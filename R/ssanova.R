@@ -43,7 +43,7 @@ eval_kernels<-function( kernels, X, I, alpha ) {
   for ( i in 1:m ) {
     for ( k in 1:n ) {
       for ( l in k:n ) {
-        Gamma[k,l,i]<-eval( call( kernels[i,2],  X[k,i], X[l,i] ) ) - alpha[i] * I[k,i] * I[l,i]
+        Gamma[k,l,i]<-eval( call( kernels[i,2],  X[k,i], X[l,i] ) ) - I[k,i] * I[l,i] / alpha[i] 
         if ( l > k ) {
           Gamma[l,k,i]<-Gamma[k,l,i]
         }
