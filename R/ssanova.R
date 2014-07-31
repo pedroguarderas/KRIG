@@ -33,3 +33,28 @@ kern_integral<-function( kernels ) {
   }
   return( a )
 }
+
+#___________________________________________________________________________________________________
+# Evaluate kernel
+eval_kernels<-function( kernels, X, I, alpha ) {
+  n<-nrow(X)
+  m<-ncol(X)
+  K<-array( 0, dim = c( n, n, m ) )
+  for ( i in 1:m ) {
+    for ( k in 1:n ) {
+      for ( l in k:n ) {
+        K[k,l,i]<-eval( call( kernels[i,2],  X[k,i], X[l,i] ) ) - alpha[i] * I[k,i] * I[l,i]
+        if ( l > k ) {
+          K[l,k,i]<-K[k,l,i]
+        }
+      }
+    }
+  }
+  return( K )
+}
+
+
+
+
+
+
