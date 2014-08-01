@@ -40,17 +40,20 @@ eval_kernels<-function( kernels, X, I, alpha ) {
   n<-nrow(X)
   m<-ncol(X)
   Gamma<-array( 0, dim = c( n, n, m ) )
+  KANOVA<-Matrix( 1, n, n )
   for ( i in 1:m ) {
     for ( k in 1:n ) {
       for ( l in k:n ) {
         Gamma[k,l,i]<-eval( call( kernels[i,2],  X[k,i], X[l,i] ) ) - I[k,i] * I[l,i] / alpha[i] 
+        KANOVA[k,l]<-KANOVA[k,l] * ( 1 + Gamma[k,l,i] )
         if ( l > k ) {
           Gamma[l,k,i]<-Gamma[k,l,i]
+          KANOVA[l,k]<-KANOVA[k,l]
         }
       }
     }
   }
-  return( Gamma )
+  return( list( Gamma = Gamma, KANOVA = KANOVA ) )
 }
 
 
