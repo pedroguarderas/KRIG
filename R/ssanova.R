@@ -56,7 +56,35 @@ eval_kernels<-function( kernels, X, I, alpha ) {
   return( list( Gamma = Gamma, KANOVA = KANOVA ) )
 }
 
+#___________________________________________________________________________________________________
+# Sobol indices
+SobolIndex<-function( Eval, X, F ) {
+  n<-nrow(X)
+  m<-ncol(X)
+  
+  U<-solve( Eval$KANOVA, F )
 
+  V<-Matrix( 1, n, n )
+  for( i in 1:m ) {
+    V<-V * ( Matrix( 1, n, n ) + Eval$Gamma[,,i] )
+  }
+  V<-V - Matrix( 1, n, n )
+  
+  S<-NULL
+  for ( j in 1:m ) { # j<-1
+    CMB<-combn( 1:m, j )
+    for ( k in 1:ncol(CMB) ) {
+      W<-Matrix( 1, n, n )
+      for ( l in 1:nrow(CMB) ) {
+        W<-W * Eval$Gamma[,,CMB[l,k]]
+      }
+      S<-c( S, as.numeric( t(U) %*% W %*% U ) )
+      names(S)[length(S)]<-paste( CMB[,k], collapse='' )
+    }
+  }
+  Var<-as.numeric( t(U) %*% V %*% U ) 
+  return( list( S = S, Var = Var ) )
+}
 
 
 
