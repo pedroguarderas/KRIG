@@ -86,6 +86,3 @@ SobolIndex<-function( Eval, X, F ) {
   return( list( S = S, Var = Var ) )
 }
 
-
-
-
