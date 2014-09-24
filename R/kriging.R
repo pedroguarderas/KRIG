@@ -42,13 +42,23 @@ kriging_simple_cg<-function( Z, X, x0, k, l, n, e ) {
 #___________________________________________________________________________________________________
 # Ordinary kriging
 kriging_ordinary<-function( Z, X, x0, k ) {
-  K<-NULL
-  k0<-NULL
-  d<-dim( X )
-  for ( i in 1:d[2] ) { # i<-1
-    K<-rbind( K, apply( X, c(2), FUN = k, X[,i] ) ) 
-    k0<-rbind( k0, apply( x0, c(2), FUN = k, X[,i] ) )
+  n<-nrow(X)
+  m<-nrow(x0)
+  k0<-matrix( 0, n, m )
+  K<-matrix( 0, n, n )
+  
+  for ( i in 1:n ) { # i<-1
+    for ( j in i:n ) {
+      K[i,j]<-k( X[i,], X[j,] )
+      if ( j > i ) {
+        K[j,i]<-K[i,j]
+      }
+    }
+    for ( l in 1:m ) {
+      k0[i,l]<-k( x0[l,], X[i,] )
+    }
   }
+
   L<-chol( K )
   J<-chol2inv( L )
   ones<-matrix( 1, d[2], 1 )
@@ -66,6 +76,7 @@ kriging_ordinary_cg<-function( Z, U, X, x0, u0, k, l, n, e ) {
     K<-rbind( K, apply( X, c(2), FUN = k, X[,i] ) ) 
     k0<-rbind( k0, apply( x0, c(2), FUN = k, X[,i] ) )
   }
+  
   for ( i in 1:dim(x0)[2] ) {
     L<-cbind( L, conjugate_gradient( K, k0[,i], l, n, e ) )
   }
