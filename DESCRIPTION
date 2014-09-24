@@ -7,4 +7,4 @@ Author: Julio Andrade, Daniel Lagos, Andrés Lopez, Pedro Guarderas, Paul Recald
 Maintainer: Who to complain to <yourfault@somewhere.net>
 Description: More about what it does (maybe more than one line)
 License: LGPL
-Depends: pracma
+Depends: Matrix, pracma

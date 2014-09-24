@@ -3,8 +3,8 @@
 kriging_simple<-function( Z, X, x0, k ) {
   n<-nrow(X)
   m<-nrow(x0)
-  k0<-Matrix( 0, n, m )
-  K<-Matrix( 0, n, n )
+  k0<-matrix( 0, n, m )
+  K<-matrix( 0, n, n )
   
   for ( i in 1:n ) { # i<-1
     for ( j in i:n ) {
@@ -13,13 +13,18 @@ kriging_simple<-function( Z, X, x0, k ) {
         K[j,i]<-K[i,j]
       }
     }
+  
     for ( l in 1:m ) {
       k0[i,l]<-k( x0[l,], X[i,] )
     }
   }
+  
+  k0<-Matrix(t(k0))
+  K<-Matrix(K)
+
   L<-chol( K )
   J<-chol2inv( L )
-  Z0<-t( k0 ) %*% J %*% Z
+  Z0<-k0 %*% J %*% Z
   return( list( Z0 = Z0, K = K, k0 = k0, L = L, J = J ) )
 }
 
@@ -44,8 +49,8 @@ kriging_simple_cg<-function( Z, X, x0, k, l, n, e ) {
 kriging_ordinary<-function( Z, X, x0, k ) {
   n<-nrow(X)
   m<-nrow(x0)
-  k0<-Matrix( 0, n, m )
-  K<-Matrix( 0, n, n )
+  k0<-matrix( 0, n, m )
+  K<-matrix( 0, n, n )
   
   for ( i in 1:n ) { # i<-1
     for ( j in i:n ) {
@@ -58,7 +63,10 @@ kriging_ordinary<-function( Z, X, x0, k ) {
       k0[i,l]<-k( x0[l,], X[i,] )
     }
   }
-
+  
+  k0<-Matrix(t(k0))
+  K<-Matrix(K)
+  
   L<-chol( K )
   J<-chol2inv( L )
   ones<-matrix( 1, d[2], 1 )

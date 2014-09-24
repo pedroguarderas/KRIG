@@ -3,6 +3,7 @@
 library(rgl)
 library(RKHSENS)
 
+
 m<-40
 x<-seq(-2,5,length.out=m)
 y<-x
@@ -11,7 +12,7 @@ f<-function(x,y){
 }
 z<-outer(x,y,f)
 
-n<-50
+n<-30
 x1<-runif( n, -2, 5 )
 x2<-runif( n, -2, 5 )
 
@@ -27,7 +28,7 @@ krgs<-kriging_simple( Z, X, x0, k )
 Z0<-matrix( krgs$Z0, m, m )
 
 
-persp3d( x, y, Z0, col='dodgerblue', alpha = 1.0 )
+persp3d( x, y, Z0, col='darkgreen', alpha = 1.0 )
 persp3d( x, y, z, col='gold', alpha = 0.6, add = TRUE )
 points3d( x1, x2, Z, size = 8.0, col = 'purple', add = TRUE )
 
