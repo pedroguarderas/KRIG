@@ -3,8 +3,8 @@
 kriging_simple<-function( Z, X, x0, k ) {
   n<-nrow(X)
   m<-nrow(x0)
-  k0<-matrix( 0, n, m )
-  K<-matrix( 0, n, n )
+  k0<-Matrix( 0, n, m )
+  K<-Matrix( 0, n, n )
   
   for ( i in 1:n ) { # i<-1
     for ( j in i:n ) {
@@ -44,8 +44,8 @@ kriging_simple_cg<-function( Z, X, x0, k, l, n, e ) {
 kriging_ordinary<-function( Z, X, x0, k ) {
   n<-nrow(X)
   m<-nrow(x0)
-  k0<-matrix( 0, n, m )
-  K<-matrix( 0, n, n )
+  k0<-Matrix( 0, n, m )
+  K<-Matrix( 0, n, n )
   
   for ( i in 1:n ) { # i<-1
     for ( j in i:n ) {
