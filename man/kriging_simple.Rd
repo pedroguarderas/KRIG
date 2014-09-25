@@ -5,41 +5,41 @@
 kriging_simple
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Function for data interpolation by kriging, it uses a \code{Simple Kriging} method that assumes a 
+zero mean.
 }
 \usage{
 kriging_simple(Z, X, x0, k)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{Z}{
-%%     ~~Describe \code{Z} here~~
+  Data matrix for estimation point.
 }
   \item{X}{
-%%     ~~Describe \code{X} here~~
+  Data matrix of known values of the function in the neighborhood of the point.
 }
   \item{x0}{
-%%     ~~Describe \code{x0} here~~
+  Matrix of correlations for the point.
 }
   \item{k}{
-%%     ~~Describe \code{k} here~~
+  Function \code{kernel} to be applied in the interpolation by kriging.
 }
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+Function \code{kriging_simple} is useful in the case of prediction with the known mean.
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+Function \code{kriging_simple} returns an object of class \code{list} containing the following components:
+\item{Z0}{Matrix of observed values.}
+\item{K}{Matrix of correlation.}
+\item{L}{Covariance Matrix positive-definite square from Choleski factorization.}
+\item{J}{Inverted Covariance Matrix \code{L}.}
 }
 \references{
 %% ~put references to the literature/web site here ~
 }
 \author{
-%%  ~~who you are~~
+Julio Andrade, Pedro Guarderas, Daniel Lagos, Andrés López, Paúl Recalde, Edison Salazar.
 }
 \note{
 %%  ~~further notes~~
@@ -48,14 +48,35 @@ kriging_simple(Z, X, x0, k)
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+\code{\link{kriging_simple_cg}}, \code{\link{Ker_Exp}}
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+m<-40
+x<-seq(-2,5,length.out=m)
+y<-x
+f<-function(x,y){
+  return(exp(-x^2-y^2)+0.5*exp(-(x-2)^2-(y-2)^2) - 0.5*exp(-(x-4)^2-(y-0.25)^2)) 
+}
+z<-outer(x,y,f)
 
-## The function is currently defined as
+n<-50
+x1<-runif( n, -2, 5 )
+x2<-runif( n, -2, 5 )
+
+X<-cbind(x1,x2)
+x0<-as.matrix(expand.grid(x,y))
+Z<-NULL
+for(i in 1:n) Z<-c(Z,f(x1[i],x2[i]))
+
+s<-10.0
+t<-1.1
+k<-function( x, y ) return( Ker_Exp( x, y, s, t ) )
+krgs<-kriging_simple( Z, X, x0, k )
+Z0<-matrix( krgs$Z0, m, m )
+
+persp3d( x, y, Z0, col='dodgerblue', alpha = 1.0 )
+persp3d( x, y, z, col='gold', alpha = 0.6, add = TRUE )
+points3d( x1, x2, Z, size = 8.0, col = 'purple', add = TRUE )
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
