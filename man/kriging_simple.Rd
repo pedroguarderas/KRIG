@@ -1,6 +1,6 @@
 \name{kriging_simple}
 \alias{kriging_simple}
-%- Also NEED an '\alias' for EACH other topic documented here.
+
 \title{
 kriging_simple
 }
@@ -44,13 +44,13 @@ Julio Andrade, Pedro Guarderas, Daniel Lagos, Andrés López, Paúl Recalde, Edi
 \note{
 %%  ~~further notes~~
 }
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
 \seealso{
 \code{\link{kriging_simple_cg}}, \code{\link{Ker_Exp}}
 }
 \examples{
+library(RKHSENS)
+library(rgl)
+
 m<-40
 x<-seq(-2,5,length.out=m)
 y<-x
@@ -78,7 +78,4 @@ persp3d( x, y, Z0, col='dodgerblue', alpha = 1.0 )
 persp3d( x, y, z, col='gold', alpha = 0.6, add = TRUE )
 points3d( x1, x2, Z, size = 8.0, col = 'purple', add = TRUE )
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-%\keyword{ ~kwd1 }
-%\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{kriging}

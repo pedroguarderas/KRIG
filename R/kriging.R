@@ -69,9 +69,9 @@ kriging_ordinary<-function( Z, X, x0, k ) {
   
   L<-chol( K )
   J<-chol2inv( L )
-  ones<-matrix( 1, d[2], 1 )
+  ones<-matrix( 1, ncol(J), 1 )
   u<-as.numeric( ( 1.0 / ( t( ones ) %*% J %*% ones ) ) * ( t( ones ) %*% J %*% Z ) )
-  Z0<-u + t( k0 ) %*% J %*% ( Z - u )
+  Z0<-u + k0 %*% J %*% ( Z - u )
   return( list( Z0 = Z0, K = K, k0 = k0, L = L, J = J ) )
 }
 

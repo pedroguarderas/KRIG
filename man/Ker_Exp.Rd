@@ -1,63 +1,42 @@
 \name{Ker_Exp}
 \alias{Ker_Exp}
-%- Also NEED an '\alias' for EACH other topic documented here.
+
 \title{
 Ker_Exp
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Exponential kernel
 }
 \usage{
 Ker_Exp(x, y, s, t)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{
-%%     ~~Describe \code{x} here~~
+  \item{x}{ First coordinate vector
 }
-  \item{y}{
-%%     ~~Describe \code{y} here~~
+  \item{y}{ Second coordinate vector with the same length of \code{x}
 }
-  \item{s}{
-%%     ~~Describe \code{s} here~~
+  \item{s}{ Applitude parameter for the exponential kernel
 }
-  \item{t}{
-%%     ~~Describe \code{t} here~~
+  \item{t}{ Smoothing parameter for the exponential kernel
 }
 }
-\details{
-%%  ~~ If necessary, more details than the description above ~~
+\details{ The exponential kernel is defined like: \cr
+\deqn{s^2 exp( -\frac{\sum_{i=1}^n (x_i - y_i)^2}{t^2} )}
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+Evaluation of the kernel for the given parameters
 }
 \references{
 %% ~put references to the literature/web site here ~
 }
 \author{
-%%  ~~who you are~~
+Julio Andrade, Pedro Guarderas, Daniel Lagos, Andrés López, Paúl Recalde, Edison Salazar.
 }
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-%\keyword{ ~kwd1 }
-%\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{kernel}
