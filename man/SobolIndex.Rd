@@ -20,6 +20,9 @@ SobolIndex(Eval, X, F)
   \item{F}{
 %%     ~~Describe \code{F} here~~
 }
+  \item{comb}{
+%%     ~~Describe \code{F} here~~
+}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~

@@ -58,7 +58,7 @@ eval_kernels<-function( kernels, X, I, alpha ) {
 
 #___________________________________________________________________________________________________
 # Sobol indices
-SobolIndex<-function( Eval, X, F ) {
+SobolIndex<-function( Eval, X, F, comb ) {
   n<-nrow(X)
   m<-ncol(X)
   
@@ -71,7 +71,7 @@ SobolIndex<-function( Eval, X, F ) {
   V<-V - Matrix( 1, n, n )
   
   S<-NULL
-  for ( j in 1:m ) { # j<-1
+  for ( j in comb ) { # j<-1
     CMB<-combn( 1:m, j )
     for ( k in 1:ncol(CMB) ) {
       W<-Matrix( 1, n, n )
