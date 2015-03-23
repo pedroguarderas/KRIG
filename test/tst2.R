@@ -24,5 +24,5 @@ GK<-eval_kernels( kernels, X, I, alpha )
 f<-function( x ) abs( x[1] + 30 * x[2] + 60 * x[3] )
 F<-apply( X, 1, FUN = f )
 
-Sobol<-SobolIndex( GK, X, F )
+Sobol<-SobolIndex( GK, X, F, 2:3 )
 Sobol$S / Sobol$Var
