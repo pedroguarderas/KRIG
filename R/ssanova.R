@@ -79,7 +79,7 @@ SobolIndex<-function( Eval, X, F, comb ) {
         W<-W * Eval$Gamma[,,CMB[l,k]]
       }
       S<-c( S, as.numeric( t(U) %*% W %*% U ) )
-      names(S)[length(S)]<-paste( CMB[,k], collapse='' )
+      names(S)[length(S)]<-paste( 'C.', paste( CMB[,k], collapse='.' ), sep = '' )
     }
   }
   Var<-as.numeric( t(U) %*% V %*% U ) 
