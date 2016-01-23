@@ -5,75 +5,75 @@
 
 using namespace Rcpp;
 
-// dst_weighted
-double dst_weighted(const NumericVector& x, const NumericVector& y, const NumericVector& w, const NumericVector& p);
-RcppExport SEXP RKHSENS_dst_weighted(SEXP xSEXP, SEXP ySEXP, SEXP wSEXP, SEXP pSEXP) {
+// distwRKH
+double distwRKH(const NumericVector x, const NumericVector y, const NumericVector w, const NumericVector p);
+RcppExport SEXP RKHSENS_distwRKH(SEXP xSEXP, SEXP ySEXP, SEXP wSEXP, SEXP pSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
         Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< const NumericVector& >::type x(xSEXP );
-        Rcpp::traits::input_parameter< const NumericVector& >::type y(ySEXP );
-        Rcpp::traits::input_parameter< const NumericVector& >::type w(wSEXP );
-        Rcpp::traits::input_parameter< const NumericVector& >::type p(pSEXP );
-        double __result = dst_weighted(x, y, w, p);
+        Rcpp::traits::input_parameter< const NumericVector >::type x(xSEXP );
+        Rcpp::traits::input_parameter< const NumericVector >::type y(ySEXP );
+        Rcpp::traits::input_parameter< const NumericVector >::type w(wSEXP );
+        Rcpp::traits::input_parameter< const NumericVector >::type p(pSEXP );
+        double __result = distwRKH(x, y, w, p);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
     UNPROTECT(1);
     return __sexp_result;
 END_RCPP
 }
-// dst
-double dst(const NumericVector& x, const NumericVector& y);
-RcppExport SEXP RKHSENS_dst(SEXP xSEXP, SEXP ySEXP) {
+// distRKH
+double distRKH(const NumericVector x, const NumericVector y);
+RcppExport SEXP RKHSENS_distRKH(SEXP xSEXP, SEXP ySEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
         Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< const NumericVector& >::type x(xSEXP );
-        Rcpp::traits::input_parameter< const NumericVector& >::type y(ySEXP );
-        double __result = dst(x, y);
+        Rcpp::traits::input_parameter< const NumericVector >::type x(xSEXP );
+        Rcpp::traits::input_parameter< const NumericVector >::type y(ySEXP );
+        double __result = distRKH(x, y);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
     UNPROTECT(1);
     return __sexp_result;
 END_RCPP
 }
-// kf_lin
-double kf_lin(const double& h, const double& alpha = 1.0);
-RcppExport SEXP RKHSENS_kf_lin(SEXP hSEXP, SEXP alphaSEXP) {
-BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< const double& >::type h(hSEXP );
-        Rcpp::traits::input_parameter< const double& >::type alpha(alphaSEXP );
-        double __result = kf_lin(h, alpha);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
-END_RCPP
-}
-// kf_sqr
-double kf_sqr(const double& h, const double& alpha = 1.0);
-RcppExport SEXP RKHSENS_kf_sqr(SEXP hSEXP, SEXP alphaSEXP) {
+// klinRKH
+double klinRKH(const double& h, const double& alpha = 1.0);
+RcppExport SEXP RKHSENS_klinRKH(SEXP hSEXP, SEXP alphaSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
         Rcpp::RNGScope __rngScope;
         Rcpp::traits::input_parameter< const double& >::type h(hSEXP );
         Rcpp::traits::input_parameter< const double& >::type alpha(alphaSEXP );
-        double __result = kf_sqr(h, alpha);
+        double __result = klinRKH(h, alpha);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
     UNPROTECT(1);
     return __sexp_result;
 END_RCPP
 }
-// kf_tri
-double kf_tri(const double& h, const double& c = 1.0, const double& alpha = 1.0);
-RcppExport SEXP RKHSENS_kf_tri(SEXP hSEXP, SEXP cSEXP, SEXP alphaSEXP) {
+// ksqrRKH
+double ksqrRKH(const double& h, const double& alpha = 1.0);
+RcppExport SEXP RKHSENS_ksqrRKH(SEXP hSEXP, SEXP alphaSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< const double& >::type h(hSEXP );
+        Rcpp::traits::input_parameter< const double& >::type alpha(alphaSEXP );
+        double __result = ksqrRKH(h, alpha);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
+// ktriRKH
+double ktriRKH(const double& h, const double& c = 1.0, const double& alpha = 1.0);
+RcppExport SEXP RKHSENS_ktriRKH(SEXP hSEXP, SEXP cSEXP, SEXP alphaSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
@@ -81,16 +81,16 @@ BEGIN_RCPP
         Rcpp::traits::input_parameter< const double& >::type h(hSEXP );
         Rcpp::traits::input_parameter< const double& >::type c(cSEXP );
         Rcpp::traits::input_parameter< const double& >::type alpha(alphaSEXP );
-        double __result = kf_tri(h, c, alpha);
+        double __result = ktriRKH(h, c, alpha);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
     UNPROTECT(1);
     return __sexp_result;
 END_RCPP
 }
-// kf_exp
-double kf_exp(const double& h, const double& sigma = 1.0, const double& theta = 1.0);
-RcppExport SEXP RKHSENS_kf_exp(SEXP hSEXP, SEXP sigmaSEXP, SEXP thetaSEXP) {
+// kexpRKH
+double kexpRKH(const double& h, const double& sigma = 1.0, const double& theta = 1.0);
+RcppExport SEXP RKHSENS_kexpRKH(SEXP hSEXP, SEXP sigmaSEXP, SEXP thetaSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
@@ -98,16 +98,16 @@ BEGIN_RCPP
         Rcpp::traits::input_parameter< const double& >::type h(hSEXP );
         Rcpp::traits::input_parameter< const double& >::type sigma(sigmaSEXP );
         Rcpp::traits::input_parameter< const double& >::type theta(thetaSEXP );
-        double __result = kf_exp(h, sigma, theta);
+        double __result = kexpRKH(h, sigma, theta);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
     UNPROTECT(1);
     return __sexp_result;
 END_RCPP
 }
-// kf_sqexp
-double kf_sqexp(const double& h, const double& sigma = 1.0, const double& theta = 1.0);
-RcppExport SEXP RKHSENS_kf_sqexp(SEXP hSEXP, SEXP sigmaSEXP, SEXP thetaSEXP) {
+// ksqexpRKH
+double ksqexpRKH(const double& h, const double& sigma = 1.0, const double& theta = 1.0);
+RcppExport SEXP RKHSENS_ksqexpRKH(SEXP hSEXP, SEXP sigmaSEXP, SEXP thetaSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
@@ -115,16 +115,16 @@ BEGIN_RCPP
         Rcpp::traits::input_parameter< const double& >::type h(hSEXP );
         Rcpp::traits::input_parameter< const double& >::type sigma(sigmaSEXP );
         Rcpp::traits::input_parameter< const double& >::type theta(thetaSEXP );
-        double __result = kf_sqexp(h, sigma, theta);
+        double __result = ksqexpRKH(h, sigma, theta);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
     UNPROTECT(1);
     return __sexp_result;
 END_RCPP
 }
-// kf_matern
-double kf_matern(const double& h, const double& v = 2.0, const double& sigma = 1.0, const double& theta = 1.0);
-RcppExport SEXP RKHSENS_kf_matern(SEXP hSEXP, SEXP vSEXP, SEXP sigmaSEXP, SEXP thetaSEXP) {
+// kmaternRKH
+double kmaternRKH(const double& h, const double& v = 2.0, const double& sigma = 1.0, const double& theta = 1.0);
+RcppExport SEXP RKHSENS_kmaternRKH(SEXP hSEXP, SEXP vSEXP, SEXP sigmaSEXP, SEXP thetaSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
@@ -133,64 +133,64 @@ BEGIN_RCPP
         Rcpp::traits::input_parameter< const double& >::type v(vSEXP );
         Rcpp::traits::input_parameter< const double& >::type sigma(sigmaSEXP );
         Rcpp::traits::input_parameter< const double& >::type theta(thetaSEXP );
-        double __result = kf_matern(h, v, sigma, theta);
+        double __result = kmaternRKH(h, v, sigma, theta);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
     UNPROTECT(1);
     return __sexp_result;
 END_RCPP
 }
-// kf_multilog
-double kf_multilog(const double& h, const double& R = 1.0);
-RcppExport SEXP RKHSENS_kf_multilog(SEXP hSEXP, SEXP RSEXP) {
+// kmultilogRKH
+double kmultilogRKH(const double& h, const double& R = 1.0);
+RcppExport SEXP RKHSENS_kmultilogRKH(SEXP hSEXP, SEXP RSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
         Rcpp::RNGScope __rngScope;
         Rcpp::traits::input_parameter< const double& >::type h(hSEXP );
         Rcpp::traits::input_parameter< const double& >::type R(RSEXP );
-        double __result = kf_multilog(h, R);
+        double __result = kmultilogRKH(h, R);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
     UNPROTECT(1);
     return __sexp_result;
 END_RCPP
 }
-// kf_cubspline
-double kf_cubspline(const double& h, const double& R = 1.0);
-RcppExport SEXP RKHSENS_kf_cubspline(SEXP hSEXP, SEXP RSEXP) {
+// kcubsplineRKH
+double kcubsplineRKH(const double& h, const double& R = 1.0);
+RcppExport SEXP RKHSENS_kcubsplineRKH(SEXP hSEXP, SEXP RSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
         Rcpp::RNGScope __rngScope;
         Rcpp::traits::input_parameter< const double& >::type h(hSEXP );
         Rcpp::traits::input_parameter< const double& >::type R(RSEXP );
-        double __result = kf_cubspline(h, R);
+        double __result = kcubsplineRKH(h, R);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
     UNPROTECT(1);
     return __sexp_result;
 END_RCPP
 }
-// kf_tpspline
-double kf_tpspline(const double& h, const double& R = 1.0);
-RcppExport SEXP RKHSENS_kf_tpspline(SEXP hSEXP, SEXP RSEXP) {
+// ktpsplineRKH
+double ktpsplineRKH(const double& h, const double& R = 1.0);
+RcppExport SEXP RKHSENS_ktpsplineRKH(SEXP hSEXP, SEXP RSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
         Rcpp::RNGScope __rngScope;
         Rcpp::traits::input_parameter< const double& >::type h(hSEXP );
         Rcpp::traits::input_parameter< const double& >::type R(RSEXP );
-        double __result = kf_tpspline(h, R);
+        double __result = ktpsplineRKH(h, R);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
     UNPROTECT(1);
     return __sexp_result;
 END_RCPP
 }
-// kf_mix
-double kf_mix(const double& h, const double& sigma = 1.0, const double& theta = 1.0);
-RcppExport SEXP RKHSENS_kf_mix(SEXP hSEXP, SEXP sigmaSEXP, SEXP thetaSEXP) {
+// kmixRKH
+double kmixRKH(const double& h, const double& sigma = 1.0, const double& theta = 1.0);
+RcppExport SEXP RKHSENS_kmixRKH(SEXP hSEXP, SEXP sigmaSEXP, SEXP thetaSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
@@ -198,7 +198,25 @@ BEGIN_RCPP
         Rcpp::traits::input_parameter< const double& >::type h(hSEXP );
         Rcpp::traits::input_parameter< const double& >::type sigma(sigmaSEXP );
         Rcpp::traits::input_parameter< const double& >::type theta(thetaSEXP );
-        double __result = kf_mix(h, sigma, theta);
+        double __result = kmixRKH(h, sigma, theta);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
+// krigingSimpleRKH
+List krigingSimpleRKH(NumericMatrix Z, NumericMatrix X, NumericMatrix x0, Function k);
+RcppExport SEXP RKHSENS_krigingSimpleRKH(SEXP ZSEXP, SEXP XSEXP, SEXP x0SEXP, SEXP kSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< NumericMatrix >::type Z(ZSEXP );
+        Rcpp::traits::input_parameter< NumericMatrix >::type X(XSEXP );
+        Rcpp::traits::input_parameter< NumericMatrix >::type x0(x0SEXP );
+        Rcpp::traits::input_parameter< Function >::type k(kSEXP );
+        List __result = krigingSimpleRKH(Z, X, x0, k);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
     UNPROTECT(1);
