@@ -1,28 +1,25 @@
-\name{RKHSENS-package}
-\alias{RKHSENS-package}
+\name{RKHSENS}
+\alias{RKHSENS}
 \alias{RKHSENS}
 \docType{package}
 \title{
-What the package does (short line)
+RKHSENS
 }
 \description{
-More about what it does (maybe more than one line)
-~~ A concise (1-5 lines) description of the package ~~
+Package for sensitivity analysis
 }
 \details{
 \tabular{ll}{
 Package: \tab RKHSENS\cr
 Type: \tab Package\cr
 Version: \tab 1.0\cr
-Date: \tab 2016-01-23\cr
+Date: \tab 2014-07-18\cr
 License: \tab GPL (>= 2)\cr
 }
-~~ An overview of how to use the package, including the most important functions ~~
+Kriging modeling simple and ordinary. SSANOVA analysis, Sobol indices computation.
 }
-\author{
-Your Name
-
-Maintainer: Your Name <your@email.com>
+\author{Julio Andrade, Daniel Lagos, Andrés Lopez, Pedro Guarderas, Paul Recalde, Edison Salazar
+Maintainer: Pedro Guarderas <ajusworkopensource@gmail.com>
 }
 \references{
 ~~ Literature or other references for background information ~~
@@ -35,5 +32,4 @@ Maintainer: Your Name <your@email.com>
 ~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
 }
 \examples{
-%% ~~ simple examples of the most important functions ~~
 }

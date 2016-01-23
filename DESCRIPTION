@@ -1,10 +1,10 @@
 Package: RKHSENS
 Type: Package
 Title: RKHS
-Version: 0.01
+Version: 1.0
 Date: 2014-07-18
 Author: Julio Andrade, Daniel Lagos, Andrés Lopez, Pedro Guarderas, Paul Recalde, Edison Salazar
-Maintainer: Who to complain to <yourfault@somewhere.net>
+Maintainer: Pedro Guarderas <ajusworkopensource@gmail.com>
 Description: Kriging modeling simple and ordinary. SSANOVA analysis, Sobol indices computation.
 License: LGPL
 Depends: Matrix, pracma, Rcpp
