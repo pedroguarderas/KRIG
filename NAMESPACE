@@ -1,1 +1,3 @@
+useDynLib(RKHSENS)
 exportPattern("^[[:alpha:]]+")
+importFrom(Rcpp, evalCpp)

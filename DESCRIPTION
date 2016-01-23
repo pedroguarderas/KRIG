@@ -7,4 +7,5 @@ Author: Julio Andrade, Daniel Lagos, Andrés Lopez, Pedro Guarderas, Paul Recald
 Maintainer: Who to complain to <yourfault@somewhere.net>
 Description: Kriging modeling simple and ordinary. SSANOVA analysis, Sobol indices computation.
 License: LGPL
-Depends: Matrix, pracma
+Depends: Matrix, pracma, Rcpp
+LinkingTo: Rcpp
