@@ -51,6 +51,6 @@ List krigingSimpleRKH( NumericMatrix Z, NumericMatrix X, NumericMatrix x0, Funct
 //  Kriging["L"] = L;
 //  Kriging["J"] = J;
 
-  return( Kriging );
+  return Kriging;
 }
 

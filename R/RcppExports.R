@@ -9,6 +9,14 @@ distRKH <- function(x, y) {
     .Call('RKHSENS_distRKH', PACKAGE = 'RKHSENS', x, y)
 }
 
+integralRKH <- function(Kernels) {
+    .Call('RKHSENS_integralRKH', PACKAGE = 'RKHSENS', Kernels)
+}
+
+evalKernRKH <- function(Kernels, Integral) {
+    .Call('RKHSENS_evalKernRKH', PACKAGE = 'RKHSENS', Kernels, Integral)
+}
+
 klinRKH <- function(h, alpha = 1.0) {
     .Call('RKHSENS_klinRKH', PACKAGE = 'RKHSENS', h, alpha)
 }
