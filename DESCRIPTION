@@ -1,11 +1,14 @@
 Package: RKHSENS
 Type: Package
-Title: RKHS
-Version: 1.0
-Date: 2014-07-18
-Author: Julio Andrade, Daniel Lagos, Andrés Lopez, Pedro Guarderas, Paul Recalde, Edison Salazar
-Maintainer: Pedro Guarderas <ajusworkopensource@gmail.com>
-Description: Kriging modeling simple and ordinary. SSANOVA analysis, Sobol indices computation.
-License: LGPL
-Depends: Matrix, pracma, Rcpp
-LinkingTo: Rcpp
+Title: Gaussian process regression package
+Version: 0.1.0
+Encoding: UTF-8
+Date: 2017-10-17
+Author: Pedro Guarderas
+Maintainer: Pedro Guarderas <pedro.felipe.guarderas@gmail.com>
+Description: Gaussian processes regression modeling simple and ordinary. SSANOVA analysis, Sobol indices computation.
+License: LGPL-3
+URL: https://github.com/pedroguarderas/RKHSENS
+Depends: R (>= 3.4)
+LinkingTo: Rcpp, RcppArmadillo
+RoxygenNote: 6.0.1

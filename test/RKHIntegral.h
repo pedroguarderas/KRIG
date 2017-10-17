@@ -1,21 +1,12 @@
-/*__________________________________________________________________________________________________
- 
- autor: Pedro Guarderas
- email: ajusworkopensource@gmail.com
- date: 25-07-2016
- file: integration.cpp
- 
- This program is free software; you can redistribute it and/or modify it under the 
- terms of the GNU General Public License as published by the Free Software Foundation; 
- either version 2 of the License, or (at your option) any later version.
- __________________________________________________________________________________________________
- */
+#ifndef __RKHIntegral__
+#define __RKHIntegral__
 
-#include <Rcpp.h>
-#include <omp.h>
+#include <RcppArmadillo.h>
+
+// [[Rcpp::plugins(cpp14)]]
+// [[Rcpp::depends(RcppArmadillo)]]
 
 using namespace Rcpp;
-using namespace std;
 
 /*__________________________________________________________________________________________________
   Numerical integration funtion
@@ -112,3 +103,4 @@ List evalKernRKH( List Kernels, List Integral ) {
   }
   return List::create( Named( "Gamma" ) = Gamma, Named( "KANOVA" ) = KANOVA );
 }
+

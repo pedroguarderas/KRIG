@@ -1,4 +1,6 @@
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
 RKHSENS
 =======
 
-Sensitivity analysis with ANOVA kernels
+Gaussian processes regression modeling simple and ordinary, Sobol indices computation, Sensitivity analysis with ANOVA kernels.
