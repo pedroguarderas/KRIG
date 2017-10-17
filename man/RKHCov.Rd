@@ -4,12 +4,12 @@
 \alias{RKHCov}
 \title{Covariance kernel matrix}
 \usage{
-RKHCov(X, Y, k, symmetric = FALSE)
+RKHCov(X, Y, Kern, symmetric = FALSE)
 }
 \arguments{
-\item{k}{Kernel}
-
 \item{symmetric}{check if matrix will be symmetric}
+
+\item{k}{Kernel}
 }
 \value{
 Covariance matrix

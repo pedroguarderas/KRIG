@@ -22,9 +22,12 @@ RKHWeightPowDist <- function(x, y, w, p) {
 #' @param symmetric check if matrix will be symmetric
 #' @return Covariance matrix
 #' @author Pedro Guarderas
+#' @useDynLib RKHSENS
+#' @importFrom Rcpp sourceCpp evalCpp
+#' @exportPattern("^[[:alpha:]]+")
 #' @export
-RKHCov <- function(X, Y, k, symmetric = FALSE) {
-    .Call('RKHSENS_RKHCov', PACKAGE = 'RKHSENS', X, Y, k, symmetric)
+RKHCov <- function(X, Y, Kern, symmetric = FALSE) {
+    .Call('RKHSENS_RKHCov', PACKAGE = 'RKHSENS', X, Y, Kern, symmetric)
 }
 
 #' @title Gaussian regression

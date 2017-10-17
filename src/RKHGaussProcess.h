@@ -8,6 +8,7 @@
 
 using namespace Rcpp;
 
+//--------------------------------------------------------------------------------------------------
 //' @title  Covariance kernel matrix
 //' @description Computes covariance kernel matrix
 //' @param X
@@ -16,12 +17,15 @@ using namespace Rcpp;
 //' @param symmetric check if matrix will be symmetric
 //' @return Covariance matrix
 //' @author Pedro Guarderas
+//' @useDynLib RKHSENS
+//' @importFrom Rcpp sourceCpp evalCpp
+//' @exportPattern("^[[:alpha:]]+")
 //' @export
 // [[Rcpp::export]]
-arma::mat& RKHCov( arma::mat& X, arma::mat Y, Function k, bool symmetric = false ) {
+arma::mat RKHCov( const arma::mat& X, const arma::mat& Y, Function Kern, const bool symmetric = false ) {
   int i, j;
-  int m = X.n_rows();
-  int n = Y.n_rows();
+  int m = X.n_rows;
+  int n = Y.n_rows;
   arma::mat K( m, n );
   
   // Filling Gaussian process covariance matrix
@@ -29,7 +33,7 @@ arma::mat& RKHCov( arma::mat& X, arma::mat Y, Function k, bool symmetric = false
     for ( i = 0; i < m; i++ ) { 
       for ( j = i; j < n; j++ ) {
         
-        K( i, j ) = as<double>( k( X.row( i ), Y.row( j ) ) );
+        K( i, j ) = as<double>( Kern( X.row( i ), Y.row( j ) ) );
         
         if ( j > i ) {
           K( j, i ) = K( i, j );
@@ -41,7 +45,7 @@ arma::mat& RKHCov( arma::mat& X, arma::mat Y, Function k, bool symmetric = false
   } else { 
     for ( i = 0; i < m; i++ ) { 
       for ( j = 0; j < n; j++ ) {
-        K(i,j) = as<double>( k( X.row( i ), Y.row( j ) ) );
+        K( i, j ) = as<double>( Kern( X.row( i ), Y.row( j ) ) );
       }
     }
   }
@@ -50,6 +54,7 @@ arma::mat& RKHCov( arma::mat& X, arma::mat Y, Function k, bool symmetric = false
 
 }
 
+//--------------------------------------------------------------------------------------------------
 //' @title Gaussian regression
 //' @description Computes Gaussian regression with a given covariance kernel
 //' @param Z
@@ -60,18 +65,18 @@ arma::mat& RKHCov( arma::mat& X, arma::mat Y, Function k, bool symmetric = false
 //' @author Pedro Guarderas
 //' @export
 // [[Rcpp::export]]
-List RKHGaussProcess( arma::mat& Z, arma::mat& X, arma::mat& Y, Function Kern ) {
+List RKHGaussProcess( const arma::mat& Z, const arma::mat& X, const arma::mat& Y, Function Kern ) {
 
-  int n = X.n_rows();
-  int m = Y.n_rows();
-  int p = Z.n_cols();
+  int n = X.n_rows;
+  int m = Y.n_rows;
+  int p = Z.n_cols;
   
   arma::mat k( m, n );
   arma::mat K( n, n );
   arma::mat J( n, n );
   arma::mat W( m, p );
   arma::mat U( n, p );
-  arma::mat O = ones( n, 1 );
+  arma::mat O = arma::ones( n, 1 );
   
   K = RKHCov( X, X, Kern, true );
   k = RKHCov( Y, X, Kern );

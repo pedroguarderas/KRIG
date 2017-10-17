@@ -21,28 +21,28 @@ BEGIN_RCPP
 END_RCPP
 }
 // RKHCov
-arma::mat& RKHCov(arma::mat& X, arma::mat Y, Function k, bool symmetric);
-RcppExport SEXP RKHSENS_RKHCov(SEXP XSEXP, SEXP YSEXP, SEXP kSEXP, SEXP symmetricSEXP) {
+arma::mat RKHCov(const arma::mat& X, const arma::mat& Y, Function Kern, const bool symmetric);
+RcppExport SEXP RKHSENS_RKHCov(SEXP XSEXP, SEXP YSEXP, SEXP KernSEXP, SEXP symmetricSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::mat& >::type X(XSEXP);
-    Rcpp::traits::input_parameter< arma::mat >::type Y(YSEXP);
-    Rcpp::traits::input_parameter< Function >::type k(kSEXP);
-    Rcpp::traits::input_parameter< bool >::type symmetric(symmetricSEXP);
-    rcpp_result_gen = Rcpp::wrap(RKHCov(X, Y, k, symmetric));
+    Rcpp::traits::input_parameter< const arma::mat& >::type X(XSEXP);
+    Rcpp::traits::input_parameter< const arma::mat& >::type Y(YSEXP);
+    Rcpp::traits::input_parameter< Function >::type Kern(KernSEXP);
+    Rcpp::traits::input_parameter< const bool >::type symmetric(symmetricSEXP);
+    rcpp_result_gen = Rcpp::wrap(RKHCov(X, Y, Kern, symmetric));
     return rcpp_result_gen;
 END_RCPP
 }
 // RKHGaussProcess
-List RKHGaussProcess(arma::mat& Z, arma::mat& X, arma::mat& Y, Function Kern);
+List RKHGaussProcess(const arma::mat& Z, const arma::mat& X, const arma::mat& Y, Function Kern);
 RcppExport SEXP RKHSENS_RKHGaussProcess(SEXP ZSEXP, SEXP XSEXP, SEXP YSEXP, SEXP KernSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::mat& >::type Z(ZSEXP);
-    Rcpp::traits::input_parameter< arma::mat& >::type X(XSEXP);
-    Rcpp::traits::input_parameter< arma::mat& >::type Y(YSEXP);
+    Rcpp::traits::input_parameter< const arma::mat& >::type Z(ZSEXP);
+    Rcpp::traits::input_parameter< const arma::mat& >::type X(XSEXP);
+    Rcpp::traits::input_parameter< const arma::mat& >::type Y(YSEXP);
     Rcpp::traits::input_parameter< Function >::type Kern(KernSEXP);
     rcpp_result_gen = Rcpp::wrap(RKHGaussProcess(Z, X, Y, Kern));
     return rcpp_result_gen;
