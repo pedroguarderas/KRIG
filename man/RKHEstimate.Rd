@@ -4,7 +4,7 @@
 \alias{RKHEstimate}
 \title{Gaussian regression}
 \usage{
-RKHEstimate(Z, X, Y, Kern)
+RKHEstimate(Z, X, Y, Kern, type = 1L)
 }
 \arguments{
 \item{Y}{}
@@ -20,4 +20,3 @@ Computes Gaussian regression with a given covariance kernel
 \author{
 Pedro Guarderas
 }
-

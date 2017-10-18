@@ -12,4 +12,3 @@ Real value
 \author{
 Pedro Guarderas
 }
-

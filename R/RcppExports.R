@@ -11,7 +11,7 @@
 #' @author Pedro Guarderas
 #' @export
 RKHWeightPowDist <- function(x, y, w, p) {
-    .Call('_RKHSENS_RKHWeightPowDist', PACKAGE = 'RKHSENS', x, y, w, p)
+    .Call('RKHSENS_RKHWeightPowDist', PACKAGE = 'RKHSENS', x, y, w, p)
 }
 
 #' @title  Covariance kernel matrix
@@ -27,7 +27,7 @@ RKHWeightPowDist <- function(x, y, w, p) {
 #' @exportPattern("^[[:alpha:]]+")
 #' @export
 RKHCov <- function(X, Y, Kern, symmetric = FALSE) {
-    .Call('_RKHSENS_RKHCov', PACKAGE = 'RKHSENS', X, Y, Kern, symmetric)
+    .Call('RKHSENS_RKHCov', PACKAGE = 'RKHSENS', X, Y, Kern, symmetric)
 }
 
 #' @title Gaussian regression
@@ -40,7 +40,54 @@ RKHCov <- function(X, Y, Kern, symmetric = FALSE) {
 #' @author Pedro Guarderas
 #' @export
 RKHEstimate <- function(Z, X, Y, Kern, type = 1L) {
-    .Call('_RKHSENS_RKHEstimate', PACKAGE = 'RKHSENS', Z, X, Y, Kern, type)
+    .Call('RKHSENS_RKHEstimate', PACKAGE = 'RKHSENS', Z, X, Y, Kern, type)
+}
+
+#' @title Vector integral
+#' @description Computes covariance kernel matrix
+#' @param Kern
+#' @param x
+#' @param a
+#' @param b
+#' @param n
+#' @return Vector with integrals
+#' @author Pedro Guarderas
+#' @export
+RKHIntegrateKern <- function(Kern, x, a, b, n) {
+    .Call('RKHSENS_RKHIntegrateKern', PACKAGE = 'RKHSENS', Kern, x, a, b, n)
+}
+
+#' @title Complete kernel integral
+#' @description Complete kernel integral
+#' @param Kern
+#' @param a
+#' @param b
+#' @param n
+#' @return Real
+#' @author Pedro Guarderas
+#' @export
+RKHCompIntegKern <- function(Kern, a, b, n) {
+    .Call('RKHSENS_RKHCompIntegKern', PACKAGE = 'RKHSENS', Kern, a, b, n)
+}
+
+#' @title Integrals of kernels
+#' @description Compute integrals of kernels
+#' @param Kernels List of kernels
+#' @return List with vector integrals and complete kernel integrals
+#' @author Pedro Guarderas
+#' @export
+RKHKernInteg <- function(Kernels, X) {
+    .Call('RKHSENS_RKHKernInteg', PACKAGE = 'RKHSENS', Kernels, X)
+}
+
+#' @title Integrals of kernels
+#' @description Compute integrals of kernels
+#' @param Kernels List of kernels
+#' @return List with vector integrals and complete kernel integrals
+#' @author Pedro Guarderas
+#' @export
+RKHAnova <- function(Kernels, Integral, X) {
+    .Call('RKHSENS_RKHAnova', PACKAGE = 'RKHSENS', Kernels, Integral, X)
 }
 
 #' @title Linear kernel
@@ -51,7 +98,7 @@ RKHEstimate <- function(Z, X, Y, Kern, type = 1L) {
 #' @author Pedro Guarderas
 #' @export
 RKHKerLinear <- function(h, alpha = 1.0) {
-    .Call('_RKHSENS_RKHKerLinear', PACKAGE = 'RKHSENS', h, alpha)
+    .Call('RKHSENS_RKHKerLinear', PACKAGE = 'RKHSENS', h, alpha)
 }
 
 #' @title Square kernel
@@ -62,7 +109,7 @@ RKHKerLinear <- function(h, alpha = 1.0) {
 #' @author Pedro Guarderas
 #' @export
 RKHKerSqr <- function(h, alpha = 1.0) {
-    .Call('_RKHSENS_RKHKerSqr', PACKAGE = 'RKHSENS', h, alpha)
+    .Call('RKHSENS_RKHKerSqr', PACKAGE = 'RKHSENS', h, alpha)
 }
 
 #' @title Triangular kernel
@@ -74,7 +121,7 @@ RKHKerSqr <- function(h, alpha = 1.0) {
 #' @author Pedro Guarderas
 #' @export
 RKHKerTri <- function(h, c = 1.0, alpha = 1.0) {
-    .Call('_RKHSENS_RKHKerTri', PACKAGE = 'RKHSENS', h, c, alpha)
+    .Call('RKHSENS_RKHKerTri', PACKAGE = 'RKHSENS', h, c, alpha)
 }
 
 #' @title Exponential kernel
@@ -86,7 +133,7 @@ RKHKerTri <- function(h, c = 1.0, alpha = 1.0) {
 #' @author Pedro Guarderas
 #' @export
 RKHKerExp <- function(h, sigma = 1.0, theta = 1.0) {
-    .Call('_RKHSENS_RKHKerExp', PACKAGE = 'RKHSENS', h, sigma, theta)
+    .Call('RKHSENS_RKHKerExp', PACKAGE = 'RKHSENS', h, sigma, theta)
 }
 
 #' @title Gaussian kernel
@@ -98,7 +145,7 @@ RKHKerExp <- function(h, sigma = 1.0, theta = 1.0) {
 #' @author Pedro Guarderas
 #' @export
 RKHKerSqrExp <- function(h, sigma = 1.0, theta = 1.0) {
-    .Call('_RKHSENS_RKHKerSqrExp', PACKAGE = 'RKHSENS', h, sigma, theta)
+    .Call('RKHSENS_RKHKerSqrExp', PACKAGE = 'RKHSENS', h, sigma, theta)
 }
 
 #' @title Matérn kernel
@@ -110,7 +157,7 @@ RKHKerSqrExp <- function(h, sigma = 1.0, theta = 1.0) {
 #' @author Pedro Guarderas
 #' @export
 RKHKerMatern <- function(h, v = 2.0, sigma = 1.0, theta = 1.0) {
-    .Call('_RKHSENS_RKHKerMatern', PACKAGE = 'RKHSENS', h, v, sigma, theta)
+    .Call('RKHSENS_RKHKerMatern', PACKAGE = 'RKHSENS', h, v, sigma, theta)
 }
 
 #' @title Multilog kernel
@@ -121,7 +168,7 @@ RKHKerMatern <- function(h, v = 2.0, sigma = 1.0, theta = 1.0) {
 #' @author Pedro Guarderas
 #' @export
 RKHKerMultilog <- function(h, R = 1.0) {
-    .Call('_RKHSENS_RKHKerMultilog', PACKAGE = 'RKHSENS', h, R)
+    .Call('RKHSENS_RKHKerMultilog', PACKAGE = 'RKHSENS', h, R)
 }
 
 #' @title Natural cubic spline kernel
@@ -132,7 +179,7 @@ RKHKerMultilog <- function(h, R = 1.0) {
 #' @author Pedro Guarderas
 #' @export
 RKHKerNatCubSpl <- function(h, R = 1.0) {
-    .Call('_RKHSENS_RKHKerNatCubSpl', PACKAGE = 'RKHSENS', h, R)
+    .Call('RKHSENS_RKHKerNatCubSpl', PACKAGE = 'RKHSENS', h, R)
 }
 
 #' @title Thin plate kernel
@@ -143,7 +190,7 @@ RKHKerNatCubSpl <- function(h, R = 1.0) {
 #' @author Pedro Guarderas
 #' @export
 RKHKerPlateSpl <- function(h, R = 1.0) {
-    .Call('_RKHSENS_RKHKerPlateSpl', PACKAGE = 'RKHSENS', h, R)
+    .Call('RKHSENS_RKHKerPlateSpl', PACKAGE = 'RKHSENS', h, R)
 }
 
 #' @title Mix kernel
@@ -155,6 +202,6 @@ RKHKerPlateSpl <- function(h, R = 1.0) {
 #' @author Pedro Guarderas
 #' @export
 RKHKerMix <- function(h, sigma = 1.0, theta = 1.0) {
-    .Call('_RKHSENS_RKHKerMix', PACKAGE = 'RKHSENS', h, sigma, theta)
+    .Call('RKHSENS_RKHKerMix', PACKAGE = 'RKHSENS', h, sigma, theta)
 }
 

@@ -1,7 +1,6 @@
 
 #include "RKHEstimate.h"
 
-using namespace Rcpp;
 
 //--------------------------------------------------------------------------------------------------
 arma::mat RKHCov( const arma::mat& X, const arma::mat& Y, Function Kern, const bool symmetric ) {

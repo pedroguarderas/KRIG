@@ -20,4 +20,3 @@ Computes covariance kernel matrix
 \author{
 Pedro Guarderas
 }
-
