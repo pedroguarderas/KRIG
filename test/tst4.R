@@ -33,7 +33,7 @@ t<-1.1
 Kern<-function( x, y ) return( RKHKerExp( sum( (x-y)^2 ), s, t ) )
 
 # Gaussian process estimation ----------------------------------------------------------------------
-krgs<-RKHEstimate( Z, X, Y, Kern )
+krgs<-RKHEstimate( Z, X, Y, Kern, 0 )
 W<-matrix( krgs$W, m, m )
 
 # Plotting the results -----------------------------------------------------------------------------
