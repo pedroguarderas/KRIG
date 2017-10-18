@@ -58,10 +58,10 @@ List RKHEstimate( const arma::mat& Z, const arma::mat& X, const arma::mat& Y, Fu
   k = RKHCov( Y, X, Kern );
   
   J = inv_sympd( K );
-  // W = k * J * Z;
+  W = k * J * Z;
   
   U = ( 1.0 / ( O.t() * J * O ) ) * ( O.t() * J * Z );
-  W = U + k * J * ( Z - U );
+  // W = U + k * J * ( Z - U );
 
   return List::create( Named( "W" ) = W,
                        Named( "K" ) = K,

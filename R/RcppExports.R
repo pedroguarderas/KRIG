@@ -39,8 +39,8 @@ RKHCov <- function(X, Y, Kern, symmetric = FALSE) {
 #' @return List
 #' @author Pedro Guarderas
 #' @export
-RKHGaussProcess <- function(Z, X, Y, Kern) {
-    .Call('_RKHSENS_RKHGaussProcess', PACKAGE = 'RKHSENS', Z, X, Y, Kern)
+RKHEstimate <- function(Z, X, Y, Kern) {
+    .Call('_RKHSENS_RKHEstimate', PACKAGE = 'RKHSENS', Z, X, Y, Kern)
 }
 
 #' @title Linear kernel

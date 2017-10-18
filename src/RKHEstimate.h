@@ -1,5 +1,5 @@
-#ifndef __RKHGausProcess__
-#define __RKHGausProcess__
+#ifndef __RKHEstimate__
+#define __RKHEstimate__
 
 #include <RcppArmadillo.h>
 
