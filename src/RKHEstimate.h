@@ -36,6 +36,6 @@ arma::mat RKHCov( const arma::mat& X, const arma::mat& Y, Function Kern, const b
 //' @author Pedro Guarderas
 //' @export
 // [[Rcpp::export]]
-List RKHGaussProcess( const arma::mat& Z, const arma::mat& X, const arma::mat& Y, Function Kern );
+List RKHEstimate( const arma::mat& Z, const arma::mat& X, const arma::mat& Y, Function Kern );
 
 #endif

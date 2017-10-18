@@ -1,5 +1,5 @@
 
-#include "RKHGaussProcess.h"
+#include "RKHEstimate.h"
 
 using namespace Rcpp;
 
@@ -41,7 +41,7 @@ arma::mat RKHCov( const arma::mat& X, const arma::mat& Y, Function Kern, const b
 }
 
 //--------------------------------------------------------------------------------------------------
-List RKHGaussProcess( const arma::mat& Z, const arma::mat& X, const arma::mat& Y, Function Kern ) {
+List RKHEstimate( const arma::mat& Z, const arma::mat& X, const arma::mat& Y, Function Kern ) {
 
   int n = X.n_rows;
   int m = Y.n_rows;
