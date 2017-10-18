@@ -20,3 +20,4 @@ This function computes a weighted distance between vectors x and y
 \author{
 Pedro Guarderas
 }
+

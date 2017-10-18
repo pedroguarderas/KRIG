@@ -20,3 +20,4 @@ Computes Gaussian regression with a given covariance kernel
 \author{
 Pedro Guarderas
 }
+
