@@ -88,7 +88,7 @@ double RKHKerSqrExp( const double& h, const double& sigma = 1.0, const double& t
 //' @export
 // [[Rcpp::export]]
 double RKHKerMatern( const double& h, const double& v = 2.0, const double& sigma = 1.0,
-const double& theta = 1.0 );
+                     const double& theta = 1.0 );
 
 //--------------------------------------------------------------------------------------------------
 //' @title Multilog kernel

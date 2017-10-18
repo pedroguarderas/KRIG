@@ -34,9 +34,9 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// RKHGaussProcess
-List RKHGaussProcess(const arma::mat& Z, const arma::mat& X, const arma::mat& Y, Function Kern);
-RcppExport SEXP _RKHSENS_RKHGaussProcess(SEXP ZSEXP, SEXP XSEXP, SEXP YSEXP, SEXP KernSEXP) {
+// RKHEstimate
+List RKHEstimate(const arma::mat& Z, const arma::mat& X, const arma::mat& Y, Function Kern);
+RcppExport SEXP _RKHSENS_RKHEstimate(SEXP ZSEXP, SEXP XSEXP, SEXP YSEXP, SEXP KernSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -44,7 +44,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const arma::mat& >::type X(XSEXP);
     Rcpp::traits::input_parameter< const arma::mat& >::type Y(YSEXP);
     Rcpp::traits::input_parameter< Function >::type Kern(KernSEXP);
-    rcpp_result_gen = Rcpp::wrap(RKHGaussProcess(Z, X, Y, Kern));
+    rcpp_result_gen = Rcpp::wrap(RKHEstimate(Z, X, Y, Kern));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -178,7 +178,7 @@ END_RCPP
 static const R_CallMethodDef CallEntries[] = {
     {"_RKHSENS_RKHWeightPowDist", (DL_FUNC) &_RKHSENS_RKHWeightPowDist, 4},
     {"_RKHSENS_RKHCov", (DL_FUNC) &_RKHSENS_RKHCov, 4},
-    {"_RKHSENS_RKHGaussProcess", (DL_FUNC) &_RKHSENS_RKHGaussProcess, 4},
+    {"_RKHSENS_RKHEstimate", (DL_FUNC) &_RKHSENS_RKHEstimate, 4},
     {"_RKHSENS_RKHKerLinear", (DL_FUNC) &_RKHSENS_RKHKerLinear, 2},
     {"_RKHSENS_RKHKerSqr", (DL_FUNC) &_RKHSENS_RKHKerSqr, 2},
     {"_RKHSENS_RKHKerTri", (DL_FUNC) &_RKHSENS_RKHKerTri, 3},
