@@ -30,10 +30,15 @@ Z<-as.matrix( Z, n, 1 )
 # Kernel -------------------------------------------------------------------------------------------
 s<-10.0
 t<-1.1
-Kern<-function( x, y ) return( RKHKerExp( sum( (x-y)^2 ), s, t ) )
+w<-c( 1.2, 1.5 )
+p<-c( 2.3, 2.1 )
+Kern<-function( x, y ) {
+  h<-RKHWeightPowDist( x, y, w, p )
+  return( RKHKerExp( h, s, t ) )
+}
 
 # Gaussian process estimation ----------------------------------------------------------------------
-krgs<-RKHEstimate( Z, X, Y, Kern, 1 )
+krgs<-RKHEstimate( Z, X, Y, Kern, 1, 0 )
 W<-matrix( krgs$W, m, m )
 
 # Plotting the results -----------------------------------------------------------------------------
