@@ -41,7 +41,7 @@ arma::mat RKHCov( const arma::mat& X, const arma::mat& Y, Function Kern, const b
 
 //--------------------------------------------------------------------------------------------------
 List RKHEstimate( const arma::mat& Z, const arma::mat& X, const arma::mat& Y, Function Kern,
-                  const int type ) {
+                  const int type, const int cinv ) {
 
   int n = X.n_rows;
   int m = Y.n_rows;
@@ -56,8 +56,15 @@ List RKHEstimate( const arma::mat& Z, const arma::mat& X, const arma::mat& Y, Fu
   K = RKHCov( X, X, Kern, true );
   k = RKHCov( Y, X, Kern );
   
-  J = inv_sympd( K );
-  
+  if ( cinv == 0 ) {
+    J = inv_sympd( K );
+  } else if ( cinv == 1 ) {
+    J = inv( K );
+  } else if ( cinv == 2 ) {
+    J = chol( K );
+    J = inv( J );
+    J = J.t() * J;
+  }
   
   if ( type == 0 ) {
     W = k * J * Z;  

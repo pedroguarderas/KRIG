@@ -11,7 +11,7 @@ double RKHWeightPowDist( const arma::colvec& x,
   if ( x.size() > 0 && x.size() == y.size() && y.size() == w.size() && w.size() == p.size() ) {
     int i;
     for( i = 0; i < x.size() ; i++ ) {
-      d += w(i) * pow( abs( x(i) - y(i) ), p(i) );
+      d += w(i) * std::pow( std::abs( x(i) - y(i) ), p(i) );
     }
   }
   return d;

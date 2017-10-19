@@ -4,15 +4,29 @@
 \alias{RKHEstimate}
 \title{Gaussian regression}
 \usage{
-RKHEstimate(Z, X, Y, Kern, type = 1L)
+RKHEstimate(Z, X, Y, Kern, type = 1L, cinv = 0L)
 }
 \arguments{
-\item{Y}{}
+\item{Z}{Observed spatial values.}
 
-\item{Kern}{kernel}
+\item{X}{Spatial points, ubication where the Z value was observed.}
+
+\item{Y}{Spatial points where it is requested to predict Z.}
+
+\item{Kern}{Kernel functions.}
+
+\item{type}{Type of Gaussian regression, 0 = simple interpolation, 1 = simple regression, 
+2 = ordinary interpolation, 3 = ordinary regression, 4 = universal interpolation, 
+5 = universal regression.}
+
+\item{cinv}{Form to compute the inverse.}
 }
 \value{
-List
+List containing the different important matrices employed for the Gaussian regression.
+\item{W}{Predicted new values for Z}
+\item{K}{Covariance matrix for X}
+\item{k}{Covariance matrix between Y and X}
+\item{J}{Inverse of the covariance matrix}
 }
 \description{
 Computes Gaussian regression with a given covariance kernel

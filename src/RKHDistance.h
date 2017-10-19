@@ -2,19 +2,21 @@
 #define __RKHDistance__
 
 #include <RcppArmadillo.h>
+#include <cmath>
 
 // [[Rcpp::plugins(cpp14)]]
 // [[Rcpp::depends(RcppArmadillo)]]
 
 using namespace Rcpp;
 
-//' @title Generic function to compute distances
-//' @description This function computes a weighted distance between vectors x and y
-//' @param x
-//' @param y
-//' @param w weights
-//' @param p power terms
-//' @return Numeric value with the distance
+//' @title Generic weighted p-distance
+//' @description Many isotropic models can be defined employing a distance.
+//' @param x First vector
+//' @param y Second vector
+//' @param w Weights for every coordinate in the vectors
+//' @param p Powers for every coordinate in the vectors. To define a true norm every coordinate
+//' has to be greater than 1.
+//' @return Numeric value of the weighted p-distance.
 //' @author Pedro Guarderas
 //' @export
 // [[Rcpp::export]]

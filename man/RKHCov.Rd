@@ -2,20 +2,28 @@
 % Please edit documentation in R/RcppExports.R
 \name{RKHCov}
 \alias{RKHCov}
-\title{Covariance kernel matrix}
+\title{Spatial covariance matrix.}
 \usage{
 RKHCov(X, Y, Kern, symmetric = FALSE)
 }
 \arguments{
-\item{symmetric}{check if matrix will be symmetric}
+\item{X}{First set of spatial points.}
 
-\item{k}{Kernel}
+\item{Y}{Second set of spatial points.}
+
+\item{Kern}{Kernel function.}
+
+\item{symmetric}{If result of computation will be a square matrix, the time computation can
+be improved setting this parameter to TRUE, the default is FALSE.}
 }
 \value{
-Covariance matrix
+The spatial covariance matrix.
 }
 \description{
-Computes covariance kernel matrix
+To compute a Gaussian regression or interpolation is necessary use Kernel, and
+  it is requeried to construct the spatial convariance matrix. The spatial covariance could
+  be estimated between to sets of points X and Y and the result is not necessarily a square
+  matrix.
 }
 \author{
 Pedro Guarderas

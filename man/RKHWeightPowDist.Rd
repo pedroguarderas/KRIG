@@ -2,20 +2,25 @@
 % Please edit documentation in R/RcppExports.R
 \name{RKHWeightPowDist}
 \alias{RKHWeightPowDist}
-\title{Generic function to compute distances}
+\title{Generic weighted p-distance}
 \usage{
 RKHWeightPowDist(x, y, w, p)
 }
 \arguments{
-\item{w}{weights}
+\item{x}{First vector}
 
-\item{p}{power terms}
+\item{y}{Second vector}
+
+\item{w}{Weights for every coordinate in the vectors}
+
+\item{p}{Powers for every coordinate in the vectors. To define a true norm every coordinate
+has to be greater than 1.}
 }
 \value{
-Numeric value with the distance
+Numeric value of the weighted p-distance.
 }
 \description{
-This function computes a weighted distance between vectors x and y
+Many isotropic models can be defined employing a distance.
 }
 \author{
 Pedro Guarderas
