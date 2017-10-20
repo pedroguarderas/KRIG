@@ -15,7 +15,7 @@ double RKHSobolIndex( const arma::colvec KF,
   arma::mat W = arma::ones( n, n );
     
   for ( k = 0; k < c; k++ ) {
-    W = W * Gamma.slice( comb( k ) - 1 );
+    W = W % Gamma.slice( comb( k ) - 1 );
   }
   S = as_scalar( KF.t() * W * KF );
 
@@ -33,7 +33,7 @@ double RKHSobolVar( const arma::colvec KF,
   
   arma::mat V = arma::ones( n, n );
   for( i = 0; i < m; i++ ) {
-    V = V * ( arma::ones( n, n ) + Gamma.slice( i ) );
+    V = V % ( arma::ones( n, n ) + Gamma.slice( i ) );
   }
   V = V - arma::ones( n, n );
   
@@ -41,6 +41,3 @@ double RKHSobolVar( const arma::colvec KF,
   
   return Var;
 }
-
-
-

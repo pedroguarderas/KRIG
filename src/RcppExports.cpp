@@ -8,7 +8,7 @@ using namespace Rcpp;
 
 // RKHWeightPowDist
 double RKHWeightPowDist(const arma::colvec& x, const arma::colvec& y, const arma::colvec& w, const arma::colvec& p);
-RcppExport SEXP _RKHSENS_RKHWeightPowDist(SEXP xSEXP, SEXP ySEXP, SEXP wSEXP, SEXP pSEXP) {
+RcppExport SEXP RKHSENS_RKHWeightPowDist(SEXP xSEXP, SEXP ySEXP, SEXP wSEXP, SEXP pSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -22,7 +22,7 @@ END_RCPP
 }
 // RKHCov
 arma::mat RKHCov(const arma::mat& X, const arma::mat& Y, Function Kern, const bool symmetric);
-RcppExport SEXP _RKHSENS_RKHCov(SEXP XSEXP, SEXP YSEXP, SEXP KernSEXP, SEXP symmetricSEXP) {
+RcppExport SEXP RKHSENS_RKHCov(SEXP XSEXP, SEXP YSEXP, SEXP KernSEXP, SEXP symmetricSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -36,7 +36,7 @@ END_RCPP
 }
 // RKHEstimate
 List RKHEstimate(const arma::mat& Z, const arma::mat& X, const arma::mat& Y, const arma::mat& K, const arma::mat& k, const arma::mat& S, const int type, const int cinv);
-RcppExport SEXP _RKHSENS_RKHEstimate(SEXP ZSEXP, SEXP XSEXP, SEXP YSEXP, SEXP KSEXP, SEXP kSEXP, SEXP SSEXP, SEXP typeSEXP, SEXP cinvSEXP) {
+RcppExport SEXP RKHSENS_RKHEstimate(SEXP ZSEXP, SEXP XSEXP, SEXP YSEXP, SEXP KSEXP, SEXP kSEXP, SEXP SSEXP, SEXP typeSEXP, SEXP cinvSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -54,7 +54,7 @@ END_RCPP
 }
 // RKHIntegrateKern
 arma::colvec RKHIntegrateKern(Function Kern, const arma::colvec x, const double& a, const double& b, const double& n);
-RcppExport SEXP _RKHSENS_RKHIntegrateKern(SEXP KernSEXP, SEXP xSEXP, SEXP aSEXP, SEXP bSEXP, SEXP nSEXP) {
+RcppExport SEXP RKHSENS_RKHIntegrateKern(SEXP KernSEXP, SEXP xSEXP, SEXP aSEXP, SEXP bSEXP, SEXP nSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -69,7 +69,7 @@ END_RCPP
 }
 // RKHCompIntegKern
 double RKHCompIntegKern(Function Kern, const double& a, const double& b, const double& n);
-RcppExport SEXP _RKHSENS_RKHCompIntegKern(SEXP KernSEXP, SEXP aSEXP, SEXP bSEXP, SEXP nSEXP) {
+RcppExport SEXP RKHSENS_RKHCompIntegKern(SEXP KernSEXP, SEXP aSEXP, SEXP bSEXP, SEXP nSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -83,7 +83,7 @@ END_RCPP
 }
 // RKHKernInteg
 List RKHKernInteg(const DataFrame& Kernels, const arma::mat& X);
-RcppExport SEXP _RKHSENS_RKHKernInteg(SEXP KernelsSEXP, SEXP XSEXP) {
+RcppExport SEXP RKHSENS_RKHKernInteg(SEXP KernelsSEXP, SEXP XSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -95,7 +95,7 @@ END_RCPP
 }
 // RKHAnova
 List RKHAnova(const DataFrame& Kernels, const List& Integral, const arma::mat& X);
-RcppExport SEXP _RKHSENS_RKHAnova(SEXP KernelsSEXP, SEXP IntegralSEXP, SEXP XSEXP) {
+RcppExport SEXP RKHSENS_RKHAnova(SEXP KernelsSEXP, SEXP IntegralSEXP, SEXP XSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -108,7 +108,7 @@ END_RCPP
 }
 // RKHKerLinear
 double RKHKerLinear(const double& h, const double& alpha);
-RcppExport SEXP _RKHSENS_RKHKerLinear(SEXP hSEXP, SEXP alphaSEXP) {
+RcppExport SEXP RKHSENS_RKHKerLinear(SEXP hSEXP, SEXP alphaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -120,7 +120,7 @@ END_RCPP
 }
 // RKHKerSqr
 double RKHKerSqr(const double& h, const double& alpha);
-RcppExport SEXP _RKHSENS_RKHKerSqr(SEXP hSEXP, SEXP alphaSEXP) {
+RcppExport SEXP RKHSENS_RKHKerSqr(SEXP hSEXP, SEXP alphaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -132,7 +132,7 @@ END_RCPP
 }
 // RKHKerTri
 double RKHKerTri(const double& h, const double& c, const double& alpha);
-RcppExport SEXP _RKHSENS_RKHKerTri(SEXP hSEXP, SEXP cSEXP, SEXP alphaSEXP) {
+RcppExport SEXP RKHSENS_RKHKerTri(SEXP hSEXP, SEXP cSEXP, SEXP alphaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -145,7 +145,7 @@ END_RCPP
 }
 // RKHKerExp
 double RKHKerExp(const double& h, const double& sigma, const double& theta);
-RcppExport SEXP _RKHSENS_RKHKerExp(SEXP hSEXP, SEXP sigmaSEXP, SEXP thetaSEXP) {
+RcppExport SEXP RKHSENS_RKHKerExp(SEXP hSEXP, SEXP sigmaSEXP, SEXP thetaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -158,7 +158,7 @@ END_RCPP
 }
 // RKHKerSqrExp
 double RKHKerSqrExp(const double& h, const double& sigma, const double& theta);
-RcppExport SEXP _RKHSENS_RKHKerSqrExp(SEXP hSEXP, SEXP sigmaSEXP, SEXP thetaSEXP) {
+RcppExport SEXP RKHSENS_RKHKerSqrExp(SEXP hSEXP, SEXP sigmaSEXP, SEXP thetaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -171,7 +171,7 @@ END_RCPP
 }
 // RKHKerMatern
 double RKHKerMatern(const double& h, const double& v, const double& sigma, const double& theta);
-RcppExport SEXP _RKHSENS_RKHKerMatern(SEXP hSEXP, SEXP vSEXP, SEXP sigmaSEXP, SEXP thetaSEXP) {
+RcppExport SEXP RKHSENS_RKHKerMatern(SEXP hSEXP, SEXP vSEXP, SEXP sigmaSEXP, SEXP thetaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -185,7 +185,7 @@ END_RCPP
 }
 // RKHKerMultilog
 double RKHKerMultilog(const double& h, const double& R);
-RcppExport SEXP _RKHSENS_RKHKerMultilog(SEXP hSEXP, SEXP RSEXP) {
+RcppExport SEXP RKHSENS_RKHKerMultilog(SEXP hSEXP, SEXP RSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -197,7 +197,7 @@ END_RCPP
 }
 // RKHKerNatCubSpl
 double RKHKerNatCubSpl(const double& h, const double& R);
-RcppExport SEXP _RKHSENS_RKHKerNatCubSpl(SEXP hSEXP, SEXP RSEXP) {
+RcppExport SEXP RKHSENS_RKHKerNatCubSpl(SEXP hSEXP, SEXP RSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -209,7 +209,7 @@ END_RCPP
 }
 // RKHKerPlateSpl
 double RKHKerPlateSpl(const double& h, const double& R);
-RcppExport SEXP _RKHSENS_RKHKerPlateSpl(SEXP hSEXP, SEXP RSEXP) {
+RcppExport SEXP RKHSENS_RKHKerPlateSpl(SEXP hSEXP, SEXP RSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -221,7 +221,7 @@ END_RCPP
 }
 // RKHKerMix
 double RKHKerMix(const double& h, const double& sigma, const double& theta);
-RcppExport SEXP _RKHSENS_RKHKerMix(SEXP hSEXP, SEXP sigmaSEXP, SEXP thetaSEXP) {
+RcppExport SEXP RKHSENS_RKHKerMix(SEXP hSEXP, SEXP sigmaSEXP, SEXP thetaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -234,7 +234,7 @@ END_RCPP
 }
 // RKHSobolIndex
 double RKHSobolIndex(const arma::colvec KF, const arma::colvec comb, const arma::mat X, const arma::cube Gamma);
-RcppExport SEXP _RKHSENS_RKHSobolIndex(SEXP KFSEXP, SEXP combSEXP, SEXP XSEXP, SEXP GammaSEXP) {
+RcppExport SEXP RKHSENS_RKHSobolIndex(SEXP KFSEXP, SEXP combSEXP, SEXP XSEXP, SEXP GammaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -248,7 +248,7 @@ END_RCPP
 }
 // RKHSobolVar
 double RKHSobolVar(const arma::colvec KF, const arma::cube Gamma);
-RcppExport SEXP _RKHSENS_RKHSobolVar(SEXP KFSEXP, SEXP GammaSEXP) {
+RcppExport SEXP RKHSENS_RKHSobolVar(SEXP KFSEXP, SEXP GammaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -260,25 +260,25 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_RKHSENS_RKHWeightPowDist", (DL_FUNC) &_RKHSENS_RKHWeightPowDist, 4},
-    {"_RKHSENS_RKHCov", (DL_FUNC) &_RKHSENS_RKHCov, 4},
-    {"_RKHSENS_RKHEstimate", (DL_FUNC) &_RKHSENS_RKHEstimate, 8},
-    {"_RKHSENS_RKHIntegrateKern", (DL_FUNC) &_RKHSENS_RKHIntegrateKern, 5},
-    {"_RKHSENS_RKHCompIntegKern", (DL_FUNC) &_RKHSENS_RKHCompIntegKern, 4},
-    {"_RKHSENS_RKHKernInteg", (DL_FUNC) &_RKHSENS_RKHKernInteg, 2},
-    {"_RKHSENS_RKHAnova", (DL_FUNC) &_RKHSENS_RKHAnova, 3},
-    {"_RKHSENS_RKHKerLinear", (DL_FUNC) &_RKHSENS_RKHKerLinear, 2},
-    {"_RKHSENS_RKHKerSqr", (DL_FUNC) &_RKHSENS_RKHKerSqr, 2},
-    {"_RKHSENS_RKHKerTri", (DL_FUNC) &_RKHSENS_RKHKerTri, 3},
-    {"_RKHSENS_RKHKerExp", (DL_FUNC) &_RKHSENS_RKHKerExp, 3},
-    {"_RKHSENS_RKHKerSqrExp", (DL_FUNC) &_RKHSENS_RKHKerSqrExp, 3},
-    {"_RKHSENS_RKHKerMatern", (DL_FUNC) &_RKHSENS_RKHKerMatern, 4},
-    {"_RKHSENS_RKHKerMultilog", (DL_FUNC) &_RKHSENS_RKHKerMultilog, 2},
-    {"_RKHSENS_RKHKerNatCubSpl", (DL_FUNC) &_RKHSENS_RKHKerNatCubSpl, 2},
-    {"_RKHSENS_RKHKerPlateSpl", (DL_FUNC) &_RKHSENS_RKHKerPlateSpl, 2},
-    {"_RKHSENS_RKHKerMix", (DL_FUNC) &_RKHSENS_RKHKerMix, 3},
-    {"_RKHSENS_RKHSobolIndex", (DL_FUNC) &_RKHSENS_RKHSobolIndex, 4},
-    {"_RKHSENS_RKHSobolVar", (DL_FUNC) &_RKHSENS_RKHSobolVar, 2},
+    {"RKHSENS_RKHWeightPowDist", (DL_FUNC) &RKHSENS_RKHWeightPowDist, 4},
+    {"RKHSENS_RKHCov", (DL_FUNC) &RKHSENS_RKHCov, 4},
+    {"RKHSENS_RKHEstimate", (DL_FUNC) &RKHSENS_RKHEstimate, 8},
+    {"RKHSENS_RKHIntegrateKern", (DL_FUNC) &RKHSENS_RKHIntegrateKern, 5},
+    {"RKHSENS_RKHCompIntegKern", (DL_FUNC) &RKHSENS_RKHCompIntegKern, 4},
+    {"RKHSENS_RKHKernInteg", (DL_FUNC) &RKHSENS_RKHKernInteg, 2},
+    {"RKHSENS_RKHAnova", (DL_FUNC) &RKHSENS_RKHAnova, 3},
+    {"RKHSENS_RKHKerLinear", (DL_FUNC) &RKHSENS_RKHKerLinear, 2},
+    {"RKHSENS_RKHKerSqr", (DL_FUNC) &RKHSENS_RKHKerSqr, 2},
+    {"RKHSENS_RKHKerTri", (DL_FUNC) &RKHSENS_RKHKerTri, 3},
+    {"RKHSENS_RKHKerExp", (DL_FUNC) &RKHSENS_RKHKerExp, 3},
+    {"RKHSENS_RKHKerSqrExp", (DL_FUNC) &RKHSENS_RKHKerSqrExp, 3},
+    {"RKHSENS_RKHKerMatern", (DL_FUNC) &RKHSENS_RKHKerMatern, 4},
+    {"RKHSENS_RKHKerMultilog", (DL_FUNC) &RKHSENS_RKHKerMultilog, 2},
+    {"RKHSENS_RKHKerNatCubSpl", (DL_FUNC) &RKHSENS_RKHKerNatCubSpl, 2},
+    {"RKHSENS_RKHKerPlateSpl", (DL_FUNC) &RKHSENS_RKHKerPlateSpl, 2},
+    {"RKHSENS_RKHKerMix", (DL_FUNC) &RKHSENS_RKHKerMix, 3},
+    {"RKHSENS_RKHSobolIndex", (DL_FUNC) &RKHSENS_RKHSobolIndex, 4},
+    {"RKHSENS_RKHSobolVar", (DL_FUNC) &RKHSENS_RKHSobolVar, 2},
     {NULL, NULL, 0}
 };
 
