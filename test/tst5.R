@@ -38,7 +38,10 @@ Kern<-function( x, y ) {
 }
 
 # Gaussian process estimation ----------------------------------------------------------------------
-krgs<-RKHEstimate( Z, X, Y, Kern, 1, 0 )
+K = RKHCov( X, X, Kern, TRUE );
+k = RKHCov( Y, X, Kern );
+S = diag( 0, n, n );
+krgs<-RKHEstimate( Z, X, Y, K, k, S, 1, 1 )
 W<-matrix( krgs$W, m, m )
 
 # Plotting the results -----------------------------------------------------------------------------
