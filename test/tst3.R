@@ -11,13 +11,13 @@ f<-function(x){
 z<-sapply( x, f )
 
 # Prediction ---------------------------------------------------------------------------------------
-n<-15
+n<-10
 X<-matrix( runif( n, -3, 6 ), n, 1 )
 
 m<-100
 Y<-matrix( seq( -3, 6, length.out = m ), m, 1 )
 
-Z<-matrix( sapply( X, f ), n, 1 )
+Z<-matrix( sapply( X, f ), n, 1 ) + rnorm( n, 0, 0.02 )
 
 # Kernel -------------------------------------------------------------------------------------------
 s<-10.0
@@ -32,12 +32,17 @@ Kern<-function( x, y ) {
 # Gaussian process estimation ----------------------------------------------------------------------
 K = RKHCov( X, X, Kern, TRUE );
 k = RKHCov( Y, X, Kern );
-S = diag( runif( n, 10, 50 ), n, n );
+S = diag( 10, n, n );
 krgs<-RKHEstimate( Z, X, Y, K, k, S, 2, 1 )
 W<-krgs$W
 
 # Plotting the results -----------------------------------------------------------------------------
-plot( x, z, type = 'l', lwd = 2, col='gold', ylim = c( 0.2, 2 ) )
+ymin<-min( z, W[,1], Z[,1] )
+ymax<-max( z, W[,1], Z[,1] )
+plot( x, z, type = 'l', lwd = 2, col='gold', ylim = c( ymin, ymax ) )
 points( Y, W[,1], col='darkgreen', type = 'l', lwd = 2 )
 points( X, Z[,1], col = 'dodgerblue3', pch = 16, cex = 1.2 )
+
+# plot( W[,1] - z, pch = 16, cex = 1, col = 'dodgerblue3' )
+
 
