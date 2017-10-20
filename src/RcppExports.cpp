@@ -35,18 +35,20 @@ BEGIN_RCPP
 END_RCPP
 }
 // RKHEstimate
-List RKHEstimate(const arma::mat& Z, const arma::mat& X, const arma::mat& Y, Function Kern, const int type, const int cinv);
-RcppExport SEXP _RKHSENS_RKHEstimate(SEXP ZSEXP, SEXP XSEXP, SEXP YSEXP, SEXP KernSEXP, SEXP typeSEXP, SEXP cinvSEXP) {
+List RKHEstimate(const arma::mat& Z, const arma::mat& X, const arma::mat& Y, const arma::mat& K, const arma::mat& k, const arma::mat& S, const int type, const int cinv);
+RcppExport SEXP _RKHSENS_RKHEstimate(SEXP ZSEXP, SEXP XSEXP, SEXP YSEXP, SEXP KSEXP, SEXP kSEXP, SEXP SSEXP, SEXP typeSEXP, SEXP cinvSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const arma::mat& >::type Z(ZSEXP);
     Rcpp::traits::input_parameter< const arma::mat& >::type X(XSEXP);
     Rcpp::traits::input_parameter< const arma::mat& >::type Y(YSEXP);
-    Rcpp::traits::input_parameter< Function >::type Kern(KernSEXP);
+    Rcpp::traits::input_parameter< const arma::mat& >::type K(KSEXP);
+    Rcpp::traits::input_parameter< const arma::mat& >::type k(kSEXP);
+    Rcpp::traits::input_parameter< const arma::mat& >::type S(SSEXP);
     Rcpp::traits::input_parameter< const int >::type type(typeSEXP);
     Rcpp::traits::input_parameter< const int >::type cinv(cinvSEXP);
-    rcpp_result_gen = Rcpp::wrap(RKHEstimate(Z, X, Y, Kern, type, cinv));
+    rcpp_result_gen = Rcpp::wrap(RKHEstimate(Z, X, Y, K, k, S, type, cinv));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -234,7 +236,7 @@ END_RCPP
 static const R_CallMethodDef CallEntries[] = {
     {"_RKHSENS_RKHWeightPowDist", (DL_FUNC) &_RKHSENS_RKHWeightPowDist, 4},
     {"_RKHSENS_RKHCov", (DL_FUNC) &_RKHSENS_RKHCov, 4},
-    {"_RKHSENS_RKHEstimate", (DL_FUNC) &_RKHSENS_RKHEstimate, 6},
+    {"_RKHSENS_RKHEstimate", (DL_FUNC) &_RKHSENS_RKHEstimate, 8},
     {"_RKHSENS_RKHIntegrateKern", (DL_FUNC) &_RKHSENS_RKHIntegrateKern, 5},
     {"_RKHSENS_RKHCompIntegKern", (DL_FUNC) &_RKHSENS_RKHCompIntegKern, 4},
     {"_RKHSENS_RKHKernInteg", (DL_FUNC) &_RKHSENS_RKHKernInteg, 2},

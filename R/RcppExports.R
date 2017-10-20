@@ -52,8 +52,8 @@ RKHCov <- function(X, Y, Kern, symmetric = FALSE) {
 #' \item{J}{Inverse of the covariance matrix}
 #' @author Pedro Guarderas
 #' @export
-RKHEstimate <- function(Z, X, Y, Kern, type = 1L, cinv = 0L) {
-    .Call('_RKHSENS_RKHEstimate', PACKAGE = 'RKHSENS', Z, X, Y, Kern, type, cinv)
+RKHEstimate <- function(Z, X, Y, K, k, S, type = 1L, cinv = 0L) {
+    .Call('_RKHSENS_RKHEstimate', PACKAGE = 'RKHSENS', Z, X, Y, K, k, S, type, cinv)
 }
 
 #' @title Vector integral

@@ -40,21 +40,20 @@ arma::mat RKHCov( const arma::mat& X, const arma::mat& Y, Function Kern, const b
 }
 
 //--------------------------------------------------------------------------------------------------
-List RKHEstimate( const arma::mat& Z, const arma::mat& X, const arma::mat& Y, Function Kern,
+List RKHEstimate( const arma::mat& Z, const arma::mat& X, const arma::mat& Y,
+                  const arma::mat& K, const arma::mat& k, const arma::mat& S,
                   const int type, const int cinv ) {
 
   int n = X.n_rows;
   int m = Y.n_rows;
   int p = Z.n_cols;
   
-  
-  arma::mat k( m, n );
-  arma::mat K( n, n );
   arma::mat J( n, n );
   arma::mat W( m, p );
 
-  K = RKHCov( X, X, Kern, true );
-  k = RKHCov( Y, X, Kern );
+  if ( type == 2 ) {
+    K = K + S;
+  }
   
   if ( cinv == 0 ) {
     J = inv_sympd( K );
@@ -69,6 +68,15 @@ List RKHEstimate( const arma::mat& Z, const arma::mat& X, const arma::mat& Y, Fu
   if ( type == 0 ) {
     W = k * J * Z;  
   } else if ( type == 1 ) {
+    double v;
+    arma::mat U( n, p );
+    arma::mat u = arma::ones( n, 1 );
+    arma::mat w = arma::ones( m, 1 );
+    
+    v = 1.0 / as_scalar( u.t() * J * u );
+    U = v * u.t() * J * Z;
+    W = w * U + k * J * ( Z - u * U );
+  } else if ( type == 2 ) {
     double v;
     arma::mat U( n, p );
     arma::mat u = arma::ones( n, 1 );

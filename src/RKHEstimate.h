@@ -47,7 +47,8 @@ arma::mat RKHCov( const arma::mat& X, const arma::mat& Y, Function Kern, const b
 //' @author Pedro Guarderas
 //' @export
 // [[Rcpp::export]]
-List RKHEstimate( const arma::mat& Z, const arma::mat& X, const arma::mat& Y, Function Kern,
+List RKHEstimate( const arma::mat& Z, const arma::mat& X, const arma::mat& Y, 
+                  const arma::mat& K, const arma::mat& k, const arma::mat& S,
                   const int type = 1, const int cinv = 0 );
 
 #endif
