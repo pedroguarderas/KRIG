@@ -23,7 +23,18 @@ KI<-RKHKernInteg( Kernels, X )
 GK<-RKHAnova( Kernels, KI, X )
 
 f<-function( x ) abs( x[1] + 30 * x[2] + 60 * x[3] )
-F<-apply( X, 1, FUN = f )
+Func<-apply( X, 1, FUN = f )
 
-Sobol<-SobolIndex( GK, X, F, 1:3 )
-Sobol$S / Sobol$Var
+KF<-solve( GK$Kanova + diag( 0.01, n, n ), Func )
+
+SbI<-NULL
+for ( j in 1:3 ) {
+  CB<-combn( 1:3, j )  
+  for ( l in 1:ncol( CB ) ) {
+    SbI<-c( SbI, RKHSobolIndex( KF, CB[,l], X, GK$Gamma ) )
+  }
+}
+
+Var<-RKHSobolVar( KF, GK$Gamma )
+
+sum( SbI / Var )

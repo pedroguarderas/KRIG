@@ -232,6 +232,32 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// RKHSobolIndex
+double RKHSobolIndex(const arma::colvec KF, const arma::colvec comb, const arma::mat X, const arma::cube Gamma);
+RcppExport SEXP _RKHSENS_RKHSobolIndex(SEXP KFSEXP, SEXP combSEXP, SEXP XSEXP, SEXP GammaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::colvec >::type KF(KFSEXP);
+    Rcpp::traits::input_parameter< const arma::colvec >::type comb(combSEXP);
+    Rcpp::traits::input_parameter< const arma::mat >::type X(XSEXP);
+    Rcpp::traits::input_parameter< const arma::cube >::type Gamma(GammaSEXP);
+    rcpp_result_gen = Rcpp::wrap(RKHSobolIndex(KF, comb, X, Gamma));
+    return rcpp_result_gen;
+END_RCPP
+}
+// RKHSobolVar
+double RKHSobolVar(const arma::colvec KF, const arma::cube Gamma);
+RcppExport SEXP _RKHSENS_RKHSobolVar(SEXP KFSEXP, SEXP GammaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::colvec >::type KF(KFSEXP);
+    Rcpp::traits::input_parameter< const arma::cube >::type Gamma(GammaSEXP);
+    rcpp_result_gen = Rcpp::wrap(RKHSobolVar(KF, Gamma));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_RKHSENS_RKHWeightPowDist", (DL_FUNC) &_RKHSENS_RKHWeightPowDist, 4},
@@ -251,6 +277,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_RKHSENS_RKHKerNatCubSpl", (DL_FUNC) &_RKHSENS_RKHKerNatCubSpl, 2},
     {"_RKHSENS_RKHKerPlateSpl", (DL_FUNC) &_RKHSENS_RKHKerPlateSpl, 2},
     {"_RKHSENS_RKHKerMix", (DL_FUNC) &_RKHSENS_RKHKerMix, 3},
+    {"_RKHSENS_RKHSobolIndex", (DL_FUNC) &_RKHSENS_RKHSobolIndex, 4},
+    {"_RKHSENS_RKHSobolVar", (DL_FUNC) &_RKHSENS_RKHSobolVar, 2},
     {NULL, NULL, 0}
 };
 
