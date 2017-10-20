@@ -32,6 +32,7 @@ for ( j in 1:3 ) {
   CB<-combn( 1:3, j )  
   for ( l in 1:ncol( CB ) ) {
     SbI<-c( SbI, RKHSobolIndex( KF, CB[,l], X, GK$Gamma ) )
+    names(SbI)[length(SbI)]<-paste( 'C.', paste( CB[,l], collapse='.' ), sep = '' )
   }
 }
 
