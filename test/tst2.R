@@ -25,7 +25,7 @@ GK<-RKHAnova( Kernels, KI, X )
 f<-function( x ) abs( x[1] + 30 * x[2] + 60 * x[3] )
 Func<-apply( X, 1, FUN = f )
 
-KF<-solve( GK$Kanova + diag( 0.01, n, n ), Func )
+KF<-solve( GK$Kanova + diag( 0.00001, n, n ), Func )
 
 SbI<-NULL
 for ( j in 1:3 ) {
