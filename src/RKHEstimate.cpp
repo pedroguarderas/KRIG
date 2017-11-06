@@ -50,17 +50,20 @@ List RKHEstimate( const arma::mat& Z, const arma::mat& X, const arma::mat& Y,
   
   arma::mat J( n, n );
   arma::mat W( m, p );
+  arma::mat KS( K.n_rows, K.n_cols );
 
   if ( type == 2 ) {
-    K = K + S;
+    KS = K + S;
+  } else {
+    KS = K;
   }
   
   if ( cinv == 0 ) {
-    J = inv_sympd( K );
+    J = inv_sympd( KS );
   } else if ( cinv == 1 ) {
-    J = inv( K );
+    J = inv( KS );
   } else if ( cinv == 2 ) {
-    J = chol( K );
+    J = chol( KS );
     J = inv( J );
     J = J.t() * J;
   }
@@ -88,7 +91,7 @@ List RKHEstimate( const arma::mat& Z, const arma::mat& X, const arma::mat& Y,
   }
   
   return List::create( Named( "W" ) = W,
-                       Named( "K" ) = K,
+                       Named( "K" ) = KS,
                        Named( "k" ) = k,
                        Named( "J" ) = J );
 }
