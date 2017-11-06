@@ -2,7 +2,8 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 #' @title Generic weighted p-distance
-#' @description Many isotropic models can be defined employing a distance.
+#' @description Many isotropic models can be defined employing a distance. In particular this 
+#' function implements a distance employing weights and different powers.
 #' @param x First vector
 #' @param y Second vector
 #' @param w Weights for every coordinate in the vectors
