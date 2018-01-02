@@ -105,5 +105,6 @@ List RKHEstimate( const arma::mat& Z, const arma::mat& K, const arma::mat& k,
   }
   
   return KRIG;
+
 }
 
