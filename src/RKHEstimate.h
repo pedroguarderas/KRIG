@@ -27,7 +27,10 @@ using namespace Rcpp;
 //' @exportPattern("^[[:alpha:]]+")
 //' @export
 // [[Rcpp::export]]
-arma::mat RKHCov( const arma::mat& X, const arma::mat& Y, Function Kern, const bool symmetric = false );
+arma::mat RKHCov( const arma::mat& X, 
+                  const arma::mat& Y, 
+                  Function Kern, 
+                  const bool symmetric = false );
 
 //--------------------------------------------------------------------------------------------------
 //' @title Gaussian regression
@@ -48,7 +51,9 @@ arma::mat RKHCov( const arma::mat& X, const arma::mat& Y, Function Kern, const b
 //' @author Pedro Guarderas
 //' @export
 // [[Rcpp::export]]
-List RKHEstimate( const arma::mat& Z, const arma::mat& K, const arma::mat& k,
+List RKHEstimate( const arma::mat& Z, 
+                  const arma::mat& K, 
+                  const arma::mat& k,
                   const arma::mat& G, 
                   const arma::mat& g,
                   const std::string type = "ordinary", 

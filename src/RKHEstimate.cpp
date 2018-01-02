@@ -3,7 +3,10 @@
 
 
 //--------------------------------------------------------------------------------------------------
-arma::mat RKHCov( const arma::mat& X, const arma::mat& Y, Function Kern, const bool symmetric ) {
+arma::mat RKHCov( const arma::mat& X, 
+                  const arma::mat& Y, 
+                  Function Kern, 
+                  const bool symmetric ) {
   int i, j;
   int m = X.n_rows;
   int n = Y.n_rows;
@@ -40,7 +43,9 @@ arma::mat RKHCov( const arma::mat& X, const arma::mat& Y, Function Kern, const b
 }
 
 //--------------------------------------------------------------------------------------------------
-List RKHEstimate( const arma::mat& Z, const arma::mat& K, const arma::mat& k,
+List RKHEstimate( const arma::mat& Z, 
+                  const arma::mat& K, 
+                  const arma::mat& k,
                   const arma::mat& G, 
                   const arma::mat& g,
                   const std::string type, 
