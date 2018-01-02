@@ -49,7 +49,9 @@ arma::mat RKHCov( const arma::mat& X, const arma::mat& Y, Function Kern, const b
 //' @export
 // [[Rcpp::export]]
 List RKHEstimate( const arma::mat& Z, const arma::mat& K, const arma::mat& k,
-                  const arma::mat& G, const arma::mat& g,
-                  const std::string type = "ordinary", const std::string cinv = "syminv" );
+                  const arma::mat& G, 
+                  const arma::mat& g,
+                  const std::string type = "ordinary", 
+                  const std::string typeinv = "syminv" );
 
 #endif

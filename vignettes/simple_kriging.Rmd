@@ -1,8 +1,20 @@
-# Example 3 ----------------------------------------------------------------------------------------
-# Gaussian process regression
-library( RKHSENS )
+---
+title: "Simple kriging"
+author: "Pedro Guarderas"
+date: "January 2, 2018"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Running a MAUT Model}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
 
-# Observed -----------------------------------------------------------------------------------------
+## Introduction
+```{r,eval=TRUE,message=FALSE, warning=FALSE}
+library( RKHSENS )
+```
+
+```{r,eval=TRUE,message=FALSE, warning=FALSE}
 m<-100
 XLim<-c( -3, 6 )
 x<-seq( XLim[1], XLim[2], length.out = m )
@@ -10,8 +22,9 @@ f<-function(x){
   return( 1 + exp(-x^2) + 0.4 * exp(-(x-2)^2 ) - 0.5 * exp( -(x-4)^2 ) ) 
 }
 z<-sapply( x, f )
+```
 
-# Prediction ---------------------------------------------------------------------------------------
+```{r,eval=TRUE,message=FALSE, warning=FALSE}
 n<-10
 X<-matrix( runif( n, XLim[1], XLim[2] ), n, 1 )
 
@@ -20,8 +33,9 @@ Z<-matrix( sapply( X, f ), n, 1 )
 m<-100
 YLim<-c(-6,8)
 Y<-matrix( seq( YLim[1], YLim[2], length.out = m ), m, 1 )
+```
 
-# Kernel -------------------------------------------------------------------------------------------
+```{r,eval=TRUE,message=FALSE, warning=FALSE}
 s<-50.0
 t<-2
 w<-1.0
@@ -30,8 +44,9 @@ Kern<-function( x, y ) {
   h<-RKHWeightPowDist( x, y, w, p )
   return( RKHKerExp( h, s, t ) )
 }
+```
 
-# Gaussian process estimation ----------------------------------------------------------------------
+```{r,eval=TRUE,message=FALSE, warning=FALSE}
 K = RKHCov( X, X, Kern, TRUE )
 k = RKHCov( Y, X, Kern );
 
@@ -40,13 +55,12 @@ KRIG<-RKHEstimate( Z = Z, K = K, k = t(k),
                    g = matrix( 0, 1, 1),
                    type = "simple", 
                    typeinv = 'syminv' )
+```
 
-# Plotting the results -----------------------------------------------------------------------------
+```{r,eval=TRUE,fig.show='hold', fig.show='hold', fig.align="center", fig.width=7, fig.height=4}
 ymin<-min( z, KRIG$Z[,1], Z[,1] )
 ymax<-max( z, KRIG$Z[,1], Z[,1] )
 plot( x, z, type = 'l', lwd = 2, col='gold', ylim = c( ymin, ymax ), xlim = YLim )
 points( Y, KRIG$Z[,1], col='darkgreen', type = 'l', lwd = 2 )
 points( X, Z[,1], col = 'dodgerblue3', pch = 16, cex = 1.2 )
-
-gc()
-
+```

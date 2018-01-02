@@ -41,8 +41,10 @@ arma::mat RKHCov( const arma::mat& X, const arma::mat& Y, Function Kern, const b
 
 //--------------------------------------------------------------------------------------------------
 List RKHEstimate( const arma::mat& Z, const arma::mat& K, const arma::mat& k,
-                  const arma::mat& G, const arma::mat& g,
-                  const std::string type, const std::string cinv ) {
+                  const arma::mat& G, 
+                  const arma::mat& g,
+                  const std::string type, 
+                  const std::string typeinv ) {
 
   int n = Z.n_rows;
   int m = k.n_cols;
@@ -53,13 +55,13 @@ List RKHEstimate( const arma::mat& Z, const arma::mat& K, const arma::mat& k,
   arma::mat W( m, n );
 
   // Inverse computation
-  if ( cinv == "syminv" ) {
+  if ( typeinv == "syminv" ) {
     J = inv_sympd( K );
     
-  } else if ( cinv == "inv" ) {
+  } else if ( typeinv == "inv" ) {
     J = inv( K );
     
-  } else if ( cinv == "cholinv" ) {
+  } else if ( typeinv == "cholinv" ) {
     J = chol( K );
     J = inv( J );
     J = J.t() * J;
@@ -74,13 +76,13 @@ List RKHEstimate( const arma::mat& Z, const arma::mat& K, const arma::mat& k,
     KRIG[ "J" ] = J;
     
   } else if ( type == "ordinary" ) {  // Ordinary kriging
-    double alpha, tau;
-    arma::mat U = arma::ones( m, n );
+    double alpha;
     arma::mat u = arma::ones( n, 1 );
+    arma::mat tau( n, m );
 
     alpha = 1.0 / as_scalar( u.t() * J * u );
-    tau = as_scalar( u.t() * J * k ) - 1.0;
-    W = ( k.t() - alpha * tau * U.t() ) * J * Z;
+    tau = arma::ones( n, n ) * J * k - arma::ones( n, m );
+    W = ( k.t() - alpha * tau.t() ) * J * Z;
     
     KRIG[ "Z" ] = W;
     KRIG[ "J" ] = J;
