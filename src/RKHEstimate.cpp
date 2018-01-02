@@ -40,55 +40,70 @@ arma::mat RKHCov( const arma::mat& X, const arma::mat& Y, Function Kern, const b
 }
 
 //--------------------------------------------------------------------------------------------------
-List RKHEstimate( const arma::mat& Z, const arma::mat& X, const arma::mat& Y,
-                  const arma::mat& K, const arma::mat& k, const arma::mat& S,
-                  const int type, const int cinv ) {
+List RKHEstimate( const arma::mat& Z, const arma::mat& K, const arma::mat& k,
+                  const arma::mat& G, const arma::mat& g,
+                  const std::string type, const std::string cinv ) {
 
-  int n = X.n_rows;
-  int m = Y.n_rows;
-  int p = Z.n_cols;
+  int n = Z.n_rows;
+  int m = k.n_cols;
+
+  List KRIG;
   
   arma::mat J( n, n );
-  arma::mat W( m, p );
+  arma::mat W( m, n );
 
-  if ( type == 2 ) {
-    K = K + S;
-  }
-  
-  if ( cinv == 0 ) {
+  // Inverse computation
+  if ( cinv == "syminv" ) {
     J = inv_sympd( K );
-  } else if ( cinv == 1 ) {
+    
+  } else if ( cinv == "inv" ) {
     J = inv( K );
-  } else if ( cinv == 2 ) {
+    
+  } else if ( cinv == "cholinv" ) {
     J = chol( K );
     J = inv( J );
     J = J.t() * J;
+    
   }
   
-  if ( type == 0 ) {
-    W = k * J * Z;  
-  } else if ( type == 1 ) {
-    double v;
-    arma::mat U( n, p );
-    arma::mat u = arma::ones( n, 1 );
-    arma::mat w = arma::ones( m, 1 );
+  // Kriging computation
+  if ( type == "simple" ) { // Simple kriging
+    W = k.t() * J * Z;  
     
-    v = 1.0 / as_scalar( u.t() * J * u );
-    U = v * u.t() * J * Z;
-    W = w * U + k * J * ( Z - u * U );
-  } else if ( type == 2 ) {
-    double v;
-    arma::mat U( n, p );
-    arma::mat u = arma::ones( n, 1 );
-    arma::mat w = arma::ones( m, 1 );
+    KRIG[ "Z" ] = W;
+    KRIG[ "J" ] = J;
     
-    v = 1.0 / as_scalar( u.t() * J * u );
-    U = v * u.t() * J * Z;
-    W = w * U + k * J * ( Z - u * U );
+  } else if ( type == "ordinary" ) {  // Ordinary kriging
+    double alpha, tau;
+    arma::mat U = arma::ones( m, n );
+    arma::mat u = arma::ones( n, 1 );
+
+    alpha = 1.0 / as_scalar( u.t() * J * u );
+    tau = as_scalar( u.t() * J * k ) - 1.0;
+    W = ( k.t() - alpha * tau * U.t() ) * J * Z;
+    
+    KRIG[ "Z" ] = W;
+    KRIG[ "J" ] = J;
+    KRIG[ "alpha" ] = alpha;
+    KRIG[ "tau" ] = tau;
+    
+  } else if ( type == "universal" ) { // Universal kriging
+    
+    int p = G.n_rows;
+    arma::mat A( n, p );
+    arma::mat tau( p, 1 );
+
+    A = G.t() * inv_sympd( G * J * G.t() );
+    tau = G.t() * K * k - g;
+    W = ( k.t() - tau.t() * A.t() ) * J * Z;
+    
+    KRIG[ "Z" ] = W;
+    KRIG[ "J" ] = J;
+    KRIG[ "A" ] = A;
+    KRIG[ "tau" ] = tau;
+
   }
   
-  return List::create( Named( "W" ) = W,
-                       Named( "K" ) = K,
-                       Named( "k" ) = k,
-                       Named( "J" ) = J );
+  return KRIG;
 }
+
