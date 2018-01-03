@@ -62,7 +62,7 @@ KRIG<-RKHEstimate( Z = Z,
                    type = "universal", 
                    typeinv = 'syminv' )
 
-max( apply( apply( G %*% KRIG$L - g, c(1,2), FUN = round, digits = 7 ), 2, FUN = max ) )
+round( max( G %*% KRIG$L - g ), 10 )
 ```
 
 ```{r,eval=TRUE,fig.show='hold', fig.show='hold', fig.align="center", fig.width=7, fig.height=4}
