@@ -3,4 +3,4 @@
 RKHSENS
 =======
 
-A package for spatial statistics in particular employing methods like kriging, the main functions are implemente with Rcpp
+A package for spatial statistics in particular employing methods like kriging, the main functions are implemented with Rcpp
