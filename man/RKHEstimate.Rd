@@ -4,22 +4,22 @@
 \alias{RKHEstimate}
 \title{Gaussian regression}
 \usage{
-RKHEstimate(Z, X, Y, K, k, S, type = 1L, cinv = 0L)
+RKHEstimate(Z, K, k, G, g, type = "ordinary", typeinv = "syminv")
 }
 \arguments{
 \item{Z}{Observed spatial values.}
-
-\item{X}{Spatial points, ubication where the Z value was observed.}
-
-\item{Y}{Spatial points where it is requested to predict Z.}
 
 \item{type}{Type of Gaussian regression, 0 = simple interpolation, 1 = simple regression, 
 2 = ordinary interpolation, 3 = ordinary regression, 4 = universal interpolation, 
 5 = universal regression.}
 
-\item{cinv}{Form to compute the inverse.}
+\item{X}{Spatial points, ubication where the Z value was observed.}
+
+\item{Y}{Spatial points where it is requested to predict Z.}
 
 \item{Kern}{Kernel functions.}
+
+\item{cinv}{Form to compute the inverse.}
 }
 \value{
 List containing the different important matrices employed for the Gaussian regression.

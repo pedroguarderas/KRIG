@@ -58,6 +58,7 @@ List RKHEstimate( const arma::mat& Z,
   
   arma::mat J( n, n );
   arma::mat W( m, n );
+  arma::mat L( m, n );
 
   // Inverse computation
   if ( typeinv == "syminv" ) {
@@ -75,10 +76,14 @@ List RKHEstimate( const arma::mat& Z,
   
   // Kriging computation
   if ( type == "simple" ) { // Simple kriging
-    W = k.t() * J * Z;  
+    
+    L = J *  k;
+    W = L.t() * Z;  
     
     KRIG[ "Z" ] = W;
+    KRIG[ "L" ] = L;
     KRIG[ "J" ] = J;
+    
     
   } else if ( type == "ordinary" ) {  // Ordinary kriging
     double alpha;
@@ -87,9 +92,12 @@ List RKHEstimate( const arma::mat& Z,
 
     alpha = 1.0 / as_scalar( u.t() * J * u );
     tau = arma::ones( n, n ) * J * k - arma::ones( n, m );
-    W = ( k.t() - alpha * tau.t() ) * J * Z;
+    
+    L = J * ( k - alpha * tau ) ;
+    W = L.t() * Z;
     
     KRIG[ "Z" ] = W;
+    KRIG[ "L" ] = L;
     KRIG[ "J" ] = J;
     KRIG[ "alpha" ] = alpha;
     KRIG[ "tau" ] = tau;
@@ -101,10 +109,13 @@ List RKHEstimate( const arma::mat& Z,
     arma::mat tau( p, 1 );
 
     A = G.t() * inv_sympd( G * J * G.t() );
-    tau = G.t() * K * k - g;
-    W = ( k.t() - tau.t() * A.t() ) * J * Z;
+    tau = G * J * k - g;
+    
+    L = J * ( k - A * tau ) ;
+    W = L.t() * Z;
     
     KRIG[ "Z" ] = W;
+    KRIG[ "L" ] = L;
     KRIG[ "J" ] = J;
     KRIG[ "A" ] = A;
     KRIG[ "tau" ] = tau;

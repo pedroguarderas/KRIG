@@ -20,7 +20,8 @@ has to be greater than 1.}
 Numeric value of the weighted p-distance.
 }
 \description{
-Many isotropic models can be defined employing a distance.
+Many isotropic models can be defined employing a distance. In particular this 
+function implements a distance employing weights and different powers.
 }
 \author{
 Pedro Guarderas

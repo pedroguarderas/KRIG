@@ -1,5 +1,5 @@
 ---
-title: "Ordinary kriging"
+title: "Universal kriging"
 author: "Pedro Guarderas"
 date: "January 2, 2018"
 output: rmarkdown::html_vignette
@@ -31,8 +31,14 @@ X<-matrix( runif( n, XLim[1], XLim[2] ), n, 1 )
 Z<-matrix( sapply( X, f ), n, 1 )
 
 m<-100
-YLim<-c(-6,8)
+YLim<-c(-3.5,6.5)
 Y<-matrix( seq( YLim[1], YLim[2], length.out = m ), m, 1 )
+
+G<-t( X )
+G<-rbind( G, t( X * X ) )
+
+g<-t( Y )
+g<-rbind( g, t( Y * Y  ) )
 ```
 
 ```{r,eval=TRUE,message=FALSE, warning=FALSE}
@@ -50,11 +56,15 @@ Kern<-function( x, y ) {
 K = RKHCov( X, X, Kern, TRUE )
 k = RKHCov( Y, X, Kern );
 
-KRIG<-RKHEstimate( Z = Z, K = K, k = t(k),
-                   G = matrix( 0, 1, 1),
-                   g = matrix( 0, 1, 1),
-                   type = "ordinary", 
+KRIG<-RKHEstimate( Z = Z, 
+                   K = K, 
+                   k = t(k),
+                   G = G,
+                   g = g,
+                   type = "universal", 
                    typeinv = 'syminv' )
+
+max( apply( apply( G %*% KRIG$L - g, c(1,2), FUN = round, digits = 7 ), 2, FUN = max ) )
 ```
 
 ```{r,eval=TRUE,fig.show='hold', fig.show='hold', fig.align="center", fig.width=7, fig.height=4}

@@ -2,9 +2,9 @@
 % Please edit documentation in R/RcppExports.R
 \name{RKHSobolVar}
 \alias{RKHSobolVar}
-\title{Sensitiviy analysis}
+\title{Var}
 \usage{
-RKHSobolVar(Gamma)
+RKHSobolVar(KF, Gamma)
 }
 \arguments{
 \item{Gamma}{Cube with integral results.}
