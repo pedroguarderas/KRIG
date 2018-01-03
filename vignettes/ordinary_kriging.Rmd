@@ -50,7 +50,9 @@ Kern<-function( x, y ) {
 K = RKHCov( X, X, Kern, TRUE )
 k = RKHCov( Y, X, Kern );
 
-KRIG<-RKHEstimate( Z = Z, K = K, k = t(k),
+KRIG<-RKHEstimate( Z = Z,
+                   K = K, 
+                   k = k,
                    G = matrix( 0, 1, 1),
                    g = matrix( 0, 1, 1),
                    type = "ordinary", 

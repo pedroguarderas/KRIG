@@ -10,12 +10,12 @@ arma::mat RKHCov( const arma::mat& X,
   int i, j;
   int m = X.n_rows;
   int n = Y.n_rows;
-  arma::mat K( m, n );
+  arma::mat K( n, m );
   arma::rowvec x, y;
   
   // Filling Gaussian process covariance matrix
   if ( symmetric ) {
-    for ( i = 0; i < m; i++ ) { 
+    for ( i = 0; i < n; i++ ) { 
       for ( j = i; j < n; j++ ) {
         x = X.row( i );
         y = Y.row( j );
@@ -29,10 +29,10 @@ arma::mat RKHCov( const arma::mat& X,
     }
     
   } else { 
-    for ( i = 0; i < m; i++ ) { 
-      for ( j = 0; j < n; j++ ) {
-        x = X.row( i );
-        y = Y.row( j );
+    for ( i = 0; i < n; i++ ) { 
+      for ( j = 0; j < m; j++ ) {
+        x = X.row( j );
+        y = Y.row( i );
         K( i, j ) = as<double>( Kern( x, y ) );
       }
     }
