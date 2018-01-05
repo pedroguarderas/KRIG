@@ -2,9 +2,11 @@
 #define __RKHEstimate__
 
 #include <string>
+#include <omp.h>
 #include <RcppArmadillo.h>
 
 // [[Rcpp::plugins(cpp14)]]
+// [[Rcpp::plugins(openmp)]]
 // [[Rcpp::depends(RcppArmadillo)]]
 
 using namespace Rcpp;
