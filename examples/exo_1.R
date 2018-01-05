@@ -27,11 +27,11 @@ save( SG, BM, file = 'RData/mining_data.RData' )
 # Copper mine
 data_file<-paste0( path, 'Copper.dat' )
 
-Copper<-read.csv( file = data_file, header = FALSE, skip = 4, sep = '\t', dec = '.' )
+Copper<-read.csv( file = data_file, header = FALSE, skip = 2, sep = '\t', dec = '.',
+                  colClasses = c( 'numeric', 'character', 'numeric', 'numeric', 'numeric', 
+                                  'numeric', 'numeric', 'numeric' ) )
 Copper<-as.data.table( Copper )
 Copper[ , V1 := NULL ]
-Copper[ , V2 := NULL ]
-Copper[ , V10 := NULL ]
 setnames( Copper, c( 'a', 's', 'x1', 'x2', 'x3', 'Z', 'C' ) )  
 
 save( SG, BM, Copper, file = 'RData/mining_data.RData' )

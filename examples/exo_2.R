@@ -42,7 +42,7 @@ KRIG<-RKHEstimate( Z = Z,
 nbcol<-200
 color = rev(viridis(nbcol))
 W<-matrix( KRIG$Z, m[1], m[2] )
-zcol  = cut(W, nbcol)
+zcol<-cut(W, nbcol)
 
 
 # Design plot by layers
