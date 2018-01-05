@@ -78,6 +78,18 @@ double RKHKerExp( const double& h, const double& sigma = 1.0, const double& thet
 double RKHKerSqrExp( const double& h, const double& sigma = 1.0, const double& theta = 1.0 );
 
 //--------------------------------------------------------------------------------------------------
+//' @title Spherical kernel
+//' @description
+//' @param h
+//' @param phi
+//' @param theta
+//' @return Real value
+//' @author Pedro Guarderas
+//' @export
+// [[Rcpp::export]]
+double RKHKerSpher( const double& h, const double& phi, const double& theta );
+
+//--------------------------------------------------------------------------------------------------
 //' @title Matérn kernel
 //' @description
 //' @param h

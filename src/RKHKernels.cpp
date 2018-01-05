@@ -27,6 +27,15 @@ double RKHKerSqrExp( const double& h, const double& sigma, const double& theta )
 }
 
 //--------------------------------------------------------------------------------------------------
+double RKHKerSpher( const double& h, const double& phi, const double& theta ) {
+  double Ker = 0.0;
+  if ( h < theta ) {
+    Ker = phi * ( 1 - 1.5 * h / theta + 0.5 * h * h * h / ( theta * theta * theta ) );
+  } 
+  return Ker;
+}
+
+//--------------------------------------------------------------------------------------------------
 double RKHKerMatern( const double& h, const double& v, const double& sigma, const double& theta ) {
   double H = sqrt( v ) * h / theta;
   if ( H > 0 ) {

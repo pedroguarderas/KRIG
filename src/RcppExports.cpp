@@ -168,6 +168,19 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// RKHKerSpher
+double RKHKerSpher(const double& h, const double& phi, const double& theta);
+RcppExport SEXP RKHSENS_RKHKerSpher(SEXP hSEXP, SEXP phiSEXP, SEXP thetaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const double& >::type h(hSEXP);
+    Rcpp::traits::input_parameter< const double& >::type phi(phiSEXP);
+    Rcpp::traits::input_parameter< const double& >::type theta(thetaSEXP);
+    rcpp_result_gen = Rcpp::wrap(RKHKerSpher(h, phi, theta));
+    return rcpp_result_gen;
+END_RCPP
+}
 // RKHKerMatern
 double RKHKerMatern(const double& h, const double& v, const double& sigma, const double& theta);
 RcppExport SEXP RKHSENS_RKHKerMatern(SEXP hSEXP, SEXP vSEXP, SEXP sigmaSEXP, SEXP thetaSEXP) {
@@ -271,6 +284,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"RKHSENS_RKHKerTri", (DL_FUNC) &RKHSENS_RKHKerTri, 3},
     {"RKHSENS_RKHKerExp", (DL_FUNC) &RKHSENS_RKHKerExp, 3},
     {"RKHSENS_RKHKerSqrExp", (DL_FUNC) &RKHSENS_RKHKerSqrExp, 3},
+    {"RKHSENS_RKHKerSpher", (DL_FUNC) &RKHSENS_RKHKerSpher, 3},
     {"RKHSENS_RKHKerMatern", (DL_FUNC) &RKHSENS_RKHKerMatern, 4},
     {"RKHSENS_RKHKerMultilog", (DL_FUNC) &RKHSENS_RKHKerMultilog, 2},
     {"RKHSENS_RKHKerNatCubSpl", (DL_FUNC) &RKHSENS_RKHKerNatCubSpl, 2},

@@ -162,6 +162,18 @@ RKHKerSqrExp <- function(h, sigma = 1.0, theta = 1.0) {
     .Call('RKHSENS_RKHKerSqrExp', PACKAGE = 'RKHSENS', h, sigma, theta)
 }
 
+#' @title Spherical kernel
+#' @description
+#' @param h
+#' @param phi
+#' @param theta
+#' @return Real value
+#' @author Pedro Guarderas
+#' @export
+RKHKerSpher <- function(h, phi, theta) {
+    .Call('RKHSENS_RKHKerSpher', PACKAGE = 'RKHSENS', h, phi, theta)
+}
+
 #' @title Matérn kernel
 #' @description
 #' @param h
