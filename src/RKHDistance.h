@@ -3,8 +3,10 @@
 
 #include <RcppArmadillo.h>
 #include <cmath>
+#include <omp.h>
 
 // [[Rcpp::plugins(cpp14)]]
+// [[Rcpp::plugins(oepnmp)]]
 // [[Rcpp::depends(RcppArmadillo)]]
 
 using namespace Rcpp;
