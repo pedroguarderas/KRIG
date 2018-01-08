@@ -3,11 +3,15 @@
 
 #include <RcppArmadillo.h>
 #include <string>
+#include <omp.h>
 
 // [[Rcpp::plugins(cpp14)]]
+// [[Rcpp::plugins(oepnmp)]]
 // [[Rcpp::depends(RcppArmadillo)]]
 
 using namespace Rcpp;
+
+typedef double (*KernPtr)( const arma::rowvec&, const arma::rowvec& );
 
 //--------------------------------------------------------------------------------------------------
 //' @title Spatial covariance matrix.
@@ -29,7 +33,7 @@ using namespace Rcpp;
 // [[Rcpp::export]]
 arma::mat RKHCov( const arma::mat& X, 
                   const arma::mat& Y, 
-                  Function Kern, 
+                  SEXP Kern, 
                   const bool symmetric = false );
 
 //--------------------------------------------------------------------------------------------------

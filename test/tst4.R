@@ -32,11 +32,19 @@ s<-10.0
 t<-1.1
 Kern<-function( x, y ) return( RKHKerExp( sum( (x-y)^2 ), s, t ) )
 
+Kern<-function( x, y ) return( s * s * exp( -sum( (x-y)^2 ) / t / t ) )
+
 # Gaussian process estimation ----------------------------------------------------------------------
 K = RKHCov( X, X, Kern, TRUE );
 k = RKHCov( Y, X, Kern );
 S = diag( 0, n, n );
-krgs<-RKHEstimate( Z, X, Y, K, k, S, 0, 0 )
+KRIG<-RKHEstimate( Z = Z,
+                   K = K, 
+                   k = k,
+                   G = matrix( 0, 1, 1),
+                   g = matrix( 0, 1, 1),
+                   type = "simple", 
+                   typeinv = 'syminv' )
 W<-matrix( krgs$W, m, m )
 
 # Plotting the results -----------------------------------------------------------------------------

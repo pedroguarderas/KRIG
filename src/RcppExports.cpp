@@ -21,14 +21,14 @@ BEGIN_RCPP
 END_RCPP
 }
 // RKHCov
-arma::mat RKHCov(const arma::mat& X, const arma::mat& Y, Function Kern, const bool symmetric);
+arma::mat RKHCov(const arma::mat& X, const arma::mat& Y, SEXP Kern, const bool symmetric);
 RcppExport SEXP RKHSENS_RKHCov(SEXP XSEXP, SEXP YSEXP, SEXP KernSEXP, SEXP symmetricSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const arma::mat& >::type X(XSEXP);
     Rcpp::traits::input_parameter< const arma::mat& >::type Y(YSEXP);
-    Rcpp::traits::input_parameter< Function >::type Kern(KernSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type Kern(KernSEXP);
     Rcpp::traits::input_parameter< const bool >::type symmetric(symmetricSEXP);
     rcpp_result_gen = Rcpp::wrap(RKHCov(X, Y, Kern, symmetric));
     return rcpp_result_gen;
