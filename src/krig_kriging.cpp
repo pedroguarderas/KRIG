@@ -1,12 +1,12 @@
 
-#include "RKHEstimate.h"
+#include "krig_kriging.h"
 
 
 //--------------------------------------------------------------------------------------------------
-arma::mat RKHCov( const arma::mat& X, 
-                  const arma::mat& Y, 
-                  SEXP Kern, 
-                  const bool symmetric ) {
+arma::mat Kov( const arma::mat& X, 
+               const arma::mat& Y, 
+               SEXP Kern, 
+               const bool symmetric ) {
   int i, j;
   int m = X.n_rows;
   int n = Y.n_rows;
@@ -49,13 +49,13 @@ arma::mat RKHCov( const arma::mat& X,
 }
 
 //--------------------------------------------------------------------------------------------------
-List RKHEstimate( const arma::mat& Z, 
-                  const arma::mat& K, 
-                  const arma::mat& k,
-                  const arma::mat& G, 
-                  const arma::mat& g,
-                  const std::string type, 
-                  const std::string typeinv ) {
+List Krig( const arma::mat& Z, 
+           const arma::mat& K, 
+           const arma::mat& k,
+           const arma::mat& G, 
+           const arma::mat& g,
+           const std::string type, 
+           const std::string typeinv ) {
 
   int n = Z.n_rows;
   int m = k.n_cols;

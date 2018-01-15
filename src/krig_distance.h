@@ -1,5 +1,5 @@
-#ifndef __RKHDistance__
-#define __RKHDistance__
+#ifndef __KRIG_distance__
+#define __KRIG_distance__
 
 #include <RcppArmadillo.h>
 #include <cmath>
@@ -23,8 +23,8 @@ using namespace Rcpp;
 //' @author Pedro Guarderas
 //' @export
 // [[Rcpp::export]]
-double RKHWeightPowDist( const arma::colvec& x, 
-                         const arma::colvec& y, 
-                         const arma::colvec& w, 
-                         const arma::colvec& p );
+double weight_pow_dist( const arma::colvec& x, 
+                        const arma::colvec& y, 
+                        const arma::colvec& w, 
+                        const arma::colvec& p );
 #endif

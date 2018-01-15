@@ -1,5 +1,5 @@
-#ifndef __RKHKernels__
-#define __RKHKernels__
+#ifndef __KRIG_kernels__
+#define __KRIG_kernels__
 
 #include <RcppArmadillo.h>
 #include <gsl/gsl_sf_bessel.h>
@@ -28,7 +28,7 @@ using namespace Rcpp;
 //' @author Pedro Guarderas
 //' @export
 // [[Rcpp::export]]
-double RKHKerLinear( const double& h, const double& alpha = 1.0 );
+double linear_kernel( const double& h, const double& alpha = 1.0 );
 
 //--------------------------------------------------------------------------------------------------
 //' @title Square kernel
@@ -39,7 +39,7 @@ double RKHKerLinear( const double& h, const double& alpha = 1.0 );
 //' @author Pedro Guarderas
 //' @export
 // [[Rcpp::export]]
-double RKHKerSqr( const double& h, const double& alpha = 1.0 );
+double square_kernel( const double& h, const double& alpha = 1.0 );
 
 //--------------------------------------------------------------------------------------------------
 //' @title Triangular kernel
@@ -51,7 +51,7 @@ double RKHKerSqr( const double& h, const double& alpha = 1.0 );
 //' @author Pedro Guarderas
 //' @export
 // [[Rcpp::export]]
-double RKHKerTri( const double& h, const double& c = 1.0, const double& alpha = 1.0 );
+double triangular_kernel( const double& h, const double& c = 1.0, const double& alpha = 1.0 );
 
 //--------------------------------------------------------------------------------------------------
 //' @title Exponential kernel
@@ -63,7 +63,7 @@ double RKHKerTri( const double& h, const double& c = 1.0, const double& alpha = 
 //' @author Pedro Guarderas
 //' @export
 // [[Rcpp::export]]
-double RKHKerExp( const double& h, const double& sigma = 1.0, const double& theta = 1.0 );
+double exp_kernel( const double& h, const double& sigma = 1.0, const double& theta = 1.0 );
 
 //--------------------------------------------------------------------------------------------------
 //' @title Gaussian kernel
@@ -75,7 +75,7 @@ double RKHKerExp( const double& h, const double& sigma = 1.0, const double& thet
 //' @author Pedro Guarderas
 //' @export
 // [[Rcpp::export]]
-double RKHKerSqrExp( const double& h, const double& sigma = 1.0, const double& theta = 1.0 );
+double gaussian_kernel( const double& h, const double& sigma = 1.0, const double& theta = 1.0 );
 
 //--------------------------------------------------------------------------------------------------
 //' @title Spherical kernel
@@ -87,7 +87,7 @@ double RKHKerSqrExp( const double& h, const double& sigma = 1.0, const double& t
 //' @author Pedro Guarderas
 //' @export
 // [[Rcpp::export]]
-double RKHKerSpher( const double& h, const double& phi, const double& theta );
+double spherical_kernel( const double& h, const double& phi, const double& theta );
 
 //--------------------------------------------------------------------------------------------------
 //' @title Matérn kernel
@@ -99,8 +99,8 @@ double RKHKerSpher( const double& h, const double& phi, const double& theta );
 //' @author Pedro Guarderas
 //' @export
 // [[Rcpp::export]]
-double RKHKerMatern( const double& h, const double& v = 2.0, const double& sigma = 1.0,
-                     const double& theta = 1.0 );
+double matern_kernel( const double& h, const double& v = 2.0, const double& sigma = 1.0,
+                      const double& theta = 1.0 );
 
 //--------------------------------------------------------------------------------------------------
 //' @title Multilog kernel
@@ -111,7 +111,7 @@ double RKHKerMatern( const double& h, const double& v = 2.0, const double& sigma
 //' @author Pedro Guarderas
 //' @export
 // [[Rcpp::export]]
-double RKHKerMultilog( const double& h, const double& R = 1.0 );
+double multilog_kernel( const double& h, const double& R = 1.0 );
 
 //--------------------------------------------------------------------------------------------------
 //' @title Natural cubic spline kernel
@@ -122,7 +122,7 @@ double RKHKerMultilog( const double& h, const double& R = 1.0 );
 //' @author Pedro Guarderas
 //' @export
 // [[Rcpp::export]]
-double RKHKerNatCubSpl( const double& h, const double& R = 1.0 );
+double nat_cubic_spline_kernel( const double& h, const double& R = 1.0 );
 
 //--------------------------------------------------------------------------------------------------
 //' @title Thin plate kernel
@@ -133,7 +133,7 @@ double RKHKerNatCubSpl( const double& h, const double& R = 1.0 );
 //' @author Pedro Guarderas
 //' @export
 // [[Rcpp::export]]
-double RKHKerPlateSpl( const double& h, const double& R = 1.0 );
+double thin_plate_kernel( const double& h, const double& R = 1.0 );
 
 //--------------------------------------------------------------------------------------------------
 //' @title Mix kernel
@@ -145,6 +145,6 @@ double RKHKerPlateSpl( const double& h, const double& R = 1.0 );
 //' @author Pedro Guarderas
 //' @export
 // [[Rcpp::export]]
-double RKHKerMix( const double& h, const double& sigma = 1.0, const double& theta = 1.0 );
+double mix_kernel( const double& h, const double& sigma = 1.0, const double& theta = 1.0 );
 
 #endif

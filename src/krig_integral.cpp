@@ -1,9 +1,9 @@
 
-#include "RKHIntegral.h"
+#include "krig_integral.h"
 
 
 //--------------------------------------------------------------------------------------------------
-arma::colvec RKHIntegrateKern( Function Kern, const arma::colvec x, 
+arma::colvec integrate_kernel( Function Kern, const arma::colvec x, 
                                const double& a, const double& b, const double& n ) {
   int i, k;
   int m = x.size();
@@ -20,7 +20,7 @@ arma::colvec RKHIntegrateKern( Function Kern, const arma::colvec x,
 }
 
 //--------------------------------------------------------------------------------------------------
-double RKHCompIntegKern( Function Kern, const double& a, const double& b, const double& n ) {
+double complete_integrate_kernel( Function Kern, const double& a, const double& b, const double& n ) {
   int i, j;
   double h = ( b - a ) / ( n - 1 );
   double I = 0;
@@ -35,7 +35,7 @@ double RKHCompIntegKern( Function Kern, const double& a, const double& b, const 
 }
 
 //--------------------------------------------------------------------------------------------------
-List RKHKernInteg( const DataFrame& Kernels, const arma::mat& X ) {
+List vector_integrate_kernel( const DataFrame& Kernels, const arma::mat& X ) {
   
   int k;
   int N = Kernels.nrows();
@@ -50,8 +50,8 @@ List RKHKernInteg( const DataFrame& Kernels, const arma::mat& X ) {
   for ( k = 0; k < N; k++ ) {
     Function Kern( as< std::string >( FName[k] ) ); 
     
-    integral.col( k ) = RKHIntegrateKern( Kern, X.col( k ), a( k ), b( k ), n( k ) );
-    alpha( k ) = RKHCompIntegKern( Kern, a( k ), b( k ), n( k ) );
+    integral.col( k ) = integrate_kernel( Kern, X.col( k ), a( k ), b( k ), n( k ) );
+    alpha( k ) = complete_integrate_kernel( Kern, a( k ), b( k ), n( k ) );
     
   }
   
@@ -60,7 +60,7 @@ List RKHKernInteg( const DataFrame& Kernels, const arma::mat& X ) {
 }
 
 //--------------------------------------------------------------------------------------------------
-List RKHAnova( const DataFrame& Kernels, const List& Integral, const arma::mat& X ) {
+List Kanova( const DataFrame& Kernels, const List& Integral, const arma::mat& X ) {
   
   int N, n, i, j, k;
   

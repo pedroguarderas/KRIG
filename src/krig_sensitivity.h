@@ -1,5 +1,5 @@
-#ifndef __RKHCombination__
-#define __RKHCombination__
+#ifndef __KRIG_sens__
+#define __KRIG_sens__
 
 #include <RcppArmadillo.h>
 
@@ -19,10 +19,10 @@ using namespace Rcpp;
 //' @author Pedro Guarderas
 //' @export
 // [[Rcpp::export]]
-double RKHSobolIndex( const arma::colvec KF,
-                      const arma::colvec comb,
-                      const arma::mat X,
-                      const arma::cube Gamma );
+double sens_idx( const arma::colvec KF,
+                 const arma::colvec comb,
+                 const arma::mat X,
+                 const arma::cube Gamma );
 
 
 //--------------------------------------------------------------------------------------------------
@@ -33,7 +33,7 @@ double RKHSobolIndex( const arma::colvec KF,
 //' @author Pedro Guarderas
 //' @export
 // [[Rcpp::export]]
-double RKHSobolVar( const arma::colvec KF, 
-                    const arma::cube Gamma );
+double sens_var( const arma::colvec KF, 
+                 const arma::cube Gamma );
 
 #endif

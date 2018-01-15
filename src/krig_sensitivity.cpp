@@ -1,11 +1,11 @@
 
-#include "RKHSensitivity.h"
+#include "krig_sensitivity.h"
 
 //--------------------------------------------------------------------------------------------------
-double RKHSobolIndex( const arma::colvec KF,
-                      const arma::colvec comb,
-                      const arma::mat X,
-                      const arma::cube Gamma ) {
+double sens_idx( const arma::colvec KF,
+                 const arma::colvec comb,
+                 const arma::mat X,
+                 const arma::cube Gamma ) {
   int i, j, k, l;
   int n = X.n_rows;
   int m = X.n_cols;
@@ -23,8 +23,8 @@ double RKHSobolIndex( const arma::colvec KF,
 }
 
 //--------------------------------------------------------------------------------------------------
-double RKHSobolVar( const arma::colvec KF, 
-                    const arma::cube Gamma ) {
+double sens_var( const arma::colvec KF, 
+                 const arma::cube Gamma ) {
   
   int i;
   int n = Gamma.n_rows;

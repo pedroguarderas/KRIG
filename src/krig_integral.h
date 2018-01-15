@@ -1,8 +1,8 @@
-#ifndef __RKHIntegral__
-#define __RKHIntegral__
+#ifndef __KRIG_integral__
+#define __KRIG_integral__
 
 #include <RcppArmadillo.h>
-#include "RKHEstimate.h"
+#include "krig_kriging.h"
 
 // [[Rcpp::plugins(cpp14)]]
 // [[Rcpp::depends(RcppArmadillo)]]
@@ -21,7 +21,7 @@ using namespace Rcpp;
 //' @author Pedro Guarderas
 //' @export
 // [[Rcpp::export]]
-arma::colvec RKHIntegrateKern( Function Kern, const arma::colvec x, 
+arma::colvec integrate_kernel( Function Kern, const arma::colvec x, 
                                const double& a, const double& b, const double& n );
 
 //--------------------------------------------------------------------------------------------------
@@ -35,7 +35,7 @@ arma::colvec RKHIntegrateKern( Function Kern, const arma::colvec x,
 //' @author Pedro Guarderas
 //' @export
 // [[Rcpp::export]]
-double RKHCompIntegKern( Function Kern, const double& a, const double& b, const double& n );
+double complete_integrate_kernel( Function Kern, const double& a, const double& b, const double& n );
 
 //--------------------------------------------------------------------------------------------------
 //' @title Integrals of kernels
@@ -45,7 +45,7 @@ double RKHCompIntegKern( Function Kern, const double& a, const double& b, const 
 //' @author Pedro Guarderas
 //' @export
 // [[Rcpp::export]]
-List RKHKernInteg( const DataFrame& Kernels, const arma::mat& X );
+List vector_integrate_kernel( const DataFrame& Kernels, const arma::mat& X );
 
 //--------------------------------------------------------------------------------------------------
 //' @title Integrals of kernels
@@ -55,6 +55,6 @@ List RKHKernInteg( const DataFrame& Kernels, const arma::mat& X );
 //' @author Pedro Guarderas
 //' @export
 // [[Rcpp::export]]
-List RKHAnova( const DataFrame& Kernels, const List& Integral,  const arma::mat& X );
+List Kanova( const DataFrame& Kernels, const List& Integral,  const arma::mat& X );
 
 #endif

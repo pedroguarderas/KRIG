@@ -1,10 +1,10 @@
 
-#include "RKHDistance.h"
+#include "krig_distance.h"
 
-double RKHWeightPowDist( const arma::colvec& x, 
-                         const arma::colvec& y, 
-                         const arma::colvec& w, 
-                         const arma::colvec& p ) {
+double weight_pow_dist( const arma::colvec& x, 
+                        const arma::colvec& y, 
+                        const arma::colvec& w, 
+                        const arma::colvec& p ) {
   
   double d = 0.0;
   

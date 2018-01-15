@@ -1,33 +1,33 @@
 
-#include "RKHKernels.h"
+#include "krig_kernels.h"
 
 //--------------------------------------------------------------------------------------------------
-double RKHKerLinear( const double& h, const double& alpha ) {
+double linear_kernel( const double& h, const double& alpha ) {
   return alpha * h;
 }
 
 //--------------------------------------------------------------------------------------------------
-double RKHKerSqr( const double& h, const double& alpha ) {
+double square_kernel( const double& h, const double& alpha ) {
   return alpha * h * h;
 }
 
 //--------------------------------------------------------------------------------------------------
-double RKHKerTri( const double& h, const double& c, const double& alpha ) {
+double triangular_kernel( const double& h, const double& c, const double& alpha ) {
   return c * GSL_MAX_DBL( alpha - h, 0 );
 }
 
 //--------------------------------------------------------------------------------------------------
-double RKHKerExp( const double& h, const double& sigma, const double& theta ) {
+double exp_kernel( const double& h, const double& sigma, const double& theta ) {
   return sigma * sigma * gsl_sf_exp( -h / theta );
 }
 
 //--------------------------------------------------------------------------------------------------
-double RKHKerSqrExp( const double& h, const double& sigma, const double& theta ) {
+double gaussian_kernel( const double& h, const double& sigma, const double& theta ) {
   return sigma * sigma * gsl_sf_exp( -h * h / ( theta * theta ) );
 }
 
 //--------------------------------------------------------------------------------------------------
-double RKHKerSpher( const double& h, const double& phi, const double& theta ) {
+double spherical_kernel( const double& h, const double& phi, const double& theta ) {
   double Ker = 0.0;
   if ( h < theta ) {
     Ker = phi * ( 1 - 1.5 * h / theta + 0.5 * h * h * h / ( theta * theta * theta ) );
@@ -36,7 +36,7 @@ double RKHKerSpher( const double& h, const double& phi, const double& theta ) {
 }
 
 //--------------------------------------------------------------------------------------------------
-double RKHKerMatern( const double& h, const double& v, const double& sigma, const double& theta ) {
+double matern_kernel( const double& h, const double& v, const double& sigma, const double& theta ) {
   double H = sqrt( v ) * h / theta;
   if ( H > 0 ) {
     return sigma * sigma * 2 * pow( H, v ) * gsl_sf_bessel_Knu( v, 2 * H ) / gsl_sf_gamma( v );
@@ -47,22 +47,22 @@ double RKHKerMatern( const double& h, const double& v, const double& sigma, cons
 }
 
 //--------------------------------------------------------------------------------------------------
-double RKHKerMultilog( const double& h, const double& R ) {
+double multilog_kernel( const double& h, const double& R ) {
   return gsl_sf_log( h * h + R * R );
 }
 
 //--------------------------------------------------------------------------------------------------
-double RKHKerNatCubSpl( const double& h, const double& R ) {
+double nat_cubic_spline_kernel( const double& h, const double& R ) {
   return pow( h * h + R * R, 2.0 / 3.0 );
 }
 
 //--------------------------------------------------------------------------------------------------
-double RKHKerPlateSpl( const double& h, const double& R ) {
+double  thin_plate_kernel( const double& h, const double& R ) {
   return ( h * h + R * R ) * gsl_sf_log( h * h + R * R );
 }
 
 //--------------------------------------------------------------------------------------------------
-double RKHKerMix( const double& h, const double& sigma, const double& theta ) {
+double mix_kernel( const double& h, const double& sigma, const double& theta ) {
   double ht = h / theta;
   return sigma * sigma * ( 1 + ( sqrt(5.0) + 5.0 / 3.0 * ht ) * ht ) * 
     gsl_sf_exp( -sqrt(5.0) * ht );

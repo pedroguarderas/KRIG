@@ -1,5 +1,5 @@
-#ifndef __RKHEstimate__
-#define __RKHEstimate__
+#ifndef __KRIG_kriging__
+#define __KRIG_kriging__
 
 #include <RcppArmadillo.h>
 #include <string>
@@ -26,15 +26,15 @@ typedef double (*KernPtr)( const arma::rowvec&, const arma::rowvec& );
 //'   be improved setting this parameter to TRUE, the default is FALSE.
 //' @return The spatial covariance matrix.
 //' @author Pedro Guarderas
-//' @useDynLib RKHSENS
+//' @useDynLib KRIG
 //' @importFrom Rcpp sourceCpp
 //' @exportPattern("^[[:alpha:]]+")
 //' @export
 // [[Rcpp::export]]
-arma::mat RKHCov( const arma::mat& X, 
-                  const arma::mat& Y, 
-                  SEXP Kern, 
-                  const bool symmetric = false );
+arma::mat Kov( const arma::mat& X, 
+               const arma::mat& Y, 
+               SEXP Kern, 
+               const bool symmetric = false );
 
 //--------------------------------------------------------------------------------------------------
 //' @title Gaussian regression
@@ -55,12 +55,12 @@ arma::mat RKHCov( const arma::mat& X,
 //' @author Pedro Guarderas
 //' @export
 // [[Rcpp::export]]
-List RKHEstimate( const arma::mat& Z, 
-                  const arma::mat& K, 
-                  const arma::mat& k,
-                  const arma::mat& G, 
-                  const arma::mat& g,
-                  const std::string type = "ordinary", 
-                  const std::string typeinv = "syminv" );
+List Krig( const arma::mat& Z, 
+           const arma::mat& K, 
+           const arma::mat& k,
+           const arma::mat& G, 
+           const arma::mat& g,
+           const std::string type = "ordinary", 
+           const std::string typeinv = "syminv" );
 
 #endif
