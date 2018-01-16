@@ -79,6 +79,5 @@ W<-matrix( KRIG$Z, m[1], m[2] )
 
 Ploting result.
 ```{r,eval=TRUE,fig.show='hold', fig.show='hold', fig.align="center", fig.width=7, fig.height=4}
-# Design plot by layers
 filled.contour( Y1, Y2, W, nlevels = 50, color = viridis )
 ```
