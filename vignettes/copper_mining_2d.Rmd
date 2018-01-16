@@ -1,0 +1,84 @@
+---
+title: "Copper mining"
+author: "Pedro Guarderas"
+date: "January 15, 2018"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Running a MAUT Model}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Ordinary kriging application
+Study case of copper mine.
+
+Loading packages.
+```{r,eval=TRUE,message=FALSE, warning=FALSE}
+library( data.table )
+library( KRIG )
+library( rgl )
+library( viridis )
+```
+
+Loading data.
+```{r,eval=TRUE,message=FALSE, warning=FALSE}
+data( 'Copper', package = 'KRIG' )
+```
+
+Processing information.
+```{r,eval=TRUE,message=FALSE, warning=FALSE}
+X3<-c( 100, 105 )
+Dat<-Copper[ x3 >= X3[1] & x3 <= X3[2] & Z > 0, list( x1, x2, Z ) ]
+Dat<-Dat[ , list( Z = mean( Z ) ), by = list( x1, x2 ) ]
+
+X<-as.matrix( Dat[ , list( x1, x2 ) ] )
+
+Z<-as.matrix( Dat[ , list( Z ) ] )
+
+m<-c( 90, 90 )
+x1_lim<-c( min( X[,1] ), max( X[,1] ) )
+x2_lim<-c( min( X[,2] ), max( X[,2] ) )
+
+x1_loc<-c( 100, 100 )
+x2_loc<-c( 100, 100 )
+x1_lim<-c( x1_lim[1] - x1_loc[1], x1_lim[2] + x1_loc[2] )
+x2_lim<-c( x2_lim[1] - x2_loc[1], x2_lim[2] + x2_loc[2] )
+
+Y1<-seq( x1_lim[1], x1_lim[2], length.out = m[1] )
+Y2<-seq( x2_lim[1], x2_lim[2], length.out = m[2] )
+
+Y<-expand.grid( Y1, Y2 )
+Y<-as.matrix( Y )
+```
+
+Stablishing the kernel.
+```{r,eval=TRUE,message=FALSE, warning=FALSE}
+s<-1
+t<-10000
+Kern<-function( x, y ) {
+  h<-sqrt( sum( ( x - y )^2 ) )
+  return( spherical_kernel( h, s, t ) )
+}
+```
+
+Solving kriging problem.
+```{r,eval=TRUE,message=FALSE, warning=FALSE}
+K = Kov( X, X, Kern, TRUE )
+k = Kov( Y, X, Kern )
+
+KRIG<-Krig( Z = Z,
+            K = K, 
+            k = k,
+            G = matrix( 0, 1, 1),
+            g = matrix( 0, 1, 1),
+            type = "simple", 
+            typeinv = 'syminv' )
+
+W<-matrix( KRIG$Z, m[1], m[2] )
+```
+
+Ploting result.
+```{r,eval=TRUE,fig.show='hold', fig.show='hold', fig.align="center", fig.width=7, fig.height=4}
+# Design plot by layers
+filled.contour( Y1, Y2, W, nlevels = 50, color = viridis )
+```
