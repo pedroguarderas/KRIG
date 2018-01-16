@@ -11,6 +11,8 @@ knitr::opts_chunk$set(
   fig.path = "README-"
 )
 ```
-#RKHSENS
-A package for spatial statistics in particular employing methods like kriging, the main functions 
-are implemented with Rcpp
+
+#KRIG
+Computes simple, ordinary and universal kriging, also computes simple, ordinary and universal 
+cokriging. In addition, includes functions for Sensitivity analysis based in the approximation, 
+inside Reproducing Kernel Hilbert spaces, of Sobol indices.
