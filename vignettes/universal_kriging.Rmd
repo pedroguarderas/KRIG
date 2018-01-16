@@ -56,9 +56,9 @@ k = Kov( Y, X, Kern );
 KRIG<-Krig( Z = Z,
             K = K, 
             k = k,
-            G = matrix( 0, 1, 1),
-            g = matrix( 0, 1, 1),
-            type = "simple", 
+            G = G,
+            g = g,
+            type = "universal", 
             typeinv = 'syminv' )
 
 round( max( G %*% KRIG$L - g ), 10 )
