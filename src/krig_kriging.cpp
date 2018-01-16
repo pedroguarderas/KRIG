@@ -40,8 +40,6 @@ arma::mat Kov( const arma::mat& X,
     }
   }
   
-  
-  
   return K;
 
 }
