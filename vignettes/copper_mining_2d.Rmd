@@ -54,7 +54,7 @@ Y<-as.matrix( Y )
 Stablishing the kernel.
 ```{r,eval=TRUE,message=FALSE, warning=FALSE}
 s<-1
-t<-10000
+t<-500
 Kern<-function( x, y ) {
   h<-sqrt( sum( ( x - y )^2 ) )
   return( spherical_kernel( h, s, t ) )
