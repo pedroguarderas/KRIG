@@ -70,8 +70,22 @@ Kanova <- function(Kernels, Integral, X) {
 #' @return Real value
 #' @author Pedro Guarderas
 #' @export
-linear_kernel <- function(h, alpha = 1.0) {
-    .Call('_KRIG_linear_kernel', PACKAGE = 'KRIG', h, alpha)
+linear_kernel <- function(x, y, alpha) {
+    .Call('_KRIG_linear_kernel', PACKAGE = 'KRIG', x, y, alpha)
+}
+
+#' @title Polynomial kernel
+#' @description
+#' @param x
+#' @param y
+#' @param alpha
+#' @param beta
+#' @param n
+#' @return Real value
+#' @author Pedro Guarderas
+#' @export
+polynomial_kernel <- function(x, y, alpha, beta, n) {
+    .Call('_KRIG_polynomial_kernel', PACKAGE = 'KRIG', x, y, alpha, beta, n)
 }
 
 #' @title Square kernel

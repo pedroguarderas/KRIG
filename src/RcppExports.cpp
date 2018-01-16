@@ -75,14 +75,30 @@ BEGIN_RCPP
 END_RCPP
 }
 // linear_kernel
-double linear_kernel(const double& h, const double& alpha);
-RcppExport SEXP _KRIG_linear_kernel(SEXP hSEXP, SEXP alphaSEXP) {
+double linear_kernel(const arma::colvec& x, const arma::colvec& y, const double& alpha);
+RcppExport SEXP _KRIG_linear_kernel(SEXP xSEXP, SEXP ySEXP, SEXP alphaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const double& >::type h(hSEXP);
+    Rcpp::traits::input_parameter< const arma::colvec& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const arma::colvec& >::type y(ySEXP);
     Rcpp::traits::input_parameter< const double& >::type alpha(alphaSEXP);
-    rcpp_result_gen = Rcpp::wrap(linear_kernel(h, alpha));
+    rcpp_result_gen = Rcpp::wrap(linear_kernel(x, y, alpha));
+    return rcpp_result_gen;
+END_RCPP
+}
+// polynomial_kernel
+double polynomial_kernel(const arma::colvec& x, const arma::colvec& y, const double& alpha, const double& beta, const double& n);
+RcppExport SEXP _KRIG_polynomial_kernel(SEXP xSEXP, SEXP ySEXP, SEXP alphaSEXP, SEXP betaSEXP, SEXP nSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::colvec& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const arma::colvec& >::type y(ySEXP);
+    Rcpp::traits::input_parameter< const double& >::type alpha(alphaSEXP);
+    Rcpp::traits::input_parameter< const double& >::type beta(betaSEXP);
+    Rcpp::traits::input_parameter< const double& >::type n(nSEXP);
+    rcpp_result_gen = Rcpp::wrap(polynomial_kernel(x, y, alpha, beta, n));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -277,7 +293,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_KRIG_complete_integrate_kernel", (DL_FUNC) &_KRIG_complete_integrate_kernel, 4},
     {"_KRIG_vector_integrate_kernel", (DL_FUNC) &_KRIG_vector_integrate_kernel, 2},
     {"_KRIG_Kanova", (DL_FUNC) &_KRIG_Kanova, 3},
-    {"_KRIG_linear_kernel", (DL_FUNC) &_KRIG_linear_kernel, 2},
+    {"_KRIG_linear_kernel", (DL_FUNC) &_KRIG_linear_kernel, 3},
+    {"_KRIG_polynomial_kernel", (DL_FUNC) &_KRIG_polynomial_kernel, 5},
     {"_KRIG_square_kernel", (DL_FUNC) &_KRIG_square_kernel, 2},
     {"_KRIG_triangular_kernel", (DL_FUNC) &_KRIG_triangular_kernel, 3},
     {"_KRIG_exp_kernel", (DL_FUNC) &_KRIG_exp_kernel, 3},

@@ -13,11 +13,11 @@
 
 using namespace Rcpp;
 
-/*--------------------------------------------------------------------------------------------------
-  Isotropic covariance models.
-  In the current section are defined different isotropic kernels.
---------------------------------------------------------------------------------------------------*/
 
+/*--------------------------------------------------------------------------------------------------
+ Anisotropic.
+ In the current section are defined different anisotropic kernels.
+ --------------------------------------------------------------------------------------------------*/
 
 //--------------------------------------------------------------------------------------------------
 //' @title Linear kernel
@@ -28,7 +28,28 @@ using namespace Rcpp;
 //' @author Pedro Guarderas
 //' @export
 // [[Rcpp::export]]
-double linear_kernel( const double& h, const double& alpha = 1.0 );
+double linear_kernel( const arma::colvec& x, const arma::colvec& y, const double& alpha );
+
+//--------------------------------------------------------------------------------------------------
+//' @title Polynomial kernel
+//' @description
+//' @param x
+//' @param y
+//' @param alpha
+//' @param beta
+//' @param n
+//' @return Real value
+//' @author Pedro Guarderas
+//' @export
+// [[Rcpp::export]]
+double polynomial_kernel( const arma::colvec& x, const arma::colvec& y, 
+                          const double& alpha, const double& beta, const double& n );
+
+
+/*--------------------------------------------------------------------------------------------------
+ Isotropic.
+ In the current section are defined different isotropic kernels.
+ --------------------------------------------------------------------------------------------------*/
 
 //--------------------------------------------------------------------------------------------------
 //' @title Square kernel
