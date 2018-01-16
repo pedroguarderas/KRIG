@@ -11,7 +11,7 @@ vignette: >
 
 ## Introduction
 ```{r,eval=TRUE,message=FALSE, warning=FALSE}
-library( RKHSENS )
+library( KRIG )
 ```
 
 ```{r,eval=TRUE,message=FALSE, warning=FALSE}
@@ -40,27 +40,26 @@ g<-rbind( t( Y  ), t( Y * Y  ), t( Y * Y * Y  ) )
 ```
 
 ```{r,eval=TRUE,message=FALSE, warning=FALSE}
-s<-50.0
-t<-2
-w<-1.0
-p<-2
+s<-0.1
+t<-1
+
 Kern<-function( x, y ) {
-  h<-RKHWeightPowDist( x, y, w, p )
-  return( RKHKerExp( h, s, t ) )
+  h<-sqrt( sum( ( x - y )^2 ) )
+  return( gaussian_kernel( h, s, t ) )
 }
 ```
 
 ```{r,eval=TRUE,message=FALSE, warning=FALSE}
-K = RKHCov( X, X, Kern, TRUE )
-k = RKHCov( Y, X, Kern );
+K = Kov( X, X, Kern, TRUE )
+k = Kov( Y, X, Kern );
 
-KRIG<-RKHEstimate( Z = Z, 
-                   K = K, 
-                   k = k,
-                   G = G,
-                   g = g,
-                   type = "universal", 
-                   typeinv = 'syminv' )
+KRIG<-Krig( Z = Z,
+            K = K, 
+            k = k,
+            G = matrix( 0, 1, 1),
+            g = matrix( 0, 1, 1),
+            type = "simple", 
+            typeinv = 'syminv' )
 
 round( max( G %*% KRIG$L - g ), 10 )
 ```

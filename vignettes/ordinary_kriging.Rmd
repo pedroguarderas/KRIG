@@ -11,7 +11,7 @@ vignette: >
 
 ## Introduction
 ```{r,eval=TRUE,message=FALSE, warning=FALSE}
-library( RKHSENS )
+library( KRIG )
 ```
 
 ```{r,eval=TRUE,message=FALSE, warning=FALSE}
@@ -31,37 +31,37 @@ X<-matrix( runif( n, XLim[1], XLim[2] ), n, 1 )
 Z<-matrix( sapply( X, f ), n, 1 )
 
 m<-100
-YLim<-c(-6,8)
+YLim<-c(-5,7)
 Y<-matrix( seq( YLim[1], YLim[2], length.out = m ), m, 1 )
 ```
 
 ```{r,eval=TRUE,message=FALSE, warning=FALSE}
-s<-50.0
-t<-2
-w<-1.0
-p<-2
+s<-0.1
+t<-1
+
 Kern<-function( x, y ) {
-  h<-RKHWeightPowDist( x, y, w, p )
-  return( RKHKerExp( h, s, t ) )
+  h<-sqrt( sum( ( x - y )^2 ) )
+  return( gaussian_kernel( h, s, t ) )
 }
 ```
 
 ```{r,eval=TRUE,message=FALSE, warning=FALSE}
-K = RKHCov( X, X, Kern, TRUE )
-k = RKHCov( Y, X, Kern );
+K = Kov( X, X, Kern, TRUE )
+k = Kov( Y, X, Kern );
 
-KRIG<-RKHEstimate( Z = Z,
-                   K = K, 
-                   k = k,
-                   G = matrix( 0, 1, 1),
-                   g = matrix( 0, 1, 1),
-                   type = "ordinary", 
-                   typeinv = 'syminv' )
+KRIG<-Krig( Z = Z,
+            K = K, 
+            k = k,
+            G = matrix( 0, 1, 1),
+            g = matrix( 0, 1, 1),
+            type = "ordinary", 
+            typeinv = 'syminv' )
 ```
 
 ```{r,eval=TRUE,fig.show='hold', fig.show='hold', fig.align="center", fig.width=7, fig.height=4}
 ymin<-min( z, KRIG$Z[,1], Z[,1] )
 ymax<-max( z, KRIG$Z[,1], Z[,1] )
+
 plot( x, z, type = 'l', lwd = 2, col='gold', ylim = c( ymin, ymax ), xlim = YLim )
 points( Y, KRIG$Z[,1], col='darkgreen', type = 'l', lwd = 2 )
 points( X, Z[,1], col = 'dodgerblue3', pch = 16, cex = 1.2 )
