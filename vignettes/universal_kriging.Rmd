@@ -10,10 +10,12 @@ vignette: >
 ---
 
 ## Introduction
+Loading the library
 ```{r,eval=TRUE,message=FALSE, warning=FALSE}
 library( KRIG )
 ```
 
+Data from the original curve
 ```{r,eval=TRUE,message=FALSE, warning=FALSE}
 m<-100
 XLim<-c( -3, 6 )
@@ -24,6 +26,7 @@ f<-function(x){
 z<-sapply( x, f )
 ```
 
+Sampling
 ```{r,eval=TRUE,message=FALSE, warning=FALSE}
 n<-10
 X<-matrix( runif( n, XLim[1], XLim[2] ), n, 1 )
@@ -33,12 +36,16 @@ Z<-matrix( sapply( X, f ), n, 1 )
 m<-100
 YLim<-c(-3.5,6.5)
 Y<-matrix( seq( YLim[1], YLim[2], length.out = m ), m, 1 )
-
-G<-rbind( t( X ), t( X * X ), t( X * X * X ) )
-
-g<-rbind( t( Y  ), t( Y * Y  ), t( Y * Y * Y  ) )
 ```
 
+Computing constraint matrices for universal kriging
+```{r,eval=TRUE,message=FALSE, warning=FALSE}
+G<-rbind( t( X ), t( X * X ), t( X * X * X ) )
+
+g<-rbind( t( Y ), t( Y * Y ), t( Y * Y * Y ) )
+```
+
+Stablishing the kernel
 ```{r,eval=TRUE,message=FALSE, warning=FALSE}
 s<-0.1
 t<-1
@@ -49,6 +56,7 @@ Kern<-function( x, y ) {
 }
 ```
 
+Solving kriging problem
 ```{r,eval=TRUE,message=FALSE, warning=FALSE}
 K = Kov( X, X, Kern, TRUE )
 k = Kov( Y, X, Kern );
@@ -60,10 +68,14 @@ KRIG<-Krig( Z = Z,
             g = g,
             type = "universal", 
             typeinv = 'syminv' )
+```
 
+Verification that the constraint is satisfied 
+```{r,eval=TRUE,message=FALSE, warning=FALSE}
 round( max( G %*% KRIG$L - g ), 10 )
 ```
 
+Plotting the results
 ```{r,eval=TRUE,fig.show='hold', fig.show='hold', fig.align="center", fig.width=7, fig.height=4}
 ymin<-min( z, KRIG$Z[,1], Z[,1] )
 ymax<-max( z, KRIG$Z[,1], Z[,1] )
