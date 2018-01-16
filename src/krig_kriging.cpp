@@ -5,7 +5,7 @@
 //--------------------------------------------------------------------------------------------------
 arma::mat Kov( const arma::mat& X, 
                const arma::mat& Y, 
-               SEXP Kern, 
+               Function Kern, 
                const bool symmetric ) {
   int i, j;
   int m = X.n_rows;
@@ -13,7 +13,7 @@ arma::mat Kov( const arma::mat& X,
   arma::mat K( n, m );
   arma::rowvec x, y;
   
-  KernPtr k = *XPtr< KernPtr >( Kern );
+  // KernPtr k = *XPtr< KernPtr >( Kern );
   
   // Filling Gaussian process covariance matrix
   if ( symmetric ) {
@@ -21,8 +21,7 @@ arma::mat Kov( const arma::mat& X,
       for ( j = i; j < n; j++ ) {
         x = X.row( i );
         y = Y.row( j );
-        // K( i, j ) = as<double>( Kern( x, y ) );
-        K( i, j ) =  k( x, y );
+        K( i, j ) = as<double>( Kern( x, y ) );
         
         if ( j > i ) {
           K( j, i ) = K( i, j );
@@ -32,12 +31,11 @@ arma::mat Kov( const arma::mat& X,
     }
     
   } else { 
-    // #pragma omp parallel for shared( n, m, X, Y, K ) private( i, j, x, y, k ) collapse(2)
     for ( i = 0; i < n; i++ ) { 
       for ( j = 0; j < m; j++ ) {
         x = X.row( j );
         y = Y.row( i );
-        K( i, j ) = k( x, y );
+        K( i, j ) = as<double>( Kern( x, y ) );
       }
     }
   }

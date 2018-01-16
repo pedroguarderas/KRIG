@@ -11,7 +11,6 @@
 
 using namespace Rcpp;
 
-typedef double (*KernPtr)( const arma::rowvec&, const arma::rowvec& );
 
 //--------------------------------------------------------------------------------------------------
 //' @title Spatial covariance matrix.
@@ -33,7 +32,7 @@ typedef double (*KernPtr)( const arma::rowvec&, const arma::rowvec& );
 // [[Rcpp::export]]
 arma::mat Kov( const arma::mat& X, 
                const arma::mat& Y, 
-               SEXP Kern, 
+               Function Kern, 
                const bool symmetric = false );
 
 //--------------------------------------------------------------------------------------------------

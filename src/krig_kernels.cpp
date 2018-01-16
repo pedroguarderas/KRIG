@@ -18,12 +18,12 @@ double triangular_kernel( const double& h, const double& c, const double& alpha 
 
 //--------------------------------------------------------------------------------------------------
 double exp_kernel( const double& h, const double& sigma, const double& theta ) {
-  return sigma * sigma * gsl_sf_exp( -h / theta );
+  return sigma * gsl_sf_exp( -h / theta );
 }
 
 //--------------------------------------------------------------------------------------------------
 double gaussian_kernel( const double& h, const double& sigma, const double& theta ) {
-  return sigma * sigma * gsl_sf_exp( -h * h / ( theta * theta ) );
+  return sigma * gsl_sf_exp( -h * h / theta );
 }
 
 //--------------------------------------------------------------------------------------------------
