@@ -95,9 +95,9 @@ List Krig( const arma::mat& Z,
     arma::mat tau( n, m );
 
     alpha = 1.0 / as_scalar( u.t() * J * u );
-    tau = arma::ones( n, n ) * J * k - arma::ones( n, m );
+    tau = arma::ones( n, m ) - arma::ones( n, n ) * J * k;
     
-    L = J * ( k - alpha * tau ) ;
+    L = J * ( k + alpha * tau ) ;
     W = L.t() * Z;
     
     KRIG[ "Z" ] = W;
@@ -113,9 +113,9 @@ List Krig( const arma::mat& Z,
     arma::mat tau( p, 1 );
 
     A = G.t() * inv_sympd( G * J * G.t() );
-    tau = G * J * k - g;
+    tau = g - G * J * k;
     
-    L = J * ( k - A * tau ) ;
+    L = J * ( k + A * tau ) ;
     W = L.t() * Z;
     
     KRIG[ "Z" ] = W;

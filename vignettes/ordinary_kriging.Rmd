@@ -47,7 +47,7 @@ Kern<-function( x, y ) {
 
 ```{r,eval=TRUE,message=FALSE, warning=FALSE}
 K = Kov( X, X, Kern, TRUE )
-k = Kov( Y, X, Kern );
+k = Kov( Y, X, Kern )
 
 KRIG<-Krig( Z = Z,
             K = K, 
