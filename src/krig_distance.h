@@ -6,7 +6,7 @@
 #include <omp.h>
 
 // [[Rcpp::plugins(cpp14)]]
-// [[Rcpp::plugins(oepnmp)]]
+// [[Rcpp::plugins(openmp)]]
 // [[Rcpp::depends(RcppArmadillo)]]
 
 using namespace Rcpp;

@@ -6,9 +6,9 @@
 
 using namespace Rcpp;
 
-// RKHWeightPowDist
-double RKHWeightPowDist(const arma::colvec& x, const arma::colvec& y, const arma::colvec& w, const arma::colvec& p);
-RcppExport SEXP _RKHSENS_RKHWeightPowDist(SEXP xSEXP, SEXP ySEXP, SEXP wSEXP, SEXP pSEXP) {
+// weight_pow_dist
+double weight_pow_dist(const arma::colvec& x, const arma::colvec& y, const arma::colvec& w, const arma::colvec& p);
+RcppExport SEXP _KRIG_weight_pow_dist(SEXP xSEXP, SEXP ySEXP, SEXP wSEXP, SEXP pSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -16,13 +16,206 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const arma::colvec& >::type y(ySEXP);
     Rcpp::traits::input_parameter< const arma::colvec& >::type w(wSEXP);
     Rcpp::traits::input_parameter< const arma::colvec& >::type p(pSEXP);
-    rcpp_result_gen = Rcpp::wrap(RKHWeightPowDist(x, y, w, p));
+    rcpp_result_gen = Rcpp::wrap(weight_pow_dist(x, y, w, p));
     return rcpp_result_gen;
 END_RCPP
 }
-// RKHCov
-arma::mat RKHCov(const arma::mat& X, const arma::mat& Y, SEXP Kern, const bool symmetric);
-RcppExport SEXP _RKHSENS_RKHCov(SEXP XSEXP, SEXP YSEXP, SEXP KernSEXP, SEXP symmetricSEXP) {
+// integrate_kernel
+arma::colvec integrate_kernel(Function Kern, const arma::colvec x, const double& a, const double& b, const double& n);
+RcppExport SEXP _KRIG_integrate_kernel(SEXP KernSEXP, SEXP xSEXP, SEXP aSEXP, SEXP bSEXP, SEXP nSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Function >::type Kern(KernSEXP);
+    Rcpp::traits::input_parameter< const arma::colvec >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const double& >::type a(aSEXP);
+    Rcpp::traits::input_parameter< const double& >::type b(bSEXP);
+    Rcpp::traits::input_parameter< const double& >::type n(nSEXP);
+    rcpp_result_gen = Rcpp::wrap(integrate_kernel(Kern, x, a, b, n));
+    return rcpp_result_gen;
+END_RCPP
+}
+// complete_integrate_kernel
+double complete_integrate_kernel(Function Kern, const double& a, const double& b, const double& n);
+RcppExport SEXP _KRIG_complete_integrate_kernel(SEXP KernSEXP, SEXP aSEXP, SEXP bSEXP, SEXP nSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Function >::type Kern(KernSEXP);
+    Rcpp::traits::input_parameter< const double& >::type a(aSEXP);
+    Rcpp::traits::input_parameter< const double& >::type b(bSEXP);
+    Rcpp::traits::input_parameter< const double& >::type n(nSEXP);
+    rcpp_result_gen = Rcpp::wrap(complete_integrate_kernel(Kern, a, b, n));
+    return rcpp_result_gen;
+END_RCPP
+}
+// vector_integrate_kernel
+List vector_integrate_kernel(const DataFrame& Kernels, const arma::mat& X);
+RcppExport SEXP _KRIG_vector_integrate_kernel(SEXP KernelsSEXP, SEXP XSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const DataFrame& >::type Kernels(KernelsSEXP);
+    Rcpp::traits::input_parameter< const arma::mat& >::type X(XSEXP);
+    rcpp_result_gen = Rcpp::wrap(vector_integrate_kernel(Kernels, X));
+    return rcpp_result_gen;
+END_RCPP
+}
+// Kanova
+List Kanova(const DataFrame& Kernels, const List& Integral, const arma::mat& X);
+RcppExport SEXP _KRIG_Kanova(SEXP KernelsSEXP, SEXP IntegralSEXP, SEXP XSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const DataFrame& >::type Kernels(KernelsSEXP);
+    Rcpp::traits::input_parameter< const List& >::type Integral(IntegralSEXP);
+    Rcpp::traits::input_parameter< const arma::mat& >::type X(XSEXP);
+    rcpp_result_gen = Rcpp::wrap(Kanova(Kernels, Integral, X));
+    return rcpp_result_gen;
+END_RCPP
+}
+// linear_kernel
+double linear_kernel(const double& h, const double& alpha);
+RcppExport SEXP _KRIG_linear_kernel(SEXP hSEXP, SEXP alphaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const double& >::type h(hSEXP);
+    Rcpp::traits::input_parameter< const double& >::type alpha(alphaSEXP);
+    rcpp_result_gen = Rcpp::wrap(linear_kernel(h, alpha));
+    return rcpp_result_gen;
+END_RCPP
+}
+// square_kernel
+double square_kernel(const double& h, const double& alpha);
+RcppExport SEXP _KRIG_square_kernel(SEXP hSEXP, SEXP alphaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const double& >::type h(hSEXP);
+    Rcpp::traits::input_parameter< const double& >::type alpha(alphaSEXP);
+    rcpp_result_gen = Rcpp::wrap(square_kernel(h, alpha));
+    return rcpp_result_gen;
+END_RCPP
+}
+// triangular_kernel
+double triangular_kernel(const double& h, const double& c, const double& alpha);
+RcppExport SEXP _KRIG_triangular_kernel(SEXP hSEXP, SEXP cSEXP, SEXP alphaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const double& >::type h(hSEXP);
+    Rcpp::traits::input_parameter< const double& >::type c(cSEXP);
+    Rcpp::traits::input_parameter< const double& >::type alpha(alphaSEXP);
+    rcpp_result_gen = Rcpp::wrap(triangular_kernel(h, c, alpha));
+    return rcpp_result_gen;
+END_RCPP
+}
+// exp_kernel
+double exp_kernel(const double& h, const double& sigma, const double& theta);
+RcppExport SEXP _KRIG_exp_kernel(SEXP hSEXP, SEXP sigmaSEXP, SEXP thetaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const double& >::type h(hSEXP);
+    Rcpp::traits::input_parameter< const double& >::type sigma(sigmaSEXP);
+    Rcpp::traits::input_parameter< const double& >::type theta(thetaSEXP);
+    rcpp_result_gen = Rcpp::wrap(exp_kernel(h, sigma, theta));
+    return rcpp_result_gen;
+END_RCPP
+}
+// gaussian_kernel
+double gaussian_kernel(const double& h, const double& sigma, const double& theta);
+RcppExport SEXP _KRIG_gaussian_kernel(SEXP hSEXP, SEXP sigmaSEXP, SEXP thetaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const double& >::type h(hSEXP);
+    Rcpp::traits::input_parameter< const double& >::type sigma(sigmaSEXP);
+    Rcpp::traits::input_parameter< const double& >::type theta(thetaSEXP);
+    rcpp_result_gen = Rcpp::wrap(gaussian_kernel(h, sigma, theta));
+    return rcpp_result_gen;
+END_RCPP
+}
+// spherical_kernel
+double spherical_kernel(const double& h, const double& phi, const double& theta);
+RcppExport SEXP _KRIG_spherical_kernel(SEXP hSEXP, SEXP phiSEXP, SEXP thetaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const double& >::type h(hSEXP);
+    Rcpp::traits::input_parameter< const double& >::type phi(phiSEXP);
+    Rcpp::traits::input_parameter< const double& >::type theta(thetaSEXP);
+    rcpp_result_gen = Rcpp::wrap(spherical_kernel(h, phi, theta));
+    return rcpp_result_gen;
+END_RCPP
+}
+// matern_kernel
+double matern_kernel(const double& h, const double& v, const double& sigma, const double& theta);
+RcppExport SEXP _KRIG_matern_kernel(SEXP hSEXP, SEXP vSEXP, SEXP sigmaSEXP, SEXP thetaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const double& >::type h(hSEXP);
+    Rcpp::traits::input_parameter< const double& >::type v(vSEXP);
+    Rcpp::traits::input_parameter< const double& >::type sigma(sigmaSEXP);
+    Rcpp::traits::input_parameter< const double& >::type theta(thetaSEXP);
+    rcpp_result_gen = Rcpp::wrap(matern_kernel(h, v, sigma, theta));
+    return rcpp_result_gen;
+END_RCPP
+}
+// multilog_kernel
+double multilog_kernel(const double& h, const double& R);
+RcppExport SEXP _KRIG_multilog_kernel(SEXP hSEXP, SEXP RSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const double& >::type h(hSEXP);
+    Rcpp::traits::input_parameter< const double& >::type R(RSEXP);
+    rcpp_result_gen = Rcpp::wrap(multilog_kernel(h, R));
+    return rcpp_result_gen;
+END_RCPP
+}
+// nat_cubic_spline_kernel
+double nat_cubic_spline_kernel(const double& h, const double& R);
+RcppExport SEXP _KRIG_nat_cubic_spline_kernel(SEXP hSEXP, SEXP RSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const double& >::type h(hSEXP);
+    Rcpp::traits::input_parameter< const double& >::type R(RSEXP);
+    rcpp_result_gen = Rcpp::wrap(nat_cubic_spline_kernel(h, R));
+    return rcpp_result_gen;
+END_RCPP
+}
+// thin_plate_kernel
+double thin_plate_kernel(const double& h, const double& R);
+RcppExport SEXP _KRIG_thin_plate_kernel(SEXP hSEXP, SEXP RSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const double& >::type h(hSEXP);
+    Rcpp::traits::input_parameter< const double& >::type R(RSEXP);
+    rcpp_result_gen = Rcpp::wrap(thin_plate_kernel(h, R));
+    return rcpp_result_gen;
+END_RCPP
+}
+// mix_kernel
+double mix_kernel(const double& h, const double& sigma, const double& theta);
+RcppExport SEXP _KRIG_mix_kernel(SEXP hSEXP, SEXP sigmaSEXP, SEXP thetaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const double& >::type h(hSEXP);
+    Rcpp::traits::input_parameter< const double& >::type sigma(sigmaSEXP);
+    Rcpp::traits::input_parameter< const double& >::type theta(thetaSEXP);
+    rcpp_result_gen = Rcpp::wrap(mix_kernel(h, sigma, theta));
+    return rcpp_result_gen;
+END_RCPP
+}
+// Kov
+arma::mat Kov(const arma::mat& X, const arma::mat& Y, SEXP Kern, const bool symmetric);
+RcppExport SEXP _KRIG_Kov(SEXP XSEXP, SEXP YSEXP, SEXP KernSEXP, SEXP symmetricSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -30,13 +223,13 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const arma::mat& >::type Y(YSEXP);
     Rcpp::traits::input_parameter< SEXP >::type Kern(KernSEXP);
     Rcpp::traits::input_parameter< const bool >::type symmetric(symmetricSEXP);
-    rcpp_result_gen = Rcpp::wrap(RKHCov(X, Y, Kern, symmetric));
+    rcpp_result_gen = Rcpp::wrap(Kov(X, Y, Kern, symmetric));
     return rcpp_result_gen;
 END_RCPP
 }
-// RKHEstimate
-List RKHEstimate(const arma::mat& Z, const arma::mat& K, const arma::mat& k, const arma::mat& G, const arma::mat& g, const std::string type, const std::string typeinv);
-RcppExport SEXP _RKHSENS_RKHEstimate(SEXP ZSEXP, SEXP KSEXP, SEXP kSEXP, SEXP GSEXP, SEXP gSEXP, SEXP typeSEXP, SEXP typeinvSEXP) {
+// Krig
+List Krig(const arma::mat& Z, const arma::mat& K, const arma::mat& k, const arma::mat& G, const arma::mat& g, const std::string type, const std::string typeinv);
+RcppExport SEXP _KRIG_Krig(SEXP ZSEXP, SEXP KSEXP, SEXP kSEXP, SEXP GSEXP, SEXP gSEXP, SEXP typeSEXP, SEXP typeinvSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -47,206 +240,13 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const arma::mat& >::type g(gSEXP);
     Rcpp::traits::input_parameter< const std::string >::type type(typeSEXP);
     Rcpp::traits::input_parameter< const std::string >::type typeinv(typeinvSEXP);
-    rcpp_result_gen = Rcpp::wrap(RKHEstimate(Z, K, k, G, g, type, typeinv));
+    rcpp_result_gen = Rcpp::wrap(Krig(Z, K, k, G, g, type, typeinv));
     return rcpp_result_gen;
 END_RCPP
 }
-// RKHIntegrateKern
-arma::colvec RKHIntegrateKern(Function Kern, const arma::colvec x, const double& a, const double& b, const double& n);
-RcppExport SEXP _RKHSENS_RKHIntegrateKern(SEXP KernSEXP, SEXP xSEXP, SEXP aSEXP, SEXP bSEXP, SEXP nSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Function >::type Kern(KernSEXP);
-    Rcpp::traits::input_parameter< const arma::colvec >::type x(xSEXP);
-    Rcpp::traits::input_parameter< const double& >::type a(aSEXP);
-    Rcpp::traits::input_parameter< const double& >::type b(bSEXP);
-    Rcpp::traits::input_parameter< const double& >::type n(nSEXP);
-    rcpp_result_gen = Rcpp::wrap(RKHIntegrateKern(Kern, x, a, b, n));
-    return rcpp_result_gen;
-END_RCPP
-}
-// RKHCompIntegKern
-double RKHCompIntegKern(Function Kern, const double& a, const double& b, const double& n);
-RcppExport SEXP _RKHSENS_RKHCompIntegKern(SEXP KernSEXP, SEXP aSEXP, SEXP bSEXP, SEXP nSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Function >::type Kern(KernSEXP);
-    Rcpp::traits::input_parameter< const double& >::type a(aSEXP);
-    Rcpp::traits::input_parameter< const double& >::type b(bSEXP);
-    Rcpp::traits::input_parameter< const double& >::type n(nSEXP);
-    rcpp_result_gen = Rcpp::wrap(RKHCompIntegKern(Kern, a, b, n));
-    return rcpp_result_gen;
-END_RCPP
-}
-// RKHKernInteg
-List RKHKernInteg(const DataFrame& Kernels, const arma::mat& X);
-RcppExport SEXP _RKHSENS_RKHKernInteg(SEXP KernelsSEXP, SEXP XSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const DataFrame& >::type Kernels(KernelsSEXP);
-    Rcpp::traits::input_parameter< const arma::mat& >::type X(XSEXP);
-    rcpp_result_gen = Rcpp::wrap(RKHKernInteg(Kernels, X));
-    return rcpp_result_gen;
-END_RCPP
-}
-// RKHAnova
-List RKHAnova(const DataFrame& Kernels, const List& Integral, const arma::mat& X);
-RcppExport SEXP _RKHSENS_RKHAnova(SEXP KernelsSEXP, SEXP IntegralSEXP, SEXP XSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const DataFrame& >::type Kernels(KernelsSEXP);
-    Rcpp::traits::input_parameter< const List& >::type Integral(IntegralSEXP);
-    Rcpp::traits::input_parameter< const arma::mat& >::type X(XSEXP);
-    rcpp_result_gen = Rcpp::wrap(RKHAnova(Kernels, Integral, X));
-    return rcpp_result_gen;
-END_RCPP
-}
-// RKHKerLinear
-double RKHKerLinear(const double& h, const double& alpha);
-RcppExport SEXP _RKHSENS_RKHKerLinear(SEXP hSEXP, SEXP alphaSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const double& >::type h(hSEXP);
-    Rcpp::traits::input_parameter< const double& >::type alpha(alphaSEXP);
-    rcpp_result_gen = Rcpp::wrap(RKHKerLinear(h, alpha));
-    return rcpp_result_gen;
-END_RCPP
-}
-// RKHKerSqr
-double RKHKerSqr(const double& h, const double& alpha);
-RcppExport SEXP _RKHSENS_RKHKerSqr(SEXP hSEXP, SEXP alphaSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const double& >::type h(hSEXP);
-    Rcpp::traits::input_parameter< const double& >::type alpha(alphaSEXP);
-    rcpp_result_gen = Rcpp::wrap(RKHKerSqr(h, alpha));
-    return rcpp_result_gen;
-END_RCPP
-}
-// RKHKerTri
-double RKHKerTri(const double& h, const double& c, const double& alpha);
-RcppExport SEXP _RKHSENS_RKHKerTri(SEXP hSEXP, SEXP cSEXP, SEXP alphaSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const double& >::type h(hSEXP);
-    Rcpp::traits::input_parameter< const double& >::type c(cSEXP);
-    Rcpp::traits::input_parameter< const double& >::type alpha(alphaSEXP);
-    rcpp_result_gen = Rcpp::wrap(RKHKerTri(h, c, alpha));
-    return rcpp_result_gen;
-END_RCPP
-}
-// RKHKerExp
-double RKHKerExp(const double& h, const double& sigma, const double& theta);
-RcppExport SEXP _RKHSENS_RKHKerExp(SEXP hSEXP, SEXP sigmaSEXP, SEXP thetaSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const double& >::type h(hSEXP);
-    Rcpp::traits::input_parameter< const double& >::type sigma(sigmaSEXP);
-    Rcpp::traits::input_parameter< const double& >::type theta(thetaSEXP);
-    rcpp_result_gen = Rcpp::wrap(RKHKerExp(h, sigma, theta));
-    return rcpp_result_gen;
-END_RCPP
-}
-// RKHKerSqrExp
-double RKHKerSqrExp(const double& h, const double& sigma, const double& theta);
-RcppExport SEXP _RKHSENS_RKHKerSqrExp(SEXP hSEXP, SEXP sigmaSEXP, SEXP thetaSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const double& >::type h(hSEXP);
-    Rcpp::traits::input_parameter< const double& >::type sigma(sigmaSEXP);
-    Rcpp::traits::input_parameter< const double& >::type theta(thetaSEXP);
-    rcpp_result_gen = Rcpp::wrap(RKHKerSqrExp(h, sigma, theta));
-    return rcpp_result_gen;
-END_RCPP
-}
-// RKHKerSpher
-double RKHKerSpher(const double& h, const double& phi, const double& theta);
-RcppExport SEXP _RKHSENS_RKHKerSpher(SEXP hSEXP, SEXP phiSEXP, SEXP thetaSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const double& >::type h(hSEXP);
-    Rcpp::traits::input_parameter< const double& >::type phi(phiSEXP);
-    Rcpp::traits::input_parameter< const double& >::type theta(thetaSEXP);
-    rcpp_result_gen = Rcpp::wrap(RKHKerSpher(h, phi, theta));
-    return rcpp_result_gen;
-END_RCPP
-}
-// RKHKerMatern
-double RKHKerMatern(const double& h, const double& v, const double& sigma, const double& theta);
-RcppExport SEXP _RKHSENS_RKHKerMatern(SEXP hSEXP, SEXP vSEXP, SEXP sigmaSEXP, SEXP thetaSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const double& >::type h(hSEXP);
-    Rcpp::traits::input_parameter< const double& >::type v(vSEXP);
-    Rcpp::traits::input_parameter< const double& >::type sigma(sigmaSEXP);
-    Rcpp::traits::input_parameter< const double& >::type theta(thetaSEXP);
-    rcpp_result_gen = Rcpp::wrap(RKHKerMatern(h, v, sigma, theta));
-    return rcpp_result_gen;
-END_RCPP
-}
-// RKHKerMultilog
-double RKHKerMultilog(const double& h, const double& R);
-RcppExport SEXP _RKHSENS_RKHKerMultilog(SEXP hSEXP, SEXP RSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const double& >::type h(hSEXP);
-    Rcpp::traits::input_parameter< const double& >::type R(RSEXP);
-    rcpp_result_gen = Rcpp::wrap(RKHKerMultilog(h, R));
-    return rcpp_result_gen;
-END_RCPP
-}
-// RKHKerNatCubSpl
-double RKHKerNatCubSpl(const double& h, const double& R);
-RcppExport SEXP _RKHSENS_RKHKerNatCubSpl(SEXP hSEXP, SEXP RSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const double& >::type h(hSEXP);
-    Rcpp::traits::input_parameter< const double& >::type R(RSEXP);
-    rcpp_result_gen = Rcpp::wrap(RKHKerNatCubSpl(h, R));
-    return rcpp_result_gen;
-END_RCPP
-}
-// RKHKerPlateSpl
-double RKHKerPlateSpl(const double& h, const double& R);
-RcppExport SEXP _RKHSENS_RKHKerPlateSpl(SEXP hSEXP, SEXP RSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const double& >::type h(hSEXP);
-    Rcpp::traits::input_parameter< const double& >::type R(RSEXP);
-    rcpp_result_gen = Rcpp::wrap(RKHKerPlateSpl(h, R));
-    return rcpp_result_gen;
-END_RCPP
-}
-// RKHKerMix
-double RKHKerMix(const double& h, const double& sigma, const double& theta);
-RcppExport SEXP _RKHSENS_RKHKerMix(SEXP hSEXP, SEXP sigmaSEXP, SEXP thetaSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const double& >::type h(hSEXP);
-    Rcpp::traits::input_parameter< const double& >::type sigma(sigmaSEXP);
-    Rcpp::traits::input_parameter< const double& >::type theta(thetaSEXP);
-    rcpp_result_gen = Rcpp::wrap(RKHKerMix(h, sigma, theta));
-    return rcpp_result_gen;
-END_RCPP
-}
-// RKHSobolIndex
-double RKHSobolIndex(const arma::colvec KF, const arma::colvec comb, const arma::mat X, const arma::cube Gamma);
-RcppExport SEXP _RKHSENS_RKHSobolIndex(SEXP KFSEXP, SEXP combSEXP, SEXP XSEXP, SEXP GammaSEXP) {
+// sens_idx
+double sens_idx(const arma::colvec KF, const arma::colvec comb, const arma::mat X, const arma::cube Gamma);
+RcppExport SEXP _KRIG_sens_idx(SEXP KFSEXP, SEXP combSEXP, SEXP XSEXP, SEXP GammaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -254,48 +254,48 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const arma::colvec >::type comb(combSEXP);
     Rcpp::traits::input_parameter< const arma::mat >::type X(XSEXP);
     Rcpp::traits::input_parameter< const arma::cube >::type Gamma(GammaSEXP);
-    rcpp_result_gen = Rcpp::wrap(RKHSobolIndex(KF, comb, X, Gamma));
+    rcpp_result_gen = Rcpp::wrap(sens_idx(KF, comb, X, Gamma));
     return rcpp_result_gen;
 END_RCPP
 }
-// RKHSobolVar
-double RKHSobolVar(const arma::colvec KF, const arma::cube Gamma);
-RcppExport SEXP _RKHSENS_RKHSobolVar(SEXP KFSEXP, SEXP GammaSEXP) {
+// sens_var
+double sens_var(const arma::colvec KF, const arma::cube Gamma);
+RcppExport SEXP _KRIG_sens_var(SEXP KFSEXP, SEXP GammaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const arma::colvec >::type KF(KFSEXP);
     Rcpp::traits::input_parameter< const arma::cube >::type Gamma(GammaSEXP);
-    rcpp_result_gen = Rcpp::wrap(RKHSobolVar(KF, Gamma));
+    rcpp_result_gen = Rcpp::wrap(sens_var(KF, Gamma));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_RKHSENS_RKHWeightPowDist", (DL_FUNC) &_RKHSENS_RKHWeightPowDist, 4},
-    {"_RKHSENS_RKHCov", (DL_FUNC) &_RKHSENS_RKHCov, 4},
-    {"_RKHSENS_RKHEstimate", (DL_FUNC) &_RKHSENS_RKHEstimate, 7},
-    {"_RKHSENS_RKHIntegrateKern", (DL_FUNC) &_RKHSENS_RKHIntegrateKern, 5},
-    {"_RKHSENS_RKHCompIntegKern", (DL_FUNC) &_RKHSENS_RKHCompIntegKern, 4},
-    {"_RKHSENS_RKHKernInteg", (DL_FUNC) &_RKHSENS_RKHKernInteg, 2},
-    {"_RKHSENS_RKHAnova", (DL_FUNC) &_RKHSENS_RKHAnova, 3},
-    {"_RKHSENS_RKHKerLinear", (DL_FUNC) &_RKHSENS_RKHKerLinear, 2},
-    {"_RKHSENS_RKHKerSqr", (DL_FUNC) &_RKHSENS_RKHKerSqr, 2},
-    {"_RKHSENS_RKHKerTri", (DL_FUNC) &_RKHSENS_RKHKerTri, 3},
-    {"_RKHSENS_RKHKerExp", (DL_FUNC) &_RKHSENS_RKHKerExp, 3},
-    {"_RKHSENS_RKHKerSqrExp", (DL_FUNC) &_RKHSENS_RKHKerSqrExp, 3},
-    {"_RKHSENS_RKHKerSpher", (DL_FUNC) &_RKHSENS_RKHKerSpher, 3},
-    {"_RKHSENS_RKHKerMatern", (DL_FUNC) &_RKHSENS_RKHKerMatern, 4},
-    {"_RKHSENS_RKHKerMultilog", (DL_FUNC) &_RKHSENS_RKHKerMultilog, 2},
-    {"_RKHSENS_RKHKerNatCubSpl", (DL_FUNC) &_RKHSENS_RKHKerNatCubSpl, 2},
-    {"_RKHSENS_RKHKerPlateSpl", (DL_FUNC) &_RKHSENS_RKHKerPlateSpl, 2},
-    {"_RKHSENS_RKHKerMix", (DL_FUNC) &_RKHSENS_RKHKerMix, 3},
-    {"_RKHSENS_RKHSobolIndex", (DL_FUNC) &_RKHSENS_RKHSobolIndex, 4},
-    {"_RKHSENS_RKHSobolVar", (DL_FUNC) &_RKHSENS_RKHSobolVar, 2},
+    {"_KRIG_weight_pow_dist", (DL_FUNC) &_KRIG_weight_pow_dist, 4},
+    {"_KRIG_integrate_kernel", (DL_FUNC) &_KRIG_integrate_kernel, 5},
+    {"_KRIG_complete_integrate_kernel", (DL_FUNC) &_KRIG_complete_integrate_kernel, 4},
+    {"_KRIG_vector_integrate_kernel", (DL_FUNC) &_KRIG_vector_integrate_kernel, 2},
+    {"_KRIG_Kanova", (DL_FUNC) &_KRIG_Kanova, 3},
+    {"_KRIG_linear_kernel", (DL_FUNC) &_KRIG_linear_kernel, 2},
+    {"_KRIG_square_kernel", (DL_FUNC) &_KRIG_square_kernel, 2},
+    {"_KRIG_triangular_kernel", (DL_FUNC) &_KRIG_triangular_kernel, 3},
+    {"_KRIG_exp_kernel", (DL_FUNC) &_KRIG_exp_kernel, 3},
+    {"_KRIG_gaussian_kernel", (DL_FUNC) &_KRIG_gaussian_kernel, 3},
+    {"_KRIG_spherical_kernel", (DL_FUNC) &_KRIG_spherical_kernel, 3},
+    {"_KRIG_matern_kernel", (DL_FUNC) &_KRIG_matern_kernel, 4},
+    {"_KRIG_multilog_kernel", (DL_FUNC) &_KRIG_multilog_kernel, 2},
+    {"_KRIG_nat_cubic_spline_kernel", (DL_FUNC) &_KRIG_nat_cubic_spline_kernel, 2},
+    {"_KRIG_thin_plate_kernel", (DL_FUNC) &_KRIG_thin_plate_kernel, 2},
+    {"_KRIG_mix_kernel", (DL_FUNC) &_KRIG_mix_kernel, 3},
+    {"_KRIG_Kov", (DL_FUNC) &_KRIG_Kov, 4},
+    {"_KRIG_Krig", (DL_FUNC) &_KRIG_Krig, 7},
+    {"_KRIG_sens_idx", (DL_FUNC) &_KRIG_sens_idx, 4},
+    {"_KRIG_sens_var", (DL_FUNC) &_KRIG_sens_var, 2},
     {NULL, NULL, 0}
 };
 
-RcppExport void R_init_RKHSENS(DllInfo *dll) {
+RcppExport void R_init_KRIG(DllInfo *dll) {
     R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);
 }
