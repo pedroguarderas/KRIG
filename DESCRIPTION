@@ -9,7 +9,7 @@ Maintainer: Pedro Guarderas <pedro.felipe.guarderas@gmail.com>
 Description: Computes simple, ordinary and universal kriging, also computes simple, ordinary and 
     universal cokriging. In addition, includes functions for Sensitivity analysis based in the 
     approximation, inside Reproducing Kernel Hilbert spaces, of Sobol indices.
-License: LGPL-3
+License: MIT
 URL: https://github.com/pedroguarderas/KRIG
 Depends:
     R (>= 3.0)
