@@ -2,16 +2,27 @@
 % Please edit documentation in R/RcppExports.R
 \name{complete_integrate_kernel}
 \alias{complete_integrate_kernel}
-\title{Complete kernel integral}
+\title{Complete kernel integral.}
 \usage{
 complete_integrate_kernel(Kern, a, b, n)
 }
+\arguments{
+\item{Kern}{Kernel function.}
+
+\item{a}{Inferior limit for the integral in each coordinate.}
+
+\item{b}{Superior limit for the integral in each coordinate.}
+
+\item{n}{Number of uniform division to compute the integral.}
+}
 \value{
-Real
+Real value with the integral value.
 }
 \description{
-Complete kernel integral
+This function is part of the routines employed in the sensitivity analysis, 
+calculate the integral in both coordinate \eqn{x} and \eqn{y} of the kernel, over the square
+domain give by the limits \eqn{a} and \eqn{b}.
 }
 \author{
-Pedro Guarderas
+Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.
 }

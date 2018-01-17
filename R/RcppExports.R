@@ -4,60 +4,88 @@
 #' @title Generic weighted p-distance
 #' @description Many isotropic models can be defined employing a distance. In particular this 
 #' function implements a distance employing weights and different powers.
-#' @param x First vector
-#' @param y Second vector
-#' @param w Weights for every coordinate in the vectors
+#' @param x First vector.
+#' @param y Second vector.
+#' @param w Weights for every coordinate in the vectors.
 #' @param p Powers for every coordinate in the vectors. To define a true norm every coordinate
 #' has to be greater than 1.
-#' @return Numeric value of the weighted p-distance.
-#' @author Pedro Guarderas
+#' @return Real value of the weighted p-distance.
+#' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 #' @export
 weight_pow_dist <- function(x, y, w, p) {
     .Call('_KRIG_weight_pow_dist', PACKAGE = 'KRIG', x, y, w, p)
 }
 
-#' @title Vector integral
-#' @description Computes covariance kernel matrix
-#' @param Kern
-#' @param x
-#' @param a
-#' @param b
-#' @param n
-#' @return Vector with integrals
-#' @author Pedro Guarderas
+#' @title One coordinate kernel integral.
+#' @description This function is part of the routines employed in the sensitivity analysis, takes 
+#' the kernel \eqn{k} and for each fixed coordinate in \eqn{x}, the integral in the second 
+#' variable \eqn{y}, is computed in the interval \eqn{a} to \eqn{b} by taking \eqn{n} uniform
+#' steps.
+#' @param Kern Kernel function.
+#' @param x Column vector with values for the first coordinate of the kernel.
+#' @param a Inferior limit for the integral in y.
+#' @param b Superior limit for the integral in y.
+#' @param n Number of uniform division to compute the integral.
+#' @return Vector with integrals while the x coordinate is fixed.
+#' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 #' @export
-integrate_kernel <- function(Kern, x, a, b, n) {
-    .Call('_KRIG_integrate_kernel', PACKAGE = 'KRIG', Kern, x, a, b, n)
+vector_integrate_kernel <- function(Kern, x, a, b, n) {
+    .Call('_KRIG_vector_integrate_kernel', PACKAGE = 'KRIG', Kern, x, a, b, n)
 }
 
-#' @title Complete kernel integral
-#' @description Complete kernel integral
-#' @param Kern
-#' @param a
-#' @param b
-#' @param n
-#' @return Real
-#' @author Pedro Guarderas
+#' @title Complete kernel integral.
+#' @description This function is part of the routines employed in the sensitivity analysis, 
+#' calculate the integral in both coordinate \eqn{x} and \eqn{y} of the kernel, over the square
+#' domain give by the limits \eqn{a} and \eqn{b}. 
+#' @param Kern Kernel function.
+#' @param a Inferior limit for the integral in each coordinate.
+#' @param b Superior limit for the integral in each coordinate.
+#' @param n Number of uniform division to compute the integral.
+#' @return Real value with the integral value.
+#' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 #' @export
 complete_integrate_kernel <- function(Kern, a, b, n) {
     .Call('_KRIG_complete_integrate_kernel', PACKAGE = 'KRIG', Kern, a, b, n)
 }
 
-#' @title Integrals of kernels
-#' @description Compute integrals of kernels
-#' @param Kernels List of kernels
-#' @return List with vector integrals and complete kernel integrals
-#' @author Pedro Guarderas
+#' @title Integrals of a list of kernels.
+#' @description This function is part of the routines employed in the sensitivity analysis, 
+#' computes vector of integrals and complete integrals of kernels specified in the data frame
+#' Kernels.
+#' @param Kernels data.frame of kernels composed by four columns.
+#' \enumerate{
+#'   \item Kernel name.
+#'   \item Inferior limit for integral.
+#'   \item Superior limit for integral.
+#'   \item Number of steps for discretization of integrals.
+#' }
+#' @param X matrix containing in each row the coordinate where the one coordinate integrals will 
+#' be evaluated.
+#' @return List with one coordinate integrals and complete kernel integrals.
+#' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 #' @export
-vector_integrate_kernel <- function(Kernels, X) {
-    .Call('_KRIG_vector_integrate_kernel', PACKAGE = 'KRIG', Kernels, X)
+list_integrate_kernel <- function(Kernels, X) {
+    .Call('_KRIG_list_integrate_kernel', PACKAGE = 'KRIG', Kernels, X)
 }
 
-#' @title Integrals of kernels
-#' @description Compute integrals of kernels
-#' @param Kernels List of kernels
-#' @return List with vector integrals and complete kernel integrals
-#' @author Pedro Guarderas
+#' @title KANOVA Kernel anova under RKHS approximations.
+#' @description Under an approximation to the sensitivity analysis based in variance computation
+#' the different indexes of combinatorial sensitivity values can be computed employing the
+#' values of kernel integrals.
+#' @param Kernels data.frame of kernels composed by four columns.
+#' \enumerate{
+#'   \item Kernel name.
+#'   \item Inferior limit for integral.
+#'   \item Superior limit for integral.
+#'   \item Number of steps for discretization of integrals.
+#' }
+#' @param Integral A list containing the results of kernel integrals of the functions
+#' \code{\link{vector_integrate_kernel}}.
+#' @param X matrix containing in each row the coordinate where the one coordinate integrals will 
+#' be evaluated.
+#' @return List with contaning the Gamma 3D array where the different combination variance are
+#' stocked and the total matrix variance named Kanova. 
+#' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 #' @export
 Kanova <- function(Kernels, Integral, X) {
     .Call('_KRIG_Kanova', PACKAGE = 'KRIG', Kernels, Integral, X)

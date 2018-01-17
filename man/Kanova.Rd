@@ -2,19 +2,34 @@
 % Please edit documentation in R/RcppExports.R
 \name{Kanova}
 \alias{Kanova}
-\title{Integrals of kernels}
+\title{KANOVA Kernel anova under RKHS approximations.}
 \usage{
 Kanova(Kernels, Integral, X)
 }
 \arguments{
-\item{Kernels}{List of kernels}
+\item{Kernels}{data.frame of kernels composed by four columns.
+\enumerate{
+  \item Kernel name.
+  \item Inferior limit for integral.
+  \item Superior limit for integral.
+  \item Number of steps for discretization of integrals.
+}}
+
+\item{Integral}{A list containing the results of kernel integrals of the functions
+\code{\link{vector_integrate_kernel}}.}
+
+\item{X}{matrix containing in each row the coordinate where the one coordinate integrals will 
+be evaluated.}
 }
 \value{
-List with vector integrals and complete kernel integrals
+List with contaning the Gamma 3D array where the different combination variance are
+stocked and the total matrix variance named Kanova.
 }
 \description{
-Compute integrals of kernels
+Under an approximation to the sensitivity analysis based in variance computation
+the different indexes of combinatorial sensitivity values can be computed employing the
+values of kernel integrals.
 }
 \author{
-Pedro Guarderas
+Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.
 }

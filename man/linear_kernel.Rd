@@ -4,7 +4,7 @@
 \alias{linear_kernel}
 \title{Linear kernel}
 \usage{
-linear_kernel(h, alpha = 1)
+linear_kernel(x, y, alpha)
 }
 \value{
 Real value

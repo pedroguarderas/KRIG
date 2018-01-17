@@ -2,19 +2,30 @@
 % Please edit documentation in R/RcppExports.R
 \name{vector_integrate_kernel}
 \alias{vector_integrate_kernel}
-\title{Integrals of kernels}
+\title{One coordinate kernel integral.}
 \usage{
-vector_integrate_kernel(Kernels, X)
+vector_integrate_kernel(Kern, x, a, b, n)
 }
 \arguments{
-\item{Kernels}{List of kernels}
+\item{Kern}{Kernel function.}
+
+\item{x}{Column vector with values for the first coordinate of the kernel.}
+
+\item{a}{Inferior limit for the integral in y.}
+
+\item{b}{Superior limit for the integral in y.}
+
+\item{n}{Number of uniform division to compute the integral.}
 }
 \value{
-List with vector integrals and complete kernel integrals
+Vector with integrals while the x coordinate is fixed.
 }
 \description{
-Compute integrals of kernels
+This function is part of the routines employed in the sensitivity analysis, takes 
+the kernel \eqn{k} and for each fixed coordinate in \eqn{x}, the integral in the second 
+variable \eqn{y}, is computed in the interval \eqn{a} to \eqn{b} by taking \eqn{n} uniform
+steps.
 }
 \author{
-Pedro Guarderas
+Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.
 }
