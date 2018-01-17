@@ -32,7 +32,14 @@ Depending of the type of analysis the list of results change.
 \item{A}{Factor computed in the universal kriging.}
 }
 \description{
-Computes Gaussian regression with a given covariance kernel
+Computes the kriging linear estimator for different types of kriging models.
+}
+\examples{
+library( KRIG )
+vignette( topic = 'simple_kriging', package = 'KRIG' )
+vignette( topic = 'ordinary_kriging', package = 'KRIG' )
+vignette( topic = 'universal_kriging', package = 'KRIG' )
+vignette( topic = 'copper_mining_2d', package = 'KRIG' )
 }
 \author{
 Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.

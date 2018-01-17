@@ -4,7 +4,7 @@ author: "Pedro Guarderas"
 date: "January 15, 2018"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Running a MAUT Model}
+  %\VignetteIndexEntry{Copper mining}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -72,7 +72,7 @@ KRIG<-Krig( Z = Z,
             G = matrix( 0, 1, 1),
             g = matrix( 0, 1, 1),
             type = "simple", 
-            typeinv = 'syminv' )
+            cinv = 'syminv' )
 
 W<-matrix( KRIG$Z, m[1], m[2] )
 ```

@@ -4,7 +4,7 @@ author: "Pedro Guarderas"
 date: "January 2, 2018"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Running a MAUT Model}
+  %\VignetteIndexEntry{Universal kriging}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -67,7 +67,7 @@ KRIG<-Krig( Z = Z,
             G = G,
             g = g,
             type = "universal", 
-            typeinv = 'syminv' )
+            cinv = 'syminv' )
 ```
 
 Verification that the constraint is satisfied 

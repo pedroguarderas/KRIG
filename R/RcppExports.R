@@ -253,7 +253,7 @@ Kov <- function(X, Y, Kern, symmetric = FALSE) {
 }
 
 #' @title Kriging computation.
-#' @description Computes Gaussian regression with a given covariance kernel
+#' @description Computes the kriging linear estimator for different types of kriging models.
 #' @param Z Observed values of the spatial process.
 #' @param K Covariance matrix computed for the position \eqn{X} where the spatial process \eqn{Z}
 #' was observed.
@@ -278,6 +278,12 @@ Kov <- function(X, Y, Kern, symmetric = FALSE) {
 #' \item{alpha}{Factor computed in the ordinary kriging.}
 #' \item{A}{Factor computed in the universal kriging.}
 #' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
+#' @examples
+#' library( KRIG )
+#' vignette( topic = 'simple_kriging', package = 'KRIG' )
+#' vignette( topic = 'ordinary_kriging', package = 'KRIG' )
+#' vignette( topic = 'universal_kriging', package = 'KRIG' )
+#' vignette( topic = 'copper_mining_2d', package = 'KRIG' )
 #' @export
 Krig <- function(Z, K, k, G, g, type = "ordinary", cinv = "syminv") {
     .Call('_KRIG_Krig', PACKAGE = 'KRIG', Z, K, k, G, g, type, cinv)
