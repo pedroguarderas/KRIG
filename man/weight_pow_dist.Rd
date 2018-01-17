@@ -7,22 +7,22 @@
 weight_pow_dist(x, y, w, p)
 }
 \arguments{
-\item{x}{First vector}
+\item{x}{First vector.}
 
-\item{y}{Second vector}
+\item{y}{Second vector.}
 
-\item{w}{Weights for every coordinate in the vectors}
+\item{w}{Weights for every coordinate in the vectors.}
 
 \item{p}{Powers for every coordinate in the vectors. To define a true norm every coordinate
 has to be greater than 1.}
 }
 \value{
-Numeric value of the weighted p-distance.
+Real value of the weighted p-distance.
 }
 \description{
 Many isotropic models can be defined employing a distance. In particular this 
 function implements a distance employing weights and different powers.
 }
 \author{
-Pedro Guarderas
+Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.
 }

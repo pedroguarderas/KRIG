@@ -68,7 +68,7 @@ list_integrate_kernel <- function(Kernels, X) {
     .Call('_KRIG_list_integrate_kernel', PACKAGE = 'KRIG', Kernels, X)
 }
 
-#' @title KANOVA Kernel anova under RKHS approximations.
+#' @title KANOVA, kernel anova under RKHS approximations.
 #' @description Under an approximation to the sensitivity analysis based in variance computation
 #' the different indexes of combinatorial sensitivity values can be computed employing the
 #' values of kernel integrals.
@@ -92,48 +92,49 @@ Kanova <- function(Kernels, Integral, X) {
 }
 
 #' @title Linear kernel
-#' @description
-#' @param h
-#' @param alpha
-#' @return Real value
-#' @author Pedro Guarderas
+#' @description Anisotropic kernel defined by the scalar product.
+#' @param x first column vector.
+#' @param y second column vector.
+#' @param alpha amplitud parameter.
+#' @return Real value.
+#' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 #' @export
 linear_kernel <- function(x, y, alpha) {
     .Call('_KRIG_linear_kernel', PACKAGE = 'KRIG', x, y, alpha)
 }
 
 #' @title Polynomial kernel
-#' @description
-#' @param x
-#' @param y
-#' @param alpha
-#' @param beta
-#' @param n
-#' @return Real value
-#' @author Pedro Guarderas
+#' @description Anisotropic kernel defined like a polynomial in the scalar product.
+#' @param x first column vector.
+#' @param y second column vector.
+#' @param alpha amplitud parameter.
+#' @param beta displacement parameter.
+#' @param n power parameter.
+#' @return Real value.
+#' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 #' @export
 polynomial_kernel <- function(x, y, alpha, beta, n) {
     .Call('_KRIG_polynomial_kernel', PACKAGE = 'KRIG', x, y, alpha, beta, n)
 }
 
-#' @title Square kernel
-#' @description
-#' @param h
-#' @param alpha
-#' @return Real value
-#' @author Pedro Guarderas
+#' @title Square kernel.
+#' @description Isotropic kernel given by the square distance.
+#' @param h distance variable.
+#' @param alpha amplitud parameter.
+#' @return Real value.
+#' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 #' @export
 square_kernel <- function(h, alpha = 1.0) {
     .Call('_KRIG_square_kernel', PACKAGE = 'KRIG', h, alpha)
 }
 
-#' @title Triangular kernel
-#' @description
-#' @param h
-#' @param c
-#' @param alpha
-#' @return Real value
-#' @author Pedro Guarderas
+#' @title Triangular kernel.
+#' @description Isotropic kernel defined with the max function.
+#' @param h distance variable.
+#' @param c amplitud parameter.
+#' @param alpha maximum distance value.
+#' @return Real value.
+#' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 #' @export
 triangular_kernel <- function(h, c = 1.0, alpha = 1.0) {
     .Call('_KRIG_triangular_kernel', PACKAGE = 'KRIG', h, c, alpha)

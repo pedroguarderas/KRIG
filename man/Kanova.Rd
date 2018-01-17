@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{Kanova}
 \alias{Kanova}
-\title{KANOVA Kernel anova under RKHS approximations.}
+\title{KANOVA, kernel anova under RKHS approximations.}
 \usage{
 Kanova(Kernels, Integral, X)
 }

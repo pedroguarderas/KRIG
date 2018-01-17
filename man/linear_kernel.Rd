@@ -6,9 +6,19 @@
 \usage{
 linear_kernel(x, y, alpha)
 }
+\arguments{
+\item{x}{first column vector.}
+
+\item{y}{second column vector.}
+
+\item{alpha}{amplitud parameter.}
+}
 \value{
-Real value
+Real value.
+}
+\description{
+Anisotropic kernel defined by the scalar product.
 }
 \author{
-Pedro Guarderas
+Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.
 }

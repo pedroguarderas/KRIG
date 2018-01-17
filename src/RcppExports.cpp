@@ -20,9 +20,9 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// integrate_kernel
-arma::colvec integrate_kernel(Function Kern, const arma::colvec x, const double& a, const double& b, const double& n);
-RcppExport SEXP _KRIG_integrate_kernel(SEXP KernSEXP, SEXP xSEXP, SEXP aSEXP, SEXP bSEXP, SEXP nSEXP) {
+// vector_integrate_kernel
+arma::colvec vector_integrate_kernel(Function Kern, const arma::colvec x, const double& a, const double& b, const double& n);
+RcppExport SEXP _KRIG_vector_integrate_kernel(SEXP KernSEXP, SEXP xSEXP, SEXP aSEXP, SEXP bSEXP, SEXP nSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -31,7 +31,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const double& >::type a(aSEXP);
     Rcpp::traits::input_parameter< const double& >::type b(bSEXP);
     Rcpp::traits::input_parameter< const double& >::type n(nSEXP);
-    rcpp_result_gen = Rcpp::wrap(integrate_kernel(Kern, x, a, b, n));
+    rcpp_result_gen = Rcpp::wrap(vector_integrate_kernel(Kern, x, a, b, n));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -49,15 +49,15 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// vector_integrate_kernel
-List vector_integrate_kernel(const DataFrame& Kernels, const arma::mat& X);
-RcppExport SEXP _KRIG_vector_integrate_kernel(SEXP KernelsSEXP, SEXP XSEXP) {
+// list_integrate_kernel
+List list_integrate_kernel(const DataFrame& Kernels, const arma::mat& X);
+RcppExport SEXP _KRIG_list_integrate_kernel(SEXP KernelsSEXP, SEXP XSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const DataFrame& >::type Kernels(KernelsSEXP);
     Rcpp::traits::input_parameter< const arma::mat& >::type X(XSEXP);
-    rcpp_result_gen = Rcpp::wrap(vector_integrate_kernel(Kernels, X));
+    rcpp_result_gen = Rcpp::wrap(list_integrate_kernel(Kernels, X));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -289,9 +289,9 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_KRIG_weight_pow_dist", (DL_FUNC) &_KRIG_weight_pow_dist, 4},
-    {"_KRIG_integrate_kernel", (DL_FUNC) &_KRIG_integrate_kernel, 5},
+    {"_KRIG_vector_integrate_kernel", (DL_FUNC) &_KRIG_vector_integrate_kernel, 5},
     {"_KRIG_complete_integrate_kernel", (DL_FUNC) &_KRIG_complete_integrate_kernel, 4},
-    {"_KRIG_vector_integrate_kernel", (DL_FUNC) &_KRIG_vector_integrate_kernel, 2},
+    {"_KRIG_list_integrate_kernel", (DL_FUNC) &_KRIG_list_integrate_kernel, 2},
     {"_KRIG_Kanova", (DL_FUNC) &_KRIG_Kanova, 3},
     {"_KRIG_linear_kernel", (DL_FUNC) &_KRIG_linear_kernel, 3},
     {"_KRIG_polynomial_kernel", (DL_FUNC) &_KRIG_polynomial_kernel, 5},

@@ -2,13 +2,21 @@
 % Please edit documentation in R/RcppExports.R
 \name{square_kernel}
 \alias{square_kernel}
-\title{Square kernel}
+\title{Square kernel.}
 \usage{
 square_kernel(h, alpha = 1)
 }
+\arguments{
+\item{h}{distance variable.}
+
+\item{alpha}{amplitud parameter.}
+}
 \value{
-Real value
+Real value.
+}
+\description{
+Isotropic kernel given by the square distance.
 }
 \author{
-Pedro Guarderas
+Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.
 }

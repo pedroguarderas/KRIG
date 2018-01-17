@@ -2,13 +2,23 @@
 % Please edit documentation in R/RcppExports.R
 \name{triangular_kernel}
 \alias{triangular_kernel}
-\title{Triangular kernel}
+\title{Triangular kernel.}
 \usage{
 triangular_kernel(h, c = 1, alpha = 1)
 }
+\arguments{
+\item{h}{distance variable.}
+
+\item{c}{amplitud parameter.}
+
+\item{alpha}{maximum distance value.}
+}
 \value{
-Real value
+Real value.
+}
+\description{
+Isotropic kernel defined with the max function.
 }
 \author{
-Pedro Guarderas
+Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.
 }

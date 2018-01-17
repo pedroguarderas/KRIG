@@ -63,7 +63,7 @@ double complete_integrate_kernel( Function Kern, const double& a, const double& 
 List list_integrate_kernel( const DataFrame& Kernels, const arma::mat& X );
 
 //--------------------------------------------------------------------------------------------------
-//' @title KANOVA Kernel anova under RKHS approximations.
+//' @title KANOVA, kernel anova under RKHS approximations.
 //' @description Under an approximation to the sensitivity analysis based in variance computation
 //' the different indexes of combinatorial sensitivity values can be computed employing the
 //' values of kernel integrals.

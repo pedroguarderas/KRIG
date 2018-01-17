@@ -21,25 +21,26 @@ using namespace Rcpp;
 
 //--------------------------------------------------------------------------------------------------
 //' @title Linear kernel
-//' @description
-//' @param h
-//' @param alpha
-//' @return Real value
-//' @author Pedro Guarderas
+//' @description Anisotropic kernel defined by the scalar product.
+//' @param x first column vector.
+//' @param y second column vector.
+//' @param alpha amplitud parameter.
+//' @return Real value.
+//' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 //' @export
 // [[Rcpp::export]]
 double linear_kernel( const arma::colvec& x, const arma::colvec& y, const double& alpha );
 
 //--------------------------------------------------------------------------------------------------
 //' @title Polynomial kernel
-//' @description
-//' @param x
-//' @param y
-//' @param alpha
-//' @param beta
-//' @param n
-//' @return Real value
-//' @author Pedro Guarderas
+//' @description Anisotropic kernel defined like a polynomial in the scalar product.
+//' @param x first column vector.
+//' @param y second column vector.
+//' @param alpha amplitud parameter.
+//' @param beta displacement parameter.
+//' @param n power parameter.
+//' @return Real value.
+//' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 //' @export
 // [[Rcpp::export]]
 double polynomial_kernel( const arma::colvec& x, const arma::colvec& y, 
@@ -52,24 +53,24 @@ double polynomial_kernel( const arma::colvec& x, const arma::colvec& y,
  --------------------------------------------------------------------------------------------------*/
 
 //--------------------------------------------------------------------------------------------------
-//' @title Square kernel
-//' @description
-//' @param h
-//' @param alpha
-//' @return Real value
-//' @author Pedro Guarderas
+//' @title Square kernel.
+//' @description Isotropic kernel given by the square distance.
+//' @param h distance variable.
+//' @param alpha amplitud parameter.
+//' @return Real value.
+//' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 //' @export
 // [[Rcpp::export]]
 double square_kernel( const double& h, const double& alpha = 1.0 );
 
 //--------------------------------------------------------------------------------------------------
-//' @title Triangular kernel
-//' @description
-//' @param h
-//' @param c
-//' @param alpha
-//' @return Real value
-//' @author Pedro Guarderas
+//' @title Triangular kernel.
+//' @description Isotropic kernel defined with the max function.
+//' @param h distance variable.
+//' @param c amplitud parameter.
+//' @param alpha maximum distance value.
+//' @return Real value.
+//' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 //' @export
 // [[Rcpp::export]]
 double triangular_kernel( const double& h, const double& c = 1.0, const double& alpha = 1.0 );

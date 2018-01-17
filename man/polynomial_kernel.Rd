@@ -6,9 +6,23 @@
 \usage{
 polynomial_kernel(x, y, alpha, beta, n)
 }
+\arguments{
+\item{x}{first column vector.}
+
+\item{y}{second column vector.}
+
+\item{alpha}{amplitud parameter.}
+
+\item{beta}{displacement parameter.}
+
+\item{n}{power parameter.}
+}
 \value{
-Real value
+Real value.
+}
+\description{
+Anisotropic kernel defined like a polynomial in the scalar product.
 }
 \author{
-Pedro Guarderas
+Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.
 }
