@@ -9,8 +9,9 @@
 using namespace Rcpp;
 
 //--------------------------------------------------------------------------------------------------
-//' @title Sensitiviy analysis
-//' @description Computation of Sobol index
+//' @title Combinatorial variance computation.
+//' @description For a given combination this function computes the associated variance for the
+//' variable enumerated by the combination values.
 //' @param KF 
 //' @param comb Combination.
 //' @param X Points grid.
@@ -26,7 +27,7 @@ double sens_idx( const arma::colvec KF,
 
 
 //--------------------------------------------------------------------------------------------------
-//' @title Var
+//' @title Combinatorial variance computation.
 //' @description Computation of variance
 //' @param Gamma Cube with integral results.
 //' @return Real value of sensitivity.

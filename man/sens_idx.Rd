@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{sens_idx}
 \alias{sens_idx}
-\title{Sensitiviy analysis}
+\title{Combinatorial variance computation.}
 \usage{
 sens_idx(KF, comb, X, Gamma)
 }
@@ -19,7 +19,8 @@ sens_idx(KF, comb, X, Gamma)
 Real value of sensitivity.
 }
 \description{
-Computation of Sobol index
+For a given combination this function computes the associated variance for the
+variable enumerated by the combination values.
 }
 \author{
 Pedro Guarderas

@@ -244,8 +244,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // Krig
-List Krig(const arma::mat& Z, const arma::mat& K, const arma::mat& k, const arma::mat& G, const arma::mat& g, const std::string type, const std::string typeinv);
-RcppExport SEXP _KRIG_Krig(SEXP ZSEXP, SEXP KSEXP, SEXP kSEXP, SEXP GSEXP, SEXP gSEXP, SEXP typeSEXP, SEXP typeinvSEXP) {
+List Krig(const arma::mat& Z, const arma::mat& K, const arma::mat& k, const arma::mat& G, const arma::mat& g, const std::string type, const std::string cinv);
+RcppExport SEXP _KRIG_Krig(SEXP ZSEXP, SEXP KSEXP, SEXP kSEXP, SEXP GSEXP, SEXP gSEXP, SEXP typeSEXP, SEXP cinvSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -255,8 +255,8 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const arma::mat& >::type G(GSEXP);
     Rcpp::traits::input_parameter< const arma::mat& >::type g(gSEXP);
     Rcpp::traits::input_parameter< const std::string >::type type(typeSEXP);
-    Rcpp::traits::input_parameter< const std::string >::type typeinv(typeinvSEXP);
-    rcpp_result_gen = Rcpp::wrap(Krig(Z, K, k, G, g, type, typeinv));
+    Rcpp::traits::input_parameter< const std::string >::type cinv(cinvSEXP);
+    rcpp_result_gen = Rcpp::wrap(Krig(Z, K, k, G, g, type, cinv));
     return rcpp_result_gen;
 END_RCPP
 }

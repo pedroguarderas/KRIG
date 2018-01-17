@@ -20,10 +20,9 @@ be improved setting this parameter to TRUE, the default is FALSE.}
 The spatial covariance matrix.
 }
 \description{
-To compute a Gaussian regression or interpolation is necessary use Kernel, and
-  it is requeried to construct the spatial convariance matrix. The spatial covariance could
-  be estimated between to sets of points X and Y and the result is not necessarily a square
-  matrix.
+To compute a kriging, it is necessary the spatial convariance matrix. The spatial 
+  covariance could computed between to sets of points X and Y with different dimension and the 
+  result it is not necessarily a square matrix.
 }
 \author{
 Pedro Guarderas

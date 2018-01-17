@@ -2,35 +2,38 @@
 % Please edit documentation in R/RcppExports.R
 \name{Krig}
 \alias{Krig}
-\title{Gaussian regression}
+\title{Kriging computation.}
 \usage{
-Krig(Z, K, k, G, g, type = "ordinary", typeinv = "syminv")
+Krig(Z, K, k, G, g, type = "ordinary", cinv = "syminv")
 }
 \arguments{
-\item{Z}{Observed spatial values.}
+\item{Z}{Observed values of the spatial process.}
 
-\item{type}{Type of Gaussian regression, 0 = simple interpolation, 1 = simple regression, 
-2 = ordinary interpolation, 3 = ordinary regression, 4 = universal interpolation, 
-5 = universal regression.}
+\item{K}{Covariance matrix computed for the position \eqn{X} where the spatial process \eqn{Z}
+was observed.}
 
-\item{X}{Spatial points, ubication where the Z value was observed.}
+\item{k}{Covariance matrix computed for the position \eqn{X} where the spatial process \eqn{Z}
+was observed and the position \eqn{Y} where the spatial process \eqn{Z} will be predicted.}
 
-\item{Y}{Spatial points where it is requested to predict Z.}
+\item{type}{Type of kriging model, possible values are: simple, ordinary, universal.}
 
-\item{Kern}{Kernel functions.}
-
-\item{cinv}{Form to compute the inverse.}
+\item{cinv}{Specifies how the inverse of the covariance matrix \eqn{K} will be computed. 
+Possible values are: syminv = simmetric matrix inverse computation, inv = usual armadillo
+inverse computation, cholinv = Cholesky based inverse computaton, ginv = given inverse not
+necessary to compute inverse at all.}
 }
 \value{
-List containing the different important matrices employed for the Gaussian regression.
-\item{W}{Predicted new values for Z}
-\item{K}{Covariance matrix for X}
-\item{k}{Covariance matrix between Y and X}
-\item{J}{Inverse of the covariance matrix}
+Depending of the type of analysis the list of results change.
+\item{Z}{New estimated values for Z.}
+\item{L}{Linear coefficients determined by kriging.}
+\item{J}{Inverse of the covariance matrix.}
+\item{tau}{Factor computed in the ordinary and universal kriging.}
+\item{alpha}{Factor computed in the ordinary kriging.}
+\item{A}{Factor computed in the universal kriging.}
 }
 \description{
 Computes Gaussian regression with a given covariance kernel
 }
 \author{
-Pedro Guarderas
+Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.
 }

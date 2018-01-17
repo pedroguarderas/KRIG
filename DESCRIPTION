@@ -1,24 +1,32 @@
 Package: KRIG
 Type: Package
-Title: Kriging
+Title: Spatial statistis with kriging.
 Version: 0.1.0
 Encoding: UTF-8
-Date: 2017-10-17
-Author: Pedro Guarderas
-Maintainer: Pedro Guarderas <pedro.felipe.guarderas@gmail.com>
-Description: Computes simple, ordinary and universal kriging, also computes simple, ordinary and 
-    universal cokriging. In addition, includes functions for Sensitivity analysis based in the 
-    approximation, inside Reproducing Kernel Hilbert spaces, of Sobol indices.
+Date: 2018-01-17
+Description: Implements different methods for spatial statistics, in particular focused with 
+    kriging based models. We count with different implemented models, simple, ordinary and 
+    universal forms of kriging, cokriging and regression kriging models. Includes, multivariate 
+    sensitivity analysis under an approximation designed over Reproducing Kernel Hilbert Spaces and 
+    computation of Sobol indexes under this framework.
+Authors@R: c(
+    person("Pedro", "Guarderas", email = "pedro.felipe.guarderas@gmail.com", role = c("aut","cre") ),
+    person("Daniel", "Lagos", role="ctb"),
+    person("Andrés", "Lopez", role="ctb")
+    )
 License: MIT
 URL: https://github.com/pedroguarderas/KRIG
 Depends:
-    R (>= 3.0)
+    R (>= 3.3)
 LinkingTo: Rcpp, RcppArmadillo
 RoxygenNote: 6.0.1
 Imports:
-    Rcpp
+    Rcpp,
+    Rdpack
 Suggests: knitr, 
     rmarkdown,
     testthat
-VignetteBuilder: knitr
 LazyData: true
+Suggests: knitr, rmarkdown
+VignetteBuilder: knitr
+RdMacros: Rdpack

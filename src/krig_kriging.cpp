@@ -51,7 +51,7 @@ List Krig( const arma::mat& Z,
            const arma::mat& G, 
            const arma::mat& g,
            const std::string type, 
-           const std::string typeinv ) {
+           const std::string cinv ) {
 
   int n = Z.n_rows;
   int m = k.n_cols;
@@ -63,17 +63,19 @@ List Krig( const arma::mat& Z,
   arma::mat L( m, n );
 
   // Inverse computation
-  if ( typeinv == "syminv" ) {
+  if ( cinv == "syminv" ) {
     J = inv_sympd( K );
     
-  } else if ( typeinv == "inv" ) {
+  } else if ( cinv == "inv" ) {
     J = inv( K );
     
-  } else if ( typeinv == "cholinv" ) {
+  } else if ( cinv == "cholinv" ) {
     J = chol( K );
     J = inv( J );
     J = J.t() * J;
     
+  } else if ( cinv == "ginv" ) {
+    J = K;
   }
   
   // Kriging computation

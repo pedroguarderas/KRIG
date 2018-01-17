@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{sens_var}
 \alias{sens_var}
-\title{Var}
+\title{Combinatorial variance computation.}
 \usage{
 sens_var(KF, Gamma)
 }

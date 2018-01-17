@@ -234,10 +234,9 @@ mix_kernel <- function(h, sigma = 1.0, theta = 1.0) {
 }
 
 #' @title Spatial covariance matrix.
-#' @description To compute a Gaussian regression or interpolation is necessary use Kernel, and
-#'   it is requeried to construct the spatial convariance matrix. The spatial covariance could
-#'   be estimated between to sets of points X and Y and the result is not necessarily a square
-#'   matrix.
+#' @description To compute a kriging, it is necessary the spatial convariance matrix. The spatial 
+#'   covariance could computed between to sets of points X and Y with different dimension and the 
+#'   result it is not necessarily a square matrix.
 #' @param X First set of spatial points.
 #' @param Y Second set of spatial points.
 #' @param Kern Kernel function.
@@ -253,29 +252,40 @@ Kov <- function(X, Y, Kern, symmetric = FALSE) {
     .Call('_KRIG_Kov', PACKAGE = 'KRIG', X, Y, Kern, symmetric)
 }
 
-#' @title Gaussian regression
+#' @title Kriging computation.
 #' @description Computes Gaussian regression with a given covariance kernel
-#' @param Z Observed spatial values.
-#' @param X Spatial points, ubication where the Z value was observed.
-#' @param Y Spatial points where it is requested to predict Z.
-#' @param Kern Kernel functions.
-#' @param type Type of Gaussian regression, 0 = simple interpolation, 1 = simple regression, 
-#'  2 = ordinary interpolation, 3 = ordinary regression, 4 = universal interpolation, 
-#'  5 = universal regression.
-#' @param cinv Form to compute the inverse.
-#' @return List containing the different important matrices employed for the Gaussian regression.
-#' \item{W}{Predicted new values for Z}
-#' \item{K}{Covariance matrix for X}
-#' \item{k}{Covariance matrix between Y and X}
-#' \item{J}{Inverse of the covariance matrix}
-#' @author Pedro Guarderas
+#' @param Z Observed values of the spatial process.
+#' @param K Covariance matrix computed for the position \eqn{X} where the spatial process \eqn{Z}
+#' was observed.
+#' @param k Covariance matrix computed for the position \eqn{X} where the spatial process \eqn{Z}
+#' was observed and the position \eqn{Y} where the spatial process \eqn{Z} will be predicted.
+#' @para G When universal kriging will be computed, this matrix represents the values of the 
+#' of the functions representing the mean of the process \eqn{Z}, evaluated in the spatial 
+#' points \eqn{X} where the spatial process was first observed.
+#' @para g When universal kriging will be computed, this matrix represents the evaluation of the
+#' functions representing the mean over the new position points \eqn{Y} where the spatial process
+#' \eqn{Z} will be predicted. 
+#' @param type Type of kriging model, possible values are: simple, ordinary, universal.
+#' @param cinv Specifies how the inverse of the covariance matrix \eqn{K} will be computed. 
+#' Possible values are: syminv = simmetric matrix inverse computation, inv = usual armadillo
+#' inverse computation, cholinv = Cholesky based inverse computaton, ginv = given inverse not
+#' necessary to compute inverse at all.
+#' @return Depending of the type of analysis the list of results change.
+#' \item{Z}{New estimated values for Z.}
+#' \item{L}{Linear coefficients determined by kriging.}
+#' \item{J}{Inverse of the covariance matrix.}
+#' \item{tau}{Factor computed in the ordinary and universal kriging.}
+#' \item{alpha}{Factor computed in the ordinary kriging.}
+#' \item{A}{Factor computed in the universal kriging.}
+#' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 #' @export
-Krig <- function(Z, K, k, G, g, type = "ordinary", typeinv = "syminv") {
-    .Call('_KRIG_Krig', PACKAGE = 'KRIG', Z, K, k, G, g, type, typeinv)
+Krig <- function(Z, K, k, G, g, type = "ordinary", cinv = "syminv") {
+    .Call('_KRIG_Krig', PACKAGE = 'KRIG', Z, K, k, G, g, type, cinv)
 }
 
-#' @title Sensitiviy analysis
-#' @description Computation of Sobol index
+#' @title Combinatorial variance computation.
+#' @description For a given combination this function computes the associated variance for the
+#' variable enumerated by the combination values.
 #' @param KF 
 #' @param comb Combination.
 #' @param X Points grid.
@@ -287,7 +297,7 @@ sens_idx <- function(KF, comb, X, Gamma) {
     .Call('_KRIG_sens_idx', PACKAGE = 'KRIG', KF, comb, X, Gamma)
 }
 
-#' @title Var
+#' @title Combinatorial variance computation.
 #' @description Computation of variance
 #' @param Gamma Cube with integral results.
 #' @return Real value of sensitivity.
