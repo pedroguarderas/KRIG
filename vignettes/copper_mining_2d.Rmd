@@ -103,7 +103,6 @@ KRIG<-Krig( Z = Z,
             type = "simple", 
             cinv = 'syminv' )
 
-
 W<-matrix( KRIG$Z, m[1], m[2] )
 ```
 
