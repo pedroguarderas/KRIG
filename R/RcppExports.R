@@ -313,3 +313,17 @@ sens_var <- function(KF, Gamma) {
     .Call('_KRIG_sens_var', PACKAGE = 'KRIG', KF, Gamma)
 }
 
+#' @title Computes the variogram.
+#' @description This useful function is commonly employed in the study of isotropic stationary 
+#' spatial processes. 
+#' @param Z Vector of observations.
+#' @param X Points matrix.
+#' @param d Distance function.
+#' @param delta Search distance ratio.
+#' @return Variogram vector.
+#' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
+#' @export
+variogram <- function(Z, X, d, delta) {
+    .Call('_KRIG_variogram', PACKAGE = 'KRIG', Z, X, d, delta)
+}
+

@@ -53,8 +53,30 @@ Y<-as.matrix( Y )
 
 Stablishing the kernel.
 ```{r,eval=TRUE,message=FALSE, warning=FALSE}
-s<-1
-t<-500
+dist<-function( x, y ) {
+  return( sqrt( sum( ( x - y )^2 ) ) )
+}
+V<-variogram( Z, X, dist, 0 )
+d<-V$distance[V$sort+1,1]
+
+spherical_variogram<-function( d, s, t ) {
+  return( s - spherical_kernel( d, s, t ) )
+}
+
+s<-0.2
+t<-450
+FV<-sapply( d, FUN = spherical_variogram, s, t )
+```
+
+```{r,eval=TRUE,fig.show='hold', fig.show='hold', fig.align="center", fig.width=7, fig.height=4}
+plot( d, V$variogram[,1], 
+      cex = 0.9, pch = 16, col = 'midnightblue',
+      xlab = 'd', 
+      ylab = 'v' )
+points( d, FV, type = 'l', col = 'olivedrab3' , lwd = 2 )
+```
+
+```{r,eval=TRUE,message=FALSE, warning=FALSE}
 Kern<-function( x, y ) {
   h<-sqrt( sum( ( x - y )^2 ) )
   return( spherical_kernel( h, s, t ) )
@@ -73,6 +95,7 @@ KRIG<-Krig( Z = Z,
             g = matrix( 0, 1, 1),
             type = "simple", 
             cinv = 'syminv' )
+
 
 W<-matrix( KRIG$Z, m[1], m[2] )
 ```
