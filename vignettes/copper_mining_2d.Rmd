@@ -14,7 +14,7 @@ vignette: >
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Ordinary kriging application
+# Simple kriging application
 Study case of copper mine.
 
 Loading packages.
