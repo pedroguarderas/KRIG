@@ -3,30 +3,35 @@ title: "Copper mining"
 author: "Pedro Guarderas"
 date: "January 15, 2018"
 output: rmarkdown::html_vignette
+always_allow_html: yes
 vignette: >
   %\VignetteIndexEntry{Copper mining}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
 # Ordinary kriging application
 Study case of copper mine.
 
 Loading packages.
-```{r,eval=TRUE,message=FALSE, warning=FALSE}
+```{r load,eval=TRUE,message=FALSE, warning=FALSE}
 library( data.table )
 library( KRIG )
 library( plotly )
 library( viridis )
 ```
 
-Loading data.
-```{r,eval=TRUE,message=FALSE, warning=FALSE}
+Loading data, inside the package **KRIG**.
+```{r data,eval=TRUE,message=FALSE, warning=FALSE}
 data( 'Copper', package = 'KRIG' )
 ```
 
 Processing information.
-```{r,eval=TRUE,message=FALSE, warning=FALSE}
+```{r processing,eval=TRUE,message=FALSE, warning=FALSE}
 X3<-c( 100, 105 )
 Dat<-Copper[ x3 >= X3[1] & x3 <= X3[2] & Z > 0, list( x1, x2, Z ) ]
 Dat<-Dat[ , list( Z = mean( Z ) ), by = list( x1, x2 ) ]
@@ -51,8 +56,8 @@ Y<-expand.grid( Y1, Y2 )
 Y<-as.matrix( Y )
 ```
 
-Stablishing the kernel.
-```{r,eval=TRUE,message=FALSE, warning=FALSE}
+Estimation of the right parameters to construct the kernel, fitting the variogram.
+```{r est,eval=TRUE,message=FALSE, warning=FALSE}
 dist<-function( x, y ) {
   return( sqrt( sum( ( x - y )^2 ) ) )
 }
@@ -68,7 +73,8 @@ t<-450
 FV<-sapply( d, FUN = spherical_variogram, s, t )
 ```
 
-```{r,eval=TRUE,fig.show='hold', fig.show='hold', fig.align="center", fig.width=7, fig.height=4}
+Plotting results for the variogram.
+```{r varg,eval=TRUE,fig.show='hold', fig.show='hold', fig.align="center", fig.width=7, fig.height=4}
 plot( d, V$variogram[,1], 
       cex = 0.9, pch = 16, col = 'midnightblue',
       xlab = 'd', 
@@ -76,15 +82,16 @@ plot( d, V$variogram[,1],
 points( d, FV, type = 'l', col = 'olivedrab3' , lwd = 2 )
 ```
 
-```{r,eval=TRUE,message=FALSE, warning=FALSE}
+Setting the kernel based in the fitted parameters from the variogram.
+```{r kern,eval=TRUE,message=FALSE, warning=FALSE}
 Kern<-function( x, y ) {
   h<-sqrt( sum( ( x - y )^2 ) )
   return( spherical_kernel( h, s, t ) )
 }
 ```
 
-Solving kriging problem.
-```{r,eval=TRUE,message=FALSE, warning=FALSE}
+Solving ordinary kriging problem.
+```{r krig,eval=TRUE,message=FALSE, warning=FALSE}
 K = Kov( X, X, Kern, TRUE )
 k = Kov( Y, X, Kern )
 
@@ -101,8 +108,11 @@ W<-matrix( KRIG$Z, m[1], m[2] )
 ```
 
 Level curves
-```{r,eval=TRUE,fig.show='hold', fig.show='hold', fig.align="center", fig.width=7, fig.height=4}
+```{r curv,eval=TRUE,fig.show='hold', fig.show='hold', fig.align="center", fig.width=7, fig.height=4}
 cols<-terrain.colors( 40 )
 plot_ly( x = Y1, y = Y2, z = W, type = "contour", colors = cols,
          contours = list( start = 0, size = 0.05, end = 1.9, showlabels = TRUE ) )
 ```
+
+<!-- tmpFile<-tempfile( fileext = ".png") -->
+<!-- export( p, file = tmpFile ) -->
