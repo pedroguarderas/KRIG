@@ -79,9 +79,9 @@ FV<-sapply( d, FUN = spherical_variogram, NLM$estimate[1], NLM$estimate[2] )
 ```
 
 Plotting results for the variogram.
-```{r varg,eval=TRUE,fig.show='hold', fig.show='hold', fig.align="center", fig.width=7, fig.height=4}
+```{r varg,eval=TRUE,fig.show='hold', fig.show='hold', fig.align="center", fig.width=7, fig.height=5}
 plot( d, V$variogram[,1], 
-      cex = 0.9, pch = 16, col = 'midnightblue',
+      cex = 0.7, pch = 16, col = 'midnightblue',
       xlab = 'd', 
       ylab = 'v' )
 points( d, FV, type = 'l', col = 'olivedrab3' , lwd = 2 )
@@ -112,7 +112,7 @@ W<-matrix( KRIG$Z, m[1], m[2] )
 ```
 
 Level curves
-```{r curv,eval=TRUE,fig.show='hold', fig.show='hold', fig.align="center", fig.width=7, fig.height=4}
+```{r curv,eval=TRUE,fig.show='hold', fig.show='hold', fig.align="center", fig.width=7, fig.height=5}
 cols<-terrain.colors( 40 )
 plot_ly( x = Y1, y = Y2, z = W, type = "contour", colors = cols,
          contours = list( start = 0, size = 0.05, end = 1.9, showlabels = TRUE ) )
