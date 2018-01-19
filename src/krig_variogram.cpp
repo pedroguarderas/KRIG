@@ -45,6 +45,7 @@ List variogram( const arma::mat& Z,
   for ( k = 1; k < N; k++ ) {
     V( k ) = ( V( k - 1 ) * k + S( I[ k ] ) ) / ( k + 1.0 );
   }
+  V = 0.5 * V;
   
   Varg[ "variogram" ] = V;
   Varg[ "distance" ] = D;

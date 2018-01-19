@@ -68,9 +68,14 @@ spherical_variogram<-function( d, s, t ) {
   return( s - spherical_kernel( d, s, t ) )
 }
 
-s<-0.2
-t<-450
-FV<-sapply( d, FUN = spherical_variogram, s, t )
+fit_spherical_kernel<-function( p ) {
+  FV<-sapply( d, FUN = spherical_variogram, p[1], p[2] )
+  return( sum( ( FV - V$variogram[,1] )^2 ) )
+}
+NLM<-nlm( fit_spherical_kernel, c( 0.1, 450 ) )
+str( NLM )
+
+FV<-sapply( d, FUN = spherical_variogram, NLM$estimate[1], NLM$estimate[2] )
 ```
 
 Plotting results for the variogram.
@@ -86,7 +91,7 @@ Setting the kernel based in the fitted parameters from the variogram.
 ```{r kern,eval=TRUE,message=FALSE, warning=FALSE}
 Kern<-function( x, y ) {
   h<-sqrt( sum( ( x - y )^2 ) )
-  return( spherical_kernel( h, s, t ) )
+  return( spherical_kernel( h, NLM$estimate[1], NLM$estimate[2] ) )
 }
 ```
 
