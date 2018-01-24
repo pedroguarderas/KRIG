@@ -61,7 +61,7 @@ Estimation of the right parameters to construct the kernel, fitting the variogra
 dist<-function( x, y ) {
   return( sqrt( sum( ( x - y )^2 ) ) )
 }
-V<-variogram( Z, X, dist, 0 )
+V<-variogram( Z, X, dist )
 d<-V$distance[V$sort+1,1]
 
 spherical_variogram<-function( d, s, t ) {
@@ -81,10 +81,10 @@ FV<-sapply( d, FUN = spherical_variogram, NLM$estimate[1], NLM$estimate[2] )
 Plotting results for the variogram.
 ```{r varg,eval=TRUE,fig.show='hold', fig.show='hold', fig.align="center", fig.width=7, fig.height=5}
 plot( d, V$variogram[,1], 
-      cex = 0.7, pch = 16, col = 'midnightblue',
+      cex = 0.5, pch = 16, col = 'purple4',
       xlab = 'd', 
       ylab = 'v' )
-points( d, FV, type = 'l', col = 'olivedrab3' , lwd = 2 )
+points( d, FV, type = 'l', col = 'dodgerblue2' , lwd = 2 )
 ```
 
 Setting the kernel based in the fitted parameters from the variogram.
