@@ -10,5 +10,5 @@ mix_kernel(h, sigma = 1, theta = 1)
 Real value
 }
 \author{
-Pedro Guarderas
+Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.
 }

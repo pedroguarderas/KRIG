@@ -38,7 +38,7 @@ vignette( topic = 'copper_mining_2d', package = 'KRIG' )
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/pedroguarderas/KRIG}
+  \item \url{https://github.com/pedroguarderas/KRIG/issues}
 }
 
 }

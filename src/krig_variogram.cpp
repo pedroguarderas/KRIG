@@ -4,8 +4,7 @@
 //--------------------------------------------------------------------------------------------------
 List variogram( const arma::mat& Z,
                 const arma::mat& X, 
-                Function d,
-                const double& delta ) {
+                Function d ) {
   int i, j, k;
   int n = X.n_rows;
   int N = n * ( n + 1 ) / 2;

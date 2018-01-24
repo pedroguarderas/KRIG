@@ -4,7 +4,7 @@
 \alias{variogram}
 \title{Computes the variogram.}
 \usage{
-variogram(Z, X, d, delta)
+variogram(Z, X, d)
 }
 \arguments{
 \item{Z}{Vector of observations.}

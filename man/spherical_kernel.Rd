@@ -6,9 +6,19 @@
 \usage{
 spherical_kernel(h, phi, theta)
 }
+\arguments{
+\item{h}{distance variable.}
+
+\item{phi}{amplitude parameter.}
+
+\item{theta}{smootheness parameter.}
+}
 \value{
-Real value
+Real value.
+}
+\description{
+Isotropic kernel commonly employed in geostatistics.
 }
 \author{
-Pedro Guarderas
+Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.
 }

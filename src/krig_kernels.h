@@ -76,37 +76,37 @@ double square_kernel( const double& h, const double& alpha = 1.0 );
 double triangular_kernel( const double& h, const double& c = 1.0, const double& alpha = 1.0 );
 
 //--------------------------------------------------------------------------------------------------
-//' @title Exponential kernel
-//' @description
-//' @param h
-//' @param sigma
-//' @param theta
-//' @return Real value
-//' @author Pedro Guarderas
+//' @title Exponential kernel.
+//' @description Isotropic kernel.
+//' @param h distance variable.
+//' @param sigma amplitude parameter.
+//' @param theta smootheness parameter.
+//' @return Real value.
+//' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 //' @export
 // [[Rcpp::export]]
 double exp_kernel( const double& h, const double& sigma = 1.0, const double& theta = 1.0 );
 
 //--------------------------------------------------------------------------------------------------
 //' @title Gaussian kernel
-//' @description
-//' @param h
-//' @param sigma
-//' @param theta
-//' @return Real value
-//' @author Pedro Guarderas
+//' @description Isotropic kernel.
+//' @param h distance variable.
+//' @param sigma amplitude parameter.
+//' @param theta smootheness parameter.
+//' @return Real value.
+//' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 //' @export
 // [[Rcpp::export]]
 double gaussian_kernel( const double& h, const double& sigma = 1.0, const double& theta = 1.0 );
 
 //--------------------------------------------------------------------------------------------------
 //' @title Spherical kernel
-//' @description
-//' @param h
-//' @param phi
-//' @param theta
-//' @return Real value
-//' @author Pedro Guarderas
+//' @description Isotropic kernel commonly employed in geostatistics.
+//' @param h distance variable.
+//' @param phi amplitude parameter.
+//' @param theta smootheness parameter.
+//' @return Real value.
+//' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 //' @export
 // [[Rcpp::export]]
 double spherical_kernel( const double& h, const double& phi, const double& theta );
@@ -130,7 +130,7 @@ double matern_kernel( const double& h, const double& v = 2.0, const double& sigm
 //' @param h
 //' @param R
 //' @return Real value
-//' @author Pedro Guarderas
+//' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 //' @export
 // [[Rcpp::export]]
 double multilog_kernel( const double& h, const double& R = 1.0 );
@@ -141,7 +141,7 @@ double multilog_kernel( const double& h, const double& R = 1.0 );
 //' @param h
 //' @param R
 //' @return Real value
-//' @author Pedro Guarderas
+//' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 //' @export
 // [[Rcpp::export]]
 double nat_cubic_spline_kernel( const double& h, const double& R = 1.0 );
@@ -164,7 +164,7 @@ double thin_plate_kernel( const double& h, const double& R = 1.0 );
 //' @param sigma
 //' @param theta
 //' @return Real value
-//' @author Pedro Guarderas
+//' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 //' @export
 // [[Rcpp::export]]
 double mix_kernel( const double& h, const double& sigma = 1.0, const double& theta = 1.0 );

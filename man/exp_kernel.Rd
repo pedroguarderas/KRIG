@@ -2,13 +2,23 @@
 % Please edit documentation in R/RcppExports.R
 \name{exp_kernel}
 \alias{exp_kernel}
-\title{Exponential kernel}
+\title{Exponential kernel.}
 \usage{
 exp_kernel(h, sigma = 1, theta = 1)
 }
+\arguments{
+\item{h}{distance variable.}
+
+\item{sigma}{amplitude parameter.}
+
+\item{theta}{smootheness parameter.}
+}
 \value{
-Real value
+Real value.
+}
+\description{
+Isotropic kernel.
 }
 \author{
-Pedro Guarderas
+Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.
 }

@@ -10,5 +10,5 @@ multilog_kernel(h, R = 1)
 Real value
 }
 \author{
-Pedro Guarderas
+Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.
 }

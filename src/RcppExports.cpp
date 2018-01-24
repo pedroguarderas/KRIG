@@ -287,16 +287,15 @@ BEGIN_RCPP
 END_RCPP
 }
 // variogram
-List variogram(const arma::mat& Z, const arma::mat& X, Function d, const double& delta);
-RcppExport SEXP _KRIG_variogram(SEXP ZSEXP, SEXP XSEXP, SEXP dSEXP, SEXP deltaSEXP) {
+List variogram(const arma::mat& Z, const arma::mat& X, Function d);
+RcppExport SEXP _KRIG_variogram(SEXP ZSEXP, SEXP XSEXP, SEXP dSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const arma::mat& >::type Z(ZSEXP);
     Rcpp::traits::input_parameter< const arma::mat& >::type X(XSEXP);
     Rcpp::traits::input_parameter< Function >::type d(dSEXP);
-    Rcpp::traits::input_parameter< const double& >::type delta(deltaSEXP);
-    rcpp_result_gen = Rcpp::wrap(variogram(Z, X, d, delta));
+    rcpp_result_gen = Rcpp::wrap(variogram(Z, X, d));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -323,7 +322,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_KRIG_Krig", (DL_FUNC) &_KRIG_Krig, 7},
     {"_KRIG_sens_idx", (DL_FUNC) &_KRIG_sens_idx, 4},
     {"_KRIG_sens_var", (DL_FUNC) &_KRIG_sens_var, 2},
-    {"_KRIG_variogram", (DL_FUNC) &_KRIG_variogram, 4},
+    {"_KRIG_variogram", (DL_FUNC) &_KRIG_variogram, 3},
     {NULL, NULL, 0}
 };
 

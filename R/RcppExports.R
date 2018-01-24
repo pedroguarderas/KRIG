@@ -140,37 +140,37 @@ triangular_kernel <- function(h, c = 1.0, alpha = 1.0) {
     .Call('_KRIG_triangular_kernel', PACKAGE = 'KRIG', h, c, alpha)
 }
 
-#' @title Exponential kernel
-#' @description
-#' @param h
-#' @param sigma
-#' @param theta
-#' @return Real value
-#' @author Pedro Guarderas
+#' @title Exponential kernel.
+#' @description Isotropic kernel.
+#' @param h distance variable.
+#' @param sigma amplitude parameter.
+#' @param theta smootheness parameter.
+#' @return Real value.
+#' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 #' @export
 exp_kernel <- function(h, sigma = 1.0, theta = 1.0) {
     .Call('_KRIG_exp_kernel', PACKAGE = 'KRIG', h, sigma, theta)
 }
 
 #' @title Gaussian kernel
-#' @description
-#' @param h
-#' @param sigma
-#' @param theta
-#' @return Real value
-#' @author Pedro Guarderas
+#' @description Isotropic kernel.
+#' @param h distance variable.
+#' @param sigma amplitude parameter.
+#' @param theta smootheness parameter.
+#' @return Real value.
+#' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 #' @export
 gaussian_kernel <- function(h, sigma = 1.0, theta = 1.0) {
     .Call('_KRIG_gaussian_kernel', PACKAGE = 'KRIG', h, sigma, theta)
 }
 
 #' @title Spherical kernel
-#' @description
-#' @param h
-#' @param phi
-#' @param theta
-#' @return Real value
-#' @author Pedro Guarderas
+#' @description Isotropic kernel commonly employed in geostatistics.
+#' @param h distance variable.
+#' @param phi amplitude parameter.
+#' @param theta smootheness parameter.
+#' @return Real value.
+#' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 #' @export
 spherical_kernel <- function(h, phi, theta) {
     .Call('_KRIG_spherical_kernel', PACKAGE = 'KRIG', h, phi, theta)
@@ -193,7 +193,7 @@ matern_kernel <- function(h, v = 2.0, sigma = 1.0, theta = 1.0) {
 #' @param h
 #' @param R
 #' @return Real value
-#' @author Pedro Guarderas
+#' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 #' @export
 multilog_kernel <- function(h, R = 1.0) {
     .Call('_KRIG_multilog_kernel', PACKAGE = 'KRIG', h, R)
@@ -204,7 +204,7 @@ multilog_kernel <- function(h, R = 1.0) {
 #' @param h
 #' @param R
 #' @return Real value
-#' @author Pedro Guarderas
+#' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 #' @export
 nat_cubic_spline_kernel <- function(h, R = 1.0) {
     .Call('_KRIG_nat_cubic_spline_kernel', PACKAGE = 'KRIG', h, R)
@@ -227,7 +227,7 @@ thin_plate_kernel <- function(h, R = 1.0) {
 #' @param sigma
 #' @param theta
 #' @return Real value
-#' @author Pedro Guarderas
+#' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 #' @export
 mix_kernel <- function(h, sigma = 1.0, theta = 1.0) {
     .Call('_KRIG_mix_kernel', PACKAGE = 'KRIG', h, sigma, theta)
@@ -323,7 +323,7 @@ sens_var <- function(KF, Gamma) {
 #' @return Variogram vector.
 #' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 #' @export
-variogram <- function(Z, X, d, delta) {
-    .Call('_KRIG_variogram', PACKAGE = 'KRIG', Z, X, d, delta)
+variogram <- function(Z, X, d) {
+    .Call('_KRIG_variogram', PACKAGE = 'KRIG', Z, X, d)
 }
 

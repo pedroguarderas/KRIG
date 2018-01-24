@@ -27,6 +27,5 @@ using namespace Rcpp;
 // [[Rcpp::export]]
 List variogram( const arma::mat& Z,
                 const arma::mat& X, 
-                Function d,
-                const double& delta );
+                Function d );
 #endif

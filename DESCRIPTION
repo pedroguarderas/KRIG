@@ -4,7 +4,7 @@ Title: Spatial statistis with kriging.
 Version: 0.1.0
 Encoding: UTF-8
 Date: 2018-01-17
-Description: Implements different methods for spatial statistics, in particular focused with 
+Description: Implements different methods for spatial statistics, in particular focused in
     kriging based models. We count with different implemented models, simple, ordinary and 
     universal forms of kriging, cokriging and regression kriging models. Includes, multivariate 
     sensitivity analysis under an approximation designed over Reproducing Kernel Hilbert Spaces and 
@@ -16,6 +16,7 @@ Authors@R: c(
     )
 License: MIT
 URL: https://github.com/pedroguarderas/KRIG
+URL: https://github.com/pedroguarderas/KRIG/issues
 Depends:
     R (>= 3.3)
 LinkingTo: Rcpp, RcppArmadillo
