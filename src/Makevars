@@ -1,4 +1,4 @@
-CXX_STD = CXX14
+CXX_STD = CXX11
 PKG_CPPFLAGS += -fopenmp -fpermissive -Isrc/
 PKG_LIBS =`$(R_HOME)/bin/Rscript -e "Rcpp:::LdFlags()"` $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS) 
 PKG_LIBS += -fopenmp -lgsl -lgslcblas -lm
