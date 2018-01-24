@@ -327,3 +327,12 @@ variogram <- function(Z, X, d) {
     .Call('_KRIG_variogram', PACKAGE = 'KRIG', Z, X, d)
 }
 
+#' @title Combination generator
+#' @description Generic template function for generation of combinations
+#' @param first 
+#' @param k 
+#' @param last
+#' @return Change vector to the next combination.
+#' @author Pedro Guarderas
+NULL
+
