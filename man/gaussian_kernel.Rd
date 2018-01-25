@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{gaussian_kernel}
 \alias{gaussian_kernel}
-\title{Gaussian kernel}
+\title{Gaussian kernel.}
 \usage{
 gaussian_kernel(h, sigma = 1, theta = 1)
 }

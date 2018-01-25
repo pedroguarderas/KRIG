@@ -2,12 +2,20 @@
 % Please edit documentation in R/RcppExports.R
 \name{multilog_kernel}
 \alias{multilog_kernel}
-\title{Multilog kernel}
+\title{Multilog kernel.}
 \usage{
 multilog_kernel(h, R = 1)
 }
+\arguments{
+\item{h}{distance parameter.}
+
+\item{R}{displacement parameter.}
+}
 \value{
-Real value
+Real value.
+}
+\description{
+Isotropic kernel.
 }
 \author{
 Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.

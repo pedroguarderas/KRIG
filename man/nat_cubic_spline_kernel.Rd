@@ -2,12 +2,20 @@
 % Please edit documentation in R/RcppExports.R
 \name{nat_cubic_spline_kernel}
 \alias{nat_cubic_spline_kernel}
-\title{Natural cubic spline kernel}
+\title{Natural cubic spline kernel.}
 \usage{
 nat_cubic_spline_kernel(h, R = 1)
 }
+\arguments{
+\item{h}{distance variable.}
+
+\item{R}{displament parameter.}
+}
 \value{
-Real value
+Real value.
+}
+\description{
+Isotropic kernel.
 }
 \author{
 Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.

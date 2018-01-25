@@ -2,13 +2,21 @@
 % Please edit documentation in R/RcppExports.R
 \name{thin_plate_kernel}
 \alias{thin_plate_kernel}
-\title{Thin plate kernel}
+\title{Thin plate kernel.}
 \usage{
 thin_plate_kernel(h, R = 1)
 }
+\arguments{
+\item{h}{distance variable.}
+
+\item{R}{displacement parameter.}
+}
 \value{
-Real value
+Real value.
+}
+\description{
+Isotropic kernel.
 }
 \author{
-Pedro Guarderas
+Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.
 }

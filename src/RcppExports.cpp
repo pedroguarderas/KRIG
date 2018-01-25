@@ -216,19 +216,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// mix_kernel
-double mix_kernel(const double& h, const double& sigma, const double& theta);
-RcppExport SEXP _KRIG_mix_kernel(SEXP hSEXP, SEXP sigmaSEXP, SEXP thetaSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const double& >::type h(hSEXP);
-    Rcpp::traits::input_parameter< const double& >::type sigma(sigmaSEXP);
-    Rcpp::traits::input_parameter< const double& >::type theta(thetaSEXP);
-    rcpp_result_gen = Rcpp::wrap(mix_kernel(h, sigma, theta));
-    return rcpp_result_gen;
-END_RCPP
-}
 // Kov
 arma::mat Kov(const arma::mat& X, const arma::mat& Y, Function Kern, const bool symmetric);
 RcppExport SEXP _KRIG_Kov(SEXP XSEXP, SEXP YSEXP, SEXP KernSEXP, SEXP symmetricSEXP) {
@@ -317,7 +304,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"_KRIG_multilog_kernel", (DL_FUNC) &_KRIG_multilog_kernel, 2},
     {"_KRIG_nat_cubic_spline_kernel", (DL_FUNC) &_KRIG_nat_cubic_spline_kernel, 2},
     {"_KRIG_thin_plate_kernel", (DL_FUNC) &_KRIG_thin_plate_kernel, 2},
-    {"_KRIG_mix_kernel", (DL_FUNC) &_KRIG_mix_kernel, 3},
     {"_KRIG_Kov", (DL_FUNC) &_KRIG_Kov, 4},
     {"_KRIG_Krig", (DL_FUNC) &_KRIG_Krig, 7},
     {"_KRIG_sens_idx", (DL_FUNC) &_KRIG_sens_idx, 4},

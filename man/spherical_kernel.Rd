@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{spherical_kernel}
 \alias{spherical_kernel}
-\title{Spherical kernel}
+\title{Spherical kernel.}
 \usage{
 spherical_kernel(h, phi, theta)
 }

@@ -17,7 +17,8 @@ using namespace Rcpp;
 /*--------------------------------------------------------------------------------------------------
  Anisotropic.
  In the current section are defined different anisotropic kernels.
- --------------------------------------------------------------------------------------------------*/
+ ---------------------------------------------------------------------------------------------------
+*/
 
 //--------------------------------------------------------------------------------------------------
 //' @title Linear kernel
@@ -50,7 +51,8 @@ double polynomial_kernel( const arma::colvec& x, const arma::colvec& y,
 /*--------------------------------------------------------------------------------------------------
  Isotropic.
  In the current section are defined different isotropic kernels.
- --------------------------------------------------------------------------------------------------*/
+ ---------------------------------------------------------------------------------------------------
+*/
 
 //--------------------------------------------------------------------------------------------------
 //' @title Square kernel.
@@ -88,7 +90,7 @@ double triangular_kernel( const double& h, const double& c = 1.0, const double& 
 double exp_kernel( const double& h, const double& sigma = 1.0, const double& theta = 1.0 );
 
 //--------------------------------------------------------------------------------------------------
-//' @title Gaussian kernel
+//' @title Gaussian kernel.
 //' @description Isotropic kernel.
 //' @param h distance variable.
 //' @param sigma amplitude parameter.
@@ -100,7 +102,7 @@ double exp_kernel( const double& h, const double& sigma = 1.0, const double& the
 double gaussian_kernel( const double& h, const double& sigma = 1.0, const double& theta = 1.0 );
 
 //--------------------------------------------------------------------------------------------------
-//' @title Spherical kernel
+//' @title Spherical kernel.
 //' @description Isotropic kernel commonly employed in geostatistics.
 //' @param h distance variable.
 //' @param phi amplitude parameter.
@@ -112,61 +114,50 @@ double gaussian_kernel( const double& h, const double& sigma = 1.0, const double
 double spherical_kernel( const double& h, const double& phi, const double& theta );
 
 //--------------------------------------------------------------------------------------------------
-//' @title Matérn kernel
-//' @description
-//' @param h
-//' @param v
-//' @param sigma
-//' @return Real value
-//' @author Pedro Guarderas
+//' @title Matérn kernel.
+//' @description Isotropic kernal.
+//' @param h distance variable.
+//' @param v power parameter.
+//' @param sigma amplitude parameter.
+//' @param theta smootheness parameter.
+//' @return Real value.
+//' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 //' @export
 // [[Rcpp::export]]
 double matern_kernel( const double& h, const double& v = 2.0, const double& sigma = 1.0,
                       const double& theta = 1.0 );
 
 //--------------------------------------------------------------------------------------------------
-//' @title Multilog kernel
-//' @description
-//' @param h
-//' @param R
-//' @return Real value
+//' @title Multilog kernel.
+//' @description Isotropic kernel.
+//' @param h distance parameter.
+//' @param R displacement parameter.
+//' @return Real value.
 //' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 //' @export
 // [[Rcpp::export]]
 double multilog_kernel( const double& h, const double& R = 1.0 );
 
 //--------------------------------------------------------------------------------------------------
-//' @title Natural cubic spline kernel
-//' @description
-//' @param h
-//' @param R
-//' @return Real value
+//' @title Natural cubic spline kernel.
+//' @description Isotropic kernel.
+//' @param h distance variable.
+//' @param R displament parameter.
+//' @return Real value.
 //' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 //' @export
 // [[Rcpp::export]]
 double nat_cubic_spline_kernel( const double& h, const double& R = 1.0 );
 
 //--------------------------------------------------------------------------------------------------
-//' @title Thin plate kernel
-//' @description
-//' @param h
-//' @param R
-//' @return Real value
-//' @author Pedro Guarderas
-//' @export
-// [[Rcpp::export]]
-double thin_plate_kernel( const double& h, const double& R = 1.0 );
-
-//--------------------------------------------------------------------------------------------------
-//' @title Mix kernel
-//' @description
-//' @param h
-//' @param sigma
-//' @param theta
-//' @return Real value
+//' @title Thin plate kernel.
+//' @description Isotropic kernel.
+//' @param h distance variable. 
+//' @param R displacement parameter.
+//' @return Real value.
 //' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 //' @export
 // [[Rcpp::export]]
-double mix_kernel( const double& h, const double& sigma = 1.0, const double& theta = 1.0 );
+double thin_plate_kernel( const double& h, const double& R = 1.0 );
 
 #endif

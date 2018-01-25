@@ -66,10 +66,3 @@ double nat_cubic_spline_kernel( const double& h, const double& R ) {
 double  thin_plate_kernel( const double& h, const double& R ) {
   return ( h * h + R * R ) * gsl_sf_log( h * h + R * R );
 }
-
-//--------------------------------------------------------------------------------------------------
-double mix_kernel( const double& h, const double& sigma, const double& theta ) {
-  double ht = h / theta;
-  return sigma * sigma * ( 1 + ( sqrt(5.0) + 5.0 / 3.0 * ht ) * ht ) * 
-    gsl_sf_exp( -sqrt(5.0) * ht );
-}

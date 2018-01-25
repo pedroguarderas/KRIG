@@ -152,7 +152,7 @@ exp_kernel <- function(h, sigma = 1.0, theta = 1.0) {
     .Call('_KRIG_exp_kernel', PACKAGE = 'KRIG', h, sigma, theta)
 }
 
-#' @title Gaussian kernel
+#' @title Gaussian kernel.
 #' @description Isotropic kernel.
 #' @param h distance variable.
 #' @param sigma amplitude parameter.
@@ -164,7 +164,7 @@ gaussian_kernel <- function(h, sigma = 1.0, theta = 1.0) {
     .Call('_KRIG_gaussian_kernel', PACKAGE = 'KRIG', h, sigma, theta)
 }
 
-#' @title Spherical kernel
+#' @title Spherical kernel.
 #' @description Isotropic kernel commonly employed in geostatistics.
 #' @param h distance variable.
 #' @param phi amplitude parameter.
@@ -176,61 +176,50 @@ spherical_kernel <- function(h, phi, theta) {
     .Call('_KRIG_spherical_kernel', PACKAGE = 'KRIG', h, phi, theta)
 }
 
-#' @title Matérn kernel
-#' @description
-#' @param h
-#' @param v
-#' @param sigma
-#' @return Real value
-#' @author Pedro Guarderas
+#' @title Matérn kernel.
+#' @description Isotropic kernal.
+#' @param h distance variable.
+#' @param v power parameter.
+#' @param sigma amplitude parameter.
+#' @param theta smootheness parameter.
+#' @return Real value.
+#' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 #' @export
 matern_kernel <- function(h, v = 2.0, sigma = 1.0, theta = 1.0) {
     .Call('_KRIG_matern_kernel', PACKAGE = 'KRIG', h, v, sigma, theta)
 }
 
-#' @title Multilog kernel
-#' @description
-#' @param h
-#' @param R
-#' @return Real value
+#' @title Multilog kernel.
+#' @description Isotropic kernel.
+#' @param h distance parameter.
+#' @param R displacement parameter.
+#' @return Real value.
 #' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 #' @export
 multilog_kernel <- function(h, R = 1.0) {
     .Call('_KRIG_multilog_kernel', PACKAGE = 'KRIG', h, R)
 }
 
-#' @title Natural cubic spline kernel
-#' @description
-#' @param h
-#' @param R
-#' @return Real value
+#' @title Natural cubic spline kernel.
+#' @description Isotropic kernel.
+#' @param h distance variable.
+#' @param R displament parameter.
+#' @return Real value.
 #' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 #' @export
 nat_cubic_spline_kernel <- function(h, R = 1.0) {
     .Call('_KRIG_nat_cubic_spline_kernel', PACKAGE = 'KRIG', h, R)
 }
 
-#' @title Thin plate kernel
-#' @description
-#' @param h
-#' @param R
-#' @return Real value
-#' @author Pedro Guarderas
+#' @title Thin plate kernel.
+#' @description Isotropic kernel.
+#' @param h distance variable. 
+#' @param R displacement parameter.
+#' @return Real value.
+#' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 #' @export
 thin_plate_kernel <- function(h, R = 1.0) {
     .Call('_KRIG_thin_plate_kernel', PACKAGE = 'KRIG', h, R)
-}
-
-#' @title Mix kernel
-#' @description
-#' @param h
-#' @param sigma
-#' @param theta
-#' @return Real value
-#' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
-#' @export
-mix_kernel <- function(h, sigma = 1.0, theta = 1.0) {
-    .Call('_KRIG_mix_kernel', PACKAGE = 'KRIG', h, sigma, theta)
 }
 
 #' @title Spatial covariance matrix.
@@ -326,13 +315,4 @@ sens_var <- function(KF, Gamma) {
 variogram <- function(Z, X, d) {
     .Call('_KRIG_variogram', PACKAGE = 'KRIG', Z, X, d)
 }
-
-#' @title Combination generator
-#' @description Generic template function for generation of combinations
-#' @param first 
-#' @param k 
-#' @param last
-#' @return Change vector to the next combination.
-#' @author Pedro Guarderas
-NULL
 

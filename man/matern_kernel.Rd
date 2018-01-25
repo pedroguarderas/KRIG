@@ -2,13 +2,25 @@
 % Please edit documentation in R/RcppExports.R
 \name{matern_kernel}
 \alias{matern_kernel}
-\title{Matérn kernel}
+\title{Matérn kernel.}
 \usage{
 matern_kernel(h, v = 2, sigma = 1, theta = 1)
 }
+\arguments{
+\item{h}{distance variable.}
+
+\item{v}{power parameter.}
+
+\item{sigma}{amplitude parameter.}
+
+\item{theta}{smootheness parameter.}
+}
 \value{
-Real value
+Real value.
+}
+\description{
+Isotropic kernal.
 }
 \author{
-Pedro Guarderas
+Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.
 }
