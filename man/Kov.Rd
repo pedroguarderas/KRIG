@@ -20,7 +20,7 @@ be improved setting this parameter to TRUE, the default is FALSE.}
 The spatial covariance matrix.
 }
 \description{
-To compute a kriging, it is necessary the spatial convariance matrix. The spatial 
+To compute a kriging, it is necessary the spatial covariance matrix. The spatial 
   covariance could computed between to sets of points X and Y with different dimension and the 
   result it is not necessarily a square matrix.
 }

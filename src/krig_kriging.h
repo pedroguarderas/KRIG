@@ -14,7 +14,7 @@ using namespace Rcpp;
 
 //--------------------------------------------------------------------------------------------------
 //' @title Spatial covariance matrix.
-//' @description To compute a kriging, it is necessary the spatial convariance matrix. The spatial 
+//' @description To compute a kriging, it is necessary the spatial covariance matrix. The spatial 
 //'   covariance could computed between to sets of points X and Y with different dimension and the 
 //'   result it is not necessarily a square matrix.
 //' @param X First set of spatial points.
@@ -50,7 +50,7 @@ arma::mat Kov( const arma::mat& X,
 //' \eqn{Z} will be predicted. 
 //' @param type Type of kriging model, possible values are: simple, ordinary, universal.
 //' @param cinv Specifies how the inverse of the covariance matrix \eqn{K} will be computed. 
-//' Possible values are: syminv = simmetric matrix inverse computation, inv = usual armadillo
+//' Possible values are: syminv = symmetric matrix inverse computation, inv = usual armadillo
 //' inverse computation, cholinv = Cholesky based inverse computation, ginv = given inverse not
 //' necessary to compute inverse at all.
 //' @return Depending of the type of analysis the list of results change.

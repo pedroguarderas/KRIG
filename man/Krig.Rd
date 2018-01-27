@@ -26,7 +26,7 @@ functions representing the mean over the new position points \eqn{Y} where the s
 \item{type}{Type of kriging model, possible values are: simple, ordinary, universal.}
 
 \item{cinv}{Specifies how the inverse of the covariance matrix \eqn{K} will be computed. 
-Possible values are: syminv = simmetric matrix inverse computation, inv = usual armadillo
+Possible values are: syminv = symmetric matrix inverse computation, inv = usual armadillo
 inverse computation, cholinv = Cholesky based inverse computation, ginv = given inverse not
 necessary to compute inverse at all.}
 }
