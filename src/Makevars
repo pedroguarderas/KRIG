@@ -1,5 +1,7 @@
 CXX_STD = CXX11
-PKG_CPPFLAGS += $(SHLIB_OPENMP_CXXFLAGS) -I.
-# PKG_LIBS =`$(R_HOME)/bin/Rscript -e "Rcpp:::LdFlags()"` 
-PKG_LIBS += `$(R_HOME)/bin/Rscript -e "RcppGSL:::LdFlags()"`
-	$(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS) $(SHLIB_OPENMP_CXXFLAGS) -lgsl -lgslcblas -lm
+PKG_CPPFLAGS = `gsl-config --cflags` $(SHLIB_OPENMP_CXXFLAGS) -I.
+PKG_LIBS =`$(R_HOME)/bin/Rscript -e "Rcpp:::LdFlags()"` \
+	$(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS) $(SHLIB_OPENMP_CXXFLAGS) \
+	`gsl-config --libs`
+#PKG_LIBS = `$(R_HOME)/bin/Rscript -e "RcppGSL:::LdFlags()"` \
+
