@@ -11,7 +11,7 @@ polynomial_kernel(x, y, alpha, beta, n)
 
 \item{y}{second column vector.}
 
-\item{alpha}{amplitud parameter.}
+\item{alpha}{amplitude parameter.}
 
 \item{beta}{displacement parameter.}
 

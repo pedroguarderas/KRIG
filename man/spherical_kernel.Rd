@@ -11,13 +11,13 @@ spherical_kernel(h, phi, theta)
 
 \item{phi}{amplitude parameter.}
 
-\item{theta}{smootheness parameter.}
+\item{theta}{smoothness parameter.}
 }
 \value{
 Real value.
 }
 \description{
-Isotropic kernel commonly employed in geostatistics.
+Isotropic kernel commonly employed in geostatistic.
 }
 \author{
 Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.

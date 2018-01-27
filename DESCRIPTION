@@ -1,6 +1,6 @@
 Package: KRIG
 Type: Package
-Title: Spatial statistis with kriging
+Title: Spatial statistic with kriging
 Version: 0.1.0
 Encoding: UTF-8
 Date: 2018-01-27

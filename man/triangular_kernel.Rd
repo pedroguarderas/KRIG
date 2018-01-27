@@ -9,7 +9,7 @@ triangular_kernel(h, c = 1, alpha = 1)
 \arguments{
 \item{h}{distance variable.}
 
-\item{c}{amplitud parameter.}
+\item{c}{amplitude parameter.}
 
 \item{alpha}{maximum distance value.}
 }

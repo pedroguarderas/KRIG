@@ -51,7 +51,7 @@ arma::mat Kov( const arma::mat& X,
 //' @param type Type of kriging model, possible values are: simple, ordinary, universal.
 //' @param cinv Specifies how the inverse of the covariance matrix \eqn{K} will be computed. 
 //' Possible values are: syminv = simmetric matrix inverse computation, inv = usual armadillo
-//' inverse computation, cholinv = Cholesky based inverse computaton, ginv = given inverse not
+//' inverse computation, cholinv = Cholesky based inverse computation, ginv = given inverse not
 //' necessary to compute inverse at all.
 //' @return Depending of the type of analysis the list of results change.
 //' \item{Z}{New estimated values for Z.}

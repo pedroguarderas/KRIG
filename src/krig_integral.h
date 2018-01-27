@@ -78,7 +78,7 @@ List list_integrate_kernel( const DataFrame& Kernels, const arma::mat& X );
 //' \code{\link{vector_integrate_kernel}}.
 //' @param X matrix containing in each row the coordinate where the one coordinate integrals will 
 //' be evaluated.
-//' @return List with contaning the Gamma 3D array where the different combination variance are
+//' @return List with containing the Gamma 3D array where the different combination variance are
 //' stocked and the total matrix variance named Kanova. 
 //' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 //' @export

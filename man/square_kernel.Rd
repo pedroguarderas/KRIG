@@ -9,7 +9,7 @@ square_kernel(h, alpha = 1)
 \arguments{
 \item{h}{distance variable.}
 
-\item{alpha}{amplitud parameter.}
+\item{alpha}{amplitude parameter.}
 }
 \value{
 Real value.

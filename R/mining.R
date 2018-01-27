@@ -10,8 +10,8 @@
 #'   \item{a}{cod id}
 #'   \item{s}{sample id}
 #'   \item{x1}{first coordinate}
-#'   \item{x2}{scond coordinate}
-#'   \item{x3}{Third coordinate}
+#'   \item{x2}{second coordinate}
+#'   \item{x3}{third coordinate}
 #'   \item{Z}{copper grade}
 #'   \item{C}{value}
 #' }

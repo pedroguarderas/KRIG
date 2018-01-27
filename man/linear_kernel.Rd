@@ -11,7 +11,7 @@ linear_kernel(x, y, alpha)
 
 \item{y}{second column vector.}
 
-\item{alpha}{amplitud parameter.}
+\item{alpha}{amplitude parameter.}
 }
 \value{
 Real value.

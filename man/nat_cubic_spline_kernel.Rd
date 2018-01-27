@@ -9,7 +9,7 @@ nat_cubic_spline_kernel(h, R = 1)
 \arguments{
 \item{h}{distance variable.}
 
-\item{R}{displament parameter.}
+\item{R}{displacement parameter.}
 }
 \value{
 Real value.

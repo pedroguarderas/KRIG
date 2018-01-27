@@ -11,7 +11,7 @@ exp_kernel(h, sigma = 1, theta = 1)
 
 \item{sigma}{amplitude parameter.}
 
-\item{theta}{smootheness parameter.}
+\item{theta}{smoothness parameter.}
 }
 \value{
 Real value.

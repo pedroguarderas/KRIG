@@ -13,13 +13,13 @@ matern_kernel(h, v = 2, sigma = 1, theta = 1)
 
 \item{sigma}{amplitude parameter.}
 
-\item{theta}{smootheness parameter.}
+\item{theta}{smoothness parameter.}
 }
 \value{
 Real value.
 }
 \description{
-Isotropic kernal.
+Isotropic kernel.
 }
 \author{
 Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.

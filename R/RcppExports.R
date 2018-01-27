@@ -83,7 +83,7 @@ list_integrate_kernel <- function(Kernels, X) {
 #' \code{\link{vector_integrate_kernel}}.
 #' @param X matrix containing in each row the coordinate where the one coordinate integrals will 
 #' be evaluated.
-#' @return List with contaning the Gamma 3D array where the different combination variance are
+#' @return List with containing the Gamma 3D array where the different combination variance are
 #' stocked and the total matrix variance named Kanova. 
 #' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 #' @export
@@ -95,7 +95,7 @@ Kanova <- function(Kernels, Integral, X) {
 #' @description Anisotropic kernel defined by the scalar product.
 #' @param x first column vector.
 #' @param y second column vector.
-#' @param alpha amplitud parameter.
+#' @param alpha amplitude parameter.
 #' @return Real value.
 #' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 #' @export
@@ -107,7 +107,7 @@ linear_kernel <- function(x, y, alpha) {
 #' @description Anisotropic kernel defined like a polynomial in the scalar product.
 #' @param x first column vector.
 #' @param y second column vector.
-#' @param alpha amplitud parameter.
+#' @param alpha amplitude parameter.
 #' @param beta displacement parameter.
 #' @param n power parameter.
 #' @return Real value.
@@ -120,7 +120,7 @@ polynomial_kernel <- function(x, y, alpha, beta, n) {
 #' @title Square kernel.
 #' @description Isotropic kernel given by the square distance.
 #' @param h distance variable.
-#' @param alpha amplitud parameter.
+#' @param alpha amplitude parameter.
 #' @return Real value.
 #' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 #' @export
@@ -131,7 +131,7 @@ square_kernel <- function(h, alpha = 1.0) {
 #' @title Triangular kernel.
 #' @description Isotropic kernel defined with the max function.
 #' @param h distance variable.
-#' @param c amplitud parameter.
+#' @param c amplitude parameter.
 #' @param alpha maximum distance value.
 #' @return Real value.
 #' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
@@ -144,7 +144,7 @@ triangular_kernel <- function(h, c = 1.0, alpha = 1.0) {
 #' @description Isotropic kernel.
 #' @param h distance variable.
 #' @param sigma amplitude parameter.
-#' @param theta smootheness parameter.
+#' @param theta smoothness parameter.
 #' @return Real value.
 #' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 #' @export
@@ -156,7 +156,7 @@ exp_kernel <- function(h, sigma = 1.0, theta = 1.0) {
 #' @description Isotropic kernel.
 #' @param h distance variable.
 #' @param sigma amplitude parameter.
-#' @param theta smootheness parameter.
+#' @param theta smoothness parameter.
 #' @return Real value.
 #' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 #' @export
@@ -165,10 +165,10 @@ gaussian_kernel <- function(h, sigma = 1.0, theta = 1.0) {
 }
 
 #' @title Spherical kernel.
-#' @description Isotropic kernel commonly employed in geostatistics.
+#' @description Isotropic kernel commonly employed in geostatistic.
 #' @param h distance variable.
 #' @param phi amplitude parameter.
-#' @param theta smootheness parameter.
+#' @param theta smoothness parameter.
 #' @return Real value.
 #' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 #' @export
@@ -177,11 +177,11 @@ spherical_kernel <- function(h, phi, theta) {
 }
 
 #' @title Matérn kernel.
-#' @description Isotropic kernal.
+#' @description Isotropic kernel.
 #' @param h distance variable.
 #' @param v power parameter.
 #' @param sigma amplitude parameter.
-#' @param theta smootheness parameter.
+#' @param theta smoothness parameter.
 #' @return Real value.
 #' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 #' @export
@@ -203,7 +203,7 @@ multilog_kernel <- function(h, R = 1.0) {
 #' @title Natural cubic spline kernel.
 #' @description Isotropic kernel.
 #' @param h distance variable.
-#' @param R displament parameter.
+#' @param R displacement parameter.
 #' @return Real value.
 #' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 #' @export
@@ -257,7 +257,7 @@ Kov <- function(X, Y, Kern, symmetric = FALSE) {
 #' @param type Type of kriging model, possible values are: simple, ordinary, universal.
 #' @param cinv Specifies how the inverse of the covariance matrix \eqn{K} will be computed. 
 #' Possible values are: syminv = simmetric matrix inverse computation, inv = usual armadillo
-#' inverse computation, cholinv = Cholesky based inverse computaton, ginv = given inverse not
+#' inverse computation, cholinv = Cholesky based inverse computation, ginv = given inverse not
 #' necessary to compute inverse at all.
 #' @return Depending of the type of analysis the list of results change.
 #' \item{Z}{New estimated values for Z.}

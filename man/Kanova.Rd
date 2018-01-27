@@ -22,7 +22,7 @@ Kanova(Kernels, Integral, X)
 be evaluated.}
 }
 \value{
-List with contaning the Gamma 3D array where the different combination variance are
+List with containing the Gamma 3D array where the different combination variance are
 stocked and the total matrix variance named Kanova.
 }
 \description{
