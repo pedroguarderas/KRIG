@@ -6,9 +6,8 @@ double sens_idx( const arma::colvec KF,
                  const arma::colvec comb,
                  const arma::mat X,
                  const arma::cube Gamma ) {
-  int i, j, k, l;
+  int k;
   int n = X.n_rows;
-  int m = X.n_cols;
   int c = comb.size();
   double S;
   
