@@ -14,7 +14,7 @@ vignette: >
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Simple kriging application
+# Simple Kriging application
 Study case of copper mine.
 
 Loading packages.
@@ -95,7 +95,7 @@ Kern<-function( x, y ) {
 }
 ```
 
-Solving ordinary kriging problem.
+Solving ordinary Kriging problem.
 ```{r krig,eval=TRUE,message=FALSE, warning=FALSE}
 K = Kov( X, X, Kern, TRUE )
 k = Kov( Y, X, Kern )

@@ -13,6 +13,6 @@ knitr::opts_chunk$set(
 ```
 
 #KRIG
-Computes simple, ordinary and universal kriging, also computes simple, ordinary and universal 
-cokriging. In addition, includes functions for Sensitivity analysis based in the approximation, 
+Computes simple, ordinary and universal Kriging, also computes simple, ordinary and universal 
+co-Kriging. In addition, includes functions for Sensitivity analysis based in the approximation, 
 inside Reproducing Kernel Hilbert spaces, of Sobol indices.

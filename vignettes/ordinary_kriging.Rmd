@@ -1,10 +1,10 @@
 ---
-title: "Ordinary kriging"
+title: "Ordinary Kriging"
 author: "Pedro Guarderas"
 date: "January 2, 2018"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Ordinary kriging}
+  %\VignetteIndexEntry{Ordinary Kriging}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
