@@ -1,5 +1,5 @@
 # KRIG ---------------------------------------------------------------------------------------------
-#' @title Spatial Statistics with Kriging.
+#' @title Spatial Statistics with Kriging
 #' @description Implements different methods for spatial statistics, in particular focused with 
 #' Kriging based models. We count with different implemented models, simple, ordinary and 
 #' universal forms of Kriging, co-Kriging and regression Kriging models. Includes, multivariate 
