@@ -42,10 +42,10 @@ arma::mat Kov( const arma::mat& X,
 //' was observed.
 //' @param k Covariance matrix computed for the position \eqn{X} where the spatial process \eqn{Z}
 //' was observed and the position \eqn{Y} where the spatial process \eqn{Z} will be predicted.
-//' @para G When universal kriging will be computed, this matrix represents the values of the 
+//' @param G When universal kriging will be computed, this matrix represents the values of the 
 //' of the functions representing the mean of the process \eqn{Z}, evaluated in the spatial 
 //' points \eqn{X} where the spatial process was first observed.
-//' @para g When universal kriging will be computed, this matrix represents the evaluation of the
+//' @param g When universal kriging will be computed, this matrix represents the evaluation of the
 //' functions representing the mean over the new position points \eqn{Y} where the spatial process
 //' \eqn{Z} will be predicted. 
 //' @param type Type of kriging model, possible values are: simple, ordinary, universal.

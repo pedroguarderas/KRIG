@@ -12,8 +12,6 @@ variogram(Z, X, d)
 \item{X}{Points matrix.}
 
 \item{d}{Distance function.}
-
-\item{delta}{Search distance ratio.}
 }
 \value{
 Variogram vector.

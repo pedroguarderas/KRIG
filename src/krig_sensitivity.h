@@ -12,9 +12,9 @@ using namespace Rcpp;
 //' @title Combinatorial variance computation.
 //' @description For a given combination this function computes the associated variance for the
 //' variable enumerated by the combination values.
-//' @param KF 
+//' @param KF values of the kernel integral evaluations.
 //' @param comb Combination.
-//' @param X Points grid.
+//' @param X Points in the grid.
 //' @param Gamma Cube with integral results.
 //' @return Real value of sensitivity.
 //' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
@@ -29,6 +29,7 @@ double sens_idx( const arma::colvec KF,
 //--------------------------------------------------------------------------------------------------
 //' @title Combinatorial variance computation.
 //' @description Computation of variance
+//' @param KF values of the kernel integral evaluations.
 //' @param Gamma Cube with integral results.
 //' @return Real value of sensitivity.
 //' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
