@@ -7,11 +7,11 @@
 sens_idx(KF, comb, X, Gamma)
 }
 \arguments{
-\item{KF}{}
+\item{KF}{values of the kernel integral evaluations.}
 
 \item{comb}{Combination.}
 
-\item{X}{Points grid.}
+\item{X}{Points in the grid.}
 
 \item{Gamma}{Cube with integral results.}
 }
@@ -23,5 +23,5 @@ For a given combination this function computes the associated variance for the
 variable enumerated by the combination values.
 }
 \author{
-Pedro Guarderas
+Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.
 }

@@ -20,7 +20,6 @@ using namespace Rcpp;
 //' @param Z Vector of observations.
 //' @param X Points matrix.
 //' @param d Distance function.
-//' @param delta Search distance ratio.
 //' @return Variogram vector.
 //' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 //' @export

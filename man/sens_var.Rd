@@ -7,6 +7,8 @@
 sens_var(KF, Gamma)
 }
 \arguments{
+\item{KF}{values of the kernel integral evaluations.}
+
 \item{Gamma}{Cube with integral results.}
 }
 \value{
@@ -16,5 +18,5 @@ Real value of sensitivity.
 Computation of variance
 }
 \author{
-Pedro Guarderas
+Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.
 }

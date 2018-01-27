@@ -15,6 +15,14 @@ was observed.}
 \item{k}{Covariance matrix computed for the position \eqn{X} where the spatial process \eqn{Z}
 was observed and the position \eqn{Y} where the spatial process \eqn{Z} will be predicted.}
 
+\item{G}{When universal kriging will be computed, this matrix represents the values of the 
+of the functions representing the mean of the process \eqn{Z}, evaluated in the spatial 
+points \eqn{X} where the spatial process was first observed.}
+
+\item{g}{When universal kriging will be computed, this matrix represents the evaluation of the
+functions representing the mean over the new position points \eqn{Y} where the spatial process
+\eqn{Z} will be predicted.}
+
 \item{type}{Type of kriging model, possible values are: simple, ordinary, universal.}
 
 \item{cinv}{Specifies how the inverse of the covariance matrix \eqn{K} will be computed. 
