@@ -23,7 +23,7 @@ using namespace Rcpp;
 //' @param symmetric If result of computation will be a square matrix, the time computation can
 //'   be improved setting this parameter to TRUE, the default is FALSE.
 //' @return The spatial covariance matrix.
-//' @author Pedro Guarderas
+//' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 //' @useDynLib KRIG
 //' @importFrom Rcpp sourceCpp
 //' @exportPattern("^[[:alpha:]]+")

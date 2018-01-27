@@ -232,7 +232,7 @@ thin_plate_kernel <- function(h, R = 1.0) {
 #' @param symmetric If result of computation will be a square matrix, the time computation can
 #'   be improved setting this parameter to TRUE, the default is FALSE.
 #' @return The spatial covariance matrix.
-#' @author Pedro Guarderas
+#' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 #' @useDynLib KRIG
 #' @importFrom Rcpp sourceCpp
 #' @exportPattern("^[[:alpha:]]+")
@@ -315,13 +315,4 @@ sens_var <- function(KF, Gamma) {
 variogram <- function(Z, X, d) {
     .Call('_KRIG_variogram', PACKAGE = 'KRIG', Z, X, d)
 }
-
-#' @title Combination generator
-#' @description Generic template function for generation of combinations
-#' @param first 
-#' @param k 
-#' @param last
-#' @return Change vector to the next combination.
-#' @author Pedro Guarderas
-NULL
 

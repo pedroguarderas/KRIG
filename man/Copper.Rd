@@ -3,18 +3,32 @@
 \docType{data}
 \name{Copper}
 \alias{Copper}
-\title{Mining data}
-\format{An object of class \code{data.table} (inherits from \code{data.frame}) with 442 rows and 7 columns.}
+\title{Copper mining data}
+\format{A data table with 442 and 7 columns.
+\describe{
+  \item{a}{cod id}
+  \item{s}{sample id}
+  \item{x1}{first coordinate}
+  \item{x2}{scond coordinate}
+  \item{x3}{Third coordinate}
+  \item{Z}{copper grade}
+  \item{C}{value}
+}}
+\source{
+\url{www.edumine.com}.
+}
 \usage{
-data( 'Copper', packages = 'KRIG' )
+Copper
 }
 \description{
-Mining data
+Copper mining data
 }
 \examples{
 data( 'Copper', packages = 'KRIG' )
 }
 \references{
-Clark
+Dr. Isobel Clark
 }
-\keyword{kriging}
+\keyword{copper}
+\keyword{datasets,}
+\keyword{mining,}

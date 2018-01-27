@@ -25,5 +25,5 @@ To compute a kriging, it is necessary the spatial convariance matrix. The spatia
   result it is not necessarily a square matrix.
 }
 \author{
-Pedro Guarderas
+Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.
 }
