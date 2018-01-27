@@ -17,7 +17,7 @@ using namespace Rcpp;
 //' @param X Points grid.
 //' @param Gamma Cube with integral results.
 //' @return Real value of sensitivity.
-//' @author Pedro Guarderas
+//' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 //' @export
 // [[Rcpp::export]]
 double sens_idx( const arma::colvec KF,
@@ -31,7 +31,7 @@ double sens_idx( const arma::colvec KF,
 //' @description Computation of variance
 //' @param Gamma Cube with integral results.
 //' @return Real value of sensitivity.
-//' @author Pedro Guarderas
+//' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 //' @export
 // [[Rcpp::export]]
 double sens_var( const arma::colvec KF, 

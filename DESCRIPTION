@@ -16,7 +16,7 @@ Authors@R: c(
     )
 License: MIT
 URL: https://github.com/pedroguarderas/KRIG
-URL: https://github.com/pedroguarderas/KRIG/issues
+BugReports: https://github.com/pedroguarderas/KRIG/issues
 Depends:
     R (>= 3.3)
 LinkingTo: Rcpp, RcppArmadillo
@@ -28,6 +28,5 @@ Suggests: knitr,
     rmarkdown,
     testthat
 LazyData: true
-Suggests: knitr, rmarkdown
 VignetteBuilder: knitr
 RdMacros: Rdpack
