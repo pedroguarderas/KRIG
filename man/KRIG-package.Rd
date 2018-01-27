@@ -4,7 +4,7 @@
 \name{KRIG-package}
 \alias{KRIG}
 \alias{KRIG-package}
-\title{Spatial Statistics with Kriging.}
+\title{Spatial Statistics with Kriging}
 \description{
 Implements different methods for spatial statistics, in particular focused with 
 Kriging based models. We count with different implemented models, simple, ordinary and 
