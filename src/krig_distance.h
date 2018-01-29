@@ -21,6 +21,19 @@ using namespace Rcpp;
 //' has to be greater than 1.
 //' @return Real value of the weighted p-distance.
 //' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
+//' @example
+//' library(KRIG)
+//' 
+//' n<-1e5
+//' x<-runif( n )
+//' y<-runif( n )
+//' p<-rep(2.5,n)
+//' w<-runif(n)
+//' 
+//' kw<-weight_pow_dist( x, y, w, p )
+//' nw<-sum( w * abs( x - y )^p )
+//' 
+//' nw == kw
 //' @export
 // [[Rcpp::export]]
 double weight_pow_dist( const arma::colvec& x, 

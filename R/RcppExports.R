@@ -11,6 +11,15 @@
 #' has to be greater than 1.
 #' @return Real value of the weighted p-distance.
 #' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
+#' @example
+#' n<-1e5
+#' x<-runif( n )
+#' y<-runif( n )
+#' p<-rep(2.5,n)
+#' w<-runif(n)
+#' kw<-weight_pow_dist( x, y, w, p )
+#' nw<-sum( w * abs( x - y )^p )
+#' nw == kw
 #' @export
 weight_pow_dist <- function(x, y, w, p) {
     .Call('_KRIG_weight_pow_dist', PACKAGE = 'KRIG', x, y, w, p)

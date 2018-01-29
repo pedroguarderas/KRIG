@@ -14,10 +14,12 @@ vignette: >
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Simple Kriging application
-Study case of copper mine.
+## Simple Kriging application
+This current example gives an application of Kriging to the miming industry. A sample of grade 
+values for a copper mine has been taked, every sample is referenced in a three dimensional space. 
+We are going to predict in additional positions the possible values of grades.
 
-Loading packages.
+Loading necessary packages.
 ```{r load,eval=TRUE,message=FALSE, warning=FALSE}
 library( data.table )
 library( KRIG )
@@ -25,14 +27,15 @@ library( plotly )
 library( colorRamps )
 ```
 
-Loading data, inside the package **KRIG**.
+Inside the package **KRIG**, there is a dataset of a copper mine.
 ```{r data,eval=TRUE,message=FALSE, warning=FALSE}
 data( 'Copper', package = 'KRIG' )
 ```
 
-Processing information.
+Preprocessing information, a examplel applying 2D Kriging will be implemented, for such reason
+the we are going to employ just some values at certain deep.
 ```{r processing,eval=TRUE,message=FALSE, warning=FALSE}
-X3<-c( 100, 103 )
+X3<-c( 100, 105 )
 Dat<-Copper[ x3 >= X3[1] & x3 <= X3[2] & Z > 0, list( x1, x2, Z ) ]
 Dat<-Dat[ , list( Z = mean( Z ) ), by = list( x1, x2 ) ]
 
@@ -56,7 +59,8 @@ Y<-expand.grid( Y1, Y2 )
 Y<-as.matrix( Y )
 ```
 
-Estimation of the right parameters to construct the kernel, fitting the variogram.
+The important step of fitting the variogram or in general fitting the covariance model, gives
+statistical rigor to the Kriging modelling, in this particular case we employ a spherical kernel.
 ```{r est,eval=TRUE,message=FALSE, warning=FALSE}
 dist<-function( x, y ) {
   return( sqrt( sum( ( x - y )^2 ) ) )
@@ -78,7 +82,7 @@ str( NLM )
 FV<-sapply( d, FUN = spherical_variogram, NLM$estimate[1], NLM$estimate[2] )
 ```
 
-Plotting results for the variogram.
+Plotting fitting results for the variogram.
 ```{r varg,eval=TRUE,fig.show='hold', fig.show='hold', fig.align="center", fig.width=7, fig.height=5}
 plot( d, V$variogram[,1], 
       cex = 0.5, pch = 16, col = 'purple4',
@@ -95,7 +99,7 @@ Kern<-function( x, y ) {
 }
 ```
 
-Solving ordinary Kriging problem.
+Computing covariance matrices and estimating the linear parametros throght ordinary Kriging.
 ```{r krig,eval=TRUE,message=FALSE, warning=FALSE}
 K = Kov( X, X, Kern, TRUE )
 k = Kov( Y, X, Kern )
@@ -111,7 +115,7 @@ KRIG<-Krig( Z = Z,
 W<-matrix( KRIG$Z, m[1], m[2] )
 ```
 
-Level curves
+Plotting level curves results.
 ```{r curv,eval=TRUE,fig.show='hold', fig.show='hold', fig.align="center", fig.width=7, fig.height=5}
 cols<-matlab.like2( 40 )
 plot_ly( x = Y1, y = Y2, z = W, type = "contour", colors = cols,
