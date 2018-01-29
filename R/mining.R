@@ -1,6 +1,6 @@
 #' Copper mining data
 #' @docType data
-#' @description This is reproduced from the original description for the data set. 
+#' @description This is reproduced from the original description for the dataset. 
 #' A simulation based on a stockpile of mined material in the former Soviet Union. Boreholes have 
 #' been drilled into the dump. The drill core is cut every 5 metres and assayed for copper and 
 #' cobalt content in percentage by weight. This is the only three dimensional set of tutorial data. 
