@@ -22,6 +22,7 @@ using namespace Rcpp;
 //' @param n Number of uniform division to compute the integral.
 //' @return Vector with integrals while the x coordinate is fixed.
 //' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
+//' @seealso For a complete application you can check the documentation of \code{\link{Kanova}}.
 //' @export
 // [[Rcpp::export]]
 arma::colvec vector_integrate_kernel( Function Kern, const arma::colvec x, 
@@ -38,6 +39,7 @@ arma::colvec vector_integrate_kernel( Function Kern, const arma::colvec x,
 //' @param n Number of uniform division to compute the integral.
 //' @return Real value with the integral value.
 //' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
+//' @seealso For a complete application you can check the documentation of \code{\link{Kanova}}.
 //' @export
 // [[Rcpp::export]]
 double complete_integrate_kernel( Function Kern, const double& a, const double& b, const double& n );
@@ -58,6 +60,7 @@ double complete_integrate_kernel( Function Kern, const double& a, const double& 
 //' be evaluated.
 //' @return List with one coordinate integrals and complete kernel integrals.
 //' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
+//' @seealso For a complete application you can check the documentation of \code{\link{Kanova}}.
 //' @export
 // [[Rcpp::export]]
 List list_integrate_kernel( const DataFrame& Kernels, const arma::mat& X );
@@ -81,6 +84,32 @@ List list_integrate_kernel( const DataFrame& Kernels, const arma::mat& X );
 //' @return List with containing the Gamma 3D array where the different combination variance are
 //' stocked and the total matrix variance named Kanova. 
 //' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
+//' @example 
+//' library( KRIG )
+//' options( stringsAsFactors = FALSE )
+//'  
+//' kernel_1<-function( x, y ) exp( -0.5*(x-y)^2)
+//' kernel_2<-function( x, y ) exp( -0.7*(x-y)^2)
+//' kernel_3<-function( x, y ) exp( -0.1*(x-y)^2)
+//' 
+//' Kernels<-data.frame( kernel = c( 'kernel_1', 'kernel_2', 'kernel_3' ), 
+//'                      min = c( 0, -1, -5 ), 
+//'                      max = c( 1, 1, 5 ),
+//'                      n = c( 500, 500, 500 ) )
+//'                      
+//' n<-20
+//' X<-matrix( c( seq( -1, 1, length.out = n ), 
+//'               seq( -1, 1, length.out = n ),
+//'               seq( -5, 5, length.out = n ) ), n, 3 )
+//'               
+//' KI<-vector_integrate_kernel( Kernels, X )
+//' GK<-Kanova( Kernels, KI, X )
+//'     
+//' f<-function( x ) abs( x[1] + 30 * x[2] + 60 * x[3] )
+//' Func<-apply( X, 1, FUN = f )
+//'     
+//' KF<-solve( GK$Kanova + diag( 1e-8, n, n ), Func )
+//'     
 //' @export
 // [[Rcpp::export]]
 List Kanova( const DataFrame& Kernels, const List& Integral,  const arma::mat& X );

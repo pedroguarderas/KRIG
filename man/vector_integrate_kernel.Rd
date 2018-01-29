@@ -26,6 +26,9 @@ the kernel \eqn{k} and for each fixed coordinate in \eqn{x}, the integral in the
 variable \eqn{y}, is computed in the interval \eqn{a} to \eqn{b} by taking \eqn{n} uniform
 steps.
 }
+\seealso{
+For a complete application you can check the documentation of \code{\link{Kanova}}.
+}
 \author{
 Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.
 }

@@ -26,6 +26,9 @@ This function is part of the routines employed in the sensitivity analysis,
 computes vector of integrals and complete integrals of kernels specified in the data frame
 Kernels.
 }
+\seealso{
+For a complete application you can check the documentation of \code{\link{Kanova}}.
+}
 \author{
 Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.
 }

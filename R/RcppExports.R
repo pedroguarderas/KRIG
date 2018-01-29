@@ -28,6 +28,7 @@ weight_pow_dist <- function(x, y, w, p) {
 #' @param n Number of uniform division to compute the integral.
 #' @return Vector with integrals while the x coordinate is fixed.
 #' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
+#' @seealso For a complete application you can check the documentation of \code{\link{Kanova}}.
 #' @export
 vector_integrate_kernel <- function(Kern, x, a, b, n) {
     .Call('_KRIG_vector_integrate_kernel', PACKAGE = 'KRIG', Kern, x, a, b, n)
@@ -43,6 +44,7 @@ vector_integrate_kernel <- function(Kern, x, a, b, n) {
 #' @param n Number of uniform division to compute the integral.
 #' @return Real value with the integral value.
 #' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
+#' @seealso For a complete application you can check the documentation of \code{\link{Kanova}}.
 #' @export
 complete_integrate_kernel <- function(Kern, a, b, n) {
     .Call('_KRIG_complete_integrate_kernel', PACKAGE = 'KRIG', Kern, a, b, n)
@@ -63,6 +65,7 @@ complete_integrate_kernel <- function(Kern, a, b, n) {
 #' be evaluated.
 #' @return List with one coordinate integrals and complete kernel integrals.
 #' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
+#' @seealso For a complete application you can check the documentation of \code{\link{Kanova}}.
 #' @export
 list_integrate_kernel <- function(Kernels, X) {
     .Call('_KRIG_list_integrate_kernel', PACKAGE = 'KRIG', Kernels, X)
@@ -86,6 +89,32 @@ list_integrate_kernel <- function(Kernels, X) {
 #' @return List with containing the Gamma 3D array where the different combination variance are
 #' stocked and the total matrix variance named Kanova. 
 #' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
+#' @example 
+#' library( KRIG )
+#' options( stringsAsFactors = FALSE )
+#'  
+#' kernel_1<-function( x, y ) exp( -0.5*(x-y)^2)
+#' kernel_2<-function( x, y ) exp( -0.7*(x-y)^2)
+#' kernel_3<-function( x, y ) exp( -0.1*(x-y)^2)
+#' 
+#' Kernels<-data.frame( kernel = c( 'kernel_1', 'kernel_2', 'kernel_3' ), 
+#'                      min = c( 0, -1, -5 ), 
+#'                      max = c( 1, 1, 5 ),
+#'                      n = c( 500, 500, 500 ) )
+#'                      
+#' n<-20
+#' X<-matrix( c( seq( -1, 1, length.out = n ), 
+#'               seq( -1, 1, length.out = n ),
+#'               seq( -5, 5, length.out = n ) ), n, 3 )
+#'               
+#' KI<-vector_integrate_kernel( Kernels, X )
+#' GK<-Kanova( Kernels, KI, X )
+#'     
+#' f<-function( x ) abs( x[1] + 30 * x[2] + 60 * x[3] )
+#' Func<-apply( X, 1, FUN = f )
+#'     
+#' KF<-solve( GK$Kanova + diag( 1e-8, n, n ), Func )
+#'     
 #' @export
 Kanova <- function(Kernels, Integral, X) {
     .Call('_KRIG_Kanova', PACKAGE = 'KRIG', Kernels, Integral, X)
@@ -236,6 +265,7 @@ thin_plate_kernel <- function(h, R = 1.0) {
 #' @useDynLib KRIG
 #' @importFrom Rcpp sourceCpp
 #' @exportPattern("^[[:alpha:]]+")
+#' @seealso For a complete application you can check the documentation of \code{\link{Krig}}.
 #' @export
 Kov <- function(X, Y, Kern, symmetric = FALSE) {
     .Call('_KRIG_Kov', PACKAGE = 'KRIG', X, Y, Kern, symmetric)
@@ -287,6 +317,7 @@ Krig <- function(Z, K, k, G, g, type = "ordinary", cinv = "syminv") {
 #' @param Gamma Cube with integral results.
 #' @return Real value of sensitivity.
 #' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
+#' @seealso For a complete application you can check the documentation of \code{\link{sens_var}}.
 #' @export
 sens_idx <- function(KF, comb, X, Gamma) {
     .Call('_KRIG_sens_idx', PACKAGE = 'KRIG', KF, comb, X, Gamma)
@@ -298,6 +329,45 @@ sens_idx <- function(KF, comb, X, Gamma) {
 #' @param Gamma Cube with integral results.
 #' @return Real value of sensitivity.
 #' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
+#' @example
+#' library( KRIG ) 
+#' options( stringsAsFactors = FALSE )
+#'  
+#' kernel_1<-function( x, y ) exp( -0.5*(x-y)^2)
+#' kernel_2<-function( x, y ) exp( -0.7*(x-y)^2)
+#' kernel_3<-function( x, y ) exp( -0.1*(x-y)^2)
+#' 
+#' Kernels<-data.frame( kernel = c( 'kernel_1', 'kernel_2', 'kernel_3' ), 
+#'                      min = c( 0, -1, -5 ), 
+#'                      max = c( 1, 1, 5 ),
+#'                      n = c( 500, 500, 500 ) )
+#'                      
+#' n<-20
+#' X<-matrix( c( seq( -1, 1, length.out = n ), 
+#'               seq( -1, 1, length.out = n ),
+#'               seq( -5, 5, length.out = n ) ), n, 3 )
+#'               
+#' KI<-vector_integrate_kernel( Kernels, X )
+#' GK<-Kanova( Kernels, KI, X )
+#'     
+#' f<-function( x ) abs( x[1] + 30 * x[2] + 60 * x[3] )
+#' Func<-apply( X, 1, FUN = f )
+#'     
+#' KF<-solve( GK$Kanova + diag( 1e-8, n, n ), Func )
+#'     
+#' SbI<-NULL
+#' for ( j in 1:3 ) {
+#'   CB<-combn( 1:3, j )  
+#'   for ( l in 1:ncol( CB ) ) {
+#'     SbI<-c( SbI, sens_idx( KF, CB[,l], X, GK$Gamma ) )
+#'     names(SbI)[length(SbI)]<-paste( 'C.', paste( CB[,l], collapse='.' ), sep = '' )
+#'   }
+#' }
+#'   
+#' Var<-sens_var( KF, GK$Gamma )
+#'     
+#' SVar<-sum( SbI / Var )
+#' 
 #' @export
 sens_var <- function(KF, Gamma) {
     .Call('_KRIG_sens_var', PACKAGE = 'KRIG', KF, Gamma)
@@ -311,6 +381,8 @@ sens_var <- function(KF, Gamma) {
 #' @param d Distance function.
 #' @return Variogram vector.
 #' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
+#' library( KRIG )
+#' vignette( topic = 'copper_mining_2d', package = 'KRIG' )
 #' @export
 variogram <- function(Z, X, d) {
     .Call('_KRIG_variogram', PACKAGE = 'KRIG', Z, X, d)

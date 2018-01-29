@@ -21,7 +21,11 @@
 Copper
 }
 \description{
-Copper mining data
+This is reproduced from the original description for the data set. 
+A simulation based on a stockpile of mined material in the former Soviet Union. Boreholes have 
+been drilled into the dump. The drill core is cut every 5 metres and assayed for copper and 
+cobalt content in percentage by weight. This is the only three dimensional set of tutorial data. 
+Coordinates are in metres.
 }
 \examples{
 data( 'Copper', packages = 'KRIG' )

@@ -24,6 +24,9 @@ To compute a kriging, it is necessary the spatial covariance matrix. The spatial
   covariance could computed between to sets of points X and Y with different dimension and the 
   result it is not necessarily a square matrix.
 }
+\seealso{
+For a complete application you can check the documentation of \code{\link{Krig}}.
+}
 \author{
 Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.
 }

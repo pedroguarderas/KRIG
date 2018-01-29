@@ -23,6 +23,9 @@ This function is part of the routines employed in the sensitivity analysis,
 calculate the integral in both coordinate \eqn{x} and \eqn{y} of the kernel, over the square
 domain give by the limits \eqn{a} and \eqn{b}.
 }
+\seealso{
+For a complete application you can check the documentation of \code{\link{Kanova}}.
+}
 \author{
 Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.
 }

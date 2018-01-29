@@ -22,6 +22,9 @@ Real value of sensitivity.
 For a given combination this function computes the associated variance for the
 variable enumerated by the combination values.
 }
+\seealso{
+For a complete application you can check the documentation of \code{\link{sens_var}}.
+}
 \author{
 Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.
 }

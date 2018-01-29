@@ -27,6 +27,7 @@ using namespace Rcpp;
 //' @useDynLib KRIG
 //' @importFrom Rcpp sourceCpp
 //' @exportPattern("^[[:alpha:]]+")
+//' @seealso For a complete application you can check the documentation of \code{\link{Krig}}.
 //' @export
 // [[Rcpp::export]]
 arma::mat Kov( const arma::mat& X, 
