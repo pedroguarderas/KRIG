@@ -42,7 +42,7 @@ arma::colvec vector_integrate_kernel( Function Kern, const arma::colvec x,
 //' @seealso For a complete application you can check the documentation of \code{\link{Kanova}}.
 //' @export
 // [[Rcpp::export]]
-double complete_integrate_kernel( Function Kern, const double& a, const double& b, const double& n );
+double integrate_kernel( Function Kern, const double& a, const double& b, const double& n );
 
 //--------------------------------------------------------------------------------------------------
 //' @title Integrals of a list of kernels.
@@ -102,10 +102,10 @@ List list_integrate_kernel( const DataFrame& Kernels, const arma::mat& X );
 //'               seq( -1, 1, length.out = n ),
 //'               seq( -5, 5, length.out = n ) ), n, 3 )
 //'               
-//' KI<-vector_integrate_kernel( Kernels, X )
+//' KI<-list_integrate_kernel( Kernels, X )
 //' GK<-Kanova( Kernels, KI, X )
 //'     
-//' f<-function( x ) abs( x[1] + 30 * x[2] + 60 * x[3] )
+//' f<-function( x ) x[1] + 30 * x[2] + 60 * x[3]
 //' Func<-apply( X, 1, FUN = f )
 //'     
 //' KF<-solve( GK$Kanova + diag( 1e-8, n, n ), Func )

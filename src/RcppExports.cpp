@@ -35,9 +35,9 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// complete_integrate_kernel
-double complete_integrate_kernel(Function Kern, const double& a, const double& b, const double& n);
-RcppExport SEXP _KRIG_complete_integrate_kernel(SEXP KernSEXP, SEXP aSEXP, SEXP bSEXP, SEXP nSEXP) {
+// integrate_kernel
+double integrate_kernel(Function Kern, const double& a, const double& b, const double& n);
+RcppExport SEXP _KRIG_integrate_kernel(SEXP KernSEXP, SEXP aSEXP, SEXP bSEXP, SEXP nSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -45,7 +45,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const double& >::type a(aSEXP);
     Rcpp::traits::input_parameter< const double& >::type b(bSEXP);
     Rcpp::traits::input_parameter< const double& >::type n(nSEXP);
-    rcpp_result_gen = Rcpp::wrap(complete_integrate_kernel(Kern, a, b, n));
+    rcpp_result_gen = Rcpp::wrap(integrate_kernel(Kern, a, b, n));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -247,9 +247,9 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// sens_idx
-double sens_idx(const arma::colvec KF, const arma::colvec comb, const arma::mat X, const arma::cube Gamma);
-RcppExport SEXP _KRIG_sens_idx(SEXP KFSEXP, SEXP combSEXP, SEXP XSEXP, SEXP GammaSEXP) {
+// Krigidx
+double Krigidx(const arma::colvec KF, const arma::colvec comb, const arma::mat X, const arma::cube Gamma);
+RcppExport SEXP _KRIG_Krigidx(SEXP KFSEXP, SEXP combSEXP, SEXP XSEXP, SEXP GammaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -257,19 +257,19 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const arma::colvec >::type comb(combSEXP);
     Rcpp::traits::input_parameter< const arma::mat >::type X(XSEXP);
     Rcpp::traits::input_parameter< const arma::cube >::type Gamma(GammaSEXP);
-    rcpp_result_gen = Rcpp::wrap(sens_idx(KF, comb, X, Gamma));
+    rcpp_result_gen = Rcpp::wrap(Krigidx(KF, comb, X, Gamma));
     return rcpp_result_gen;
 END_RCPP
 }
-// sens_var
-double sens_var(const arma::colvec KF, const arma::cube Gamma);
-RcppExport SEXP _KRIG_sens_var(SEXP KFSEXP, SEXP GammaSEXP) {
+// Krigvar
+double Krigvar(const arma::colvec KF, const arma::cube Gamma);
+RcppExport SEXP _KRIG_Krigvar(SEXP KFSEXP, SEXP GammaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const arma::colvec >::type KF(KFSEXP);
     Rcpp::traits::input_parameter< const arma::cube >::type Gamma(GammaSEXP);
-    rcpp_result_gen = Rcpp::wrap(sens_var(KF, Gamma));
+    rcpp_result_gen = Rcpp::wrap(Krigvar(KF, Gamma));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -290,7 +290,7 @@ END_RCPP
 static const R_CallMethodDef CallEntries[] = {
     {"_KRIG_weight_pow_dist", (DL_FUNC) &_KRIG_weight_pow_dist, 4},
     {"_KRIG_vector_integrate_kernel", (DL_FUNC) &_KRIG_vector_integrate_kernel, 5},
-    {"_KRIG_complete_integrate_kernel", (DL_FUNC) &_KRIG_complete_integrate_kernel, 4},
+    {"_KRIG_integrate_kernel", (DL_FUNC) &_KRIG_integrate_kernel, 4},
     {"_KRIG_list_integrate_kernel", (DL_FUNC) &_KRIG_list_integrate_kernel, 2},
     {"_KRIG_Kanova", (DL_FUNC) &_KRIG_Kanova, 3},
     {"_KRIG_linear_kernel", (DL_FUNC) &_KRIG_linear_kernel, 3},
@@ -306,8 +306,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_KRIG_thin_plate_kernel", (DL_FUNC) &_KRIG_thin_plate_kernel, 2},
     {"_KRIG_Kov", (DL_FUNC) &_KRIG_Kov, 4},
     {"_KRIG_Krig", (DL_FUNC) &_KRIG_Krig, 7},
-    {"_KRIG_sens_idx", (DL_FUNC) &_KRIG_sens_idx, 4},
-    {"_KRIG_sens_var", (DL_FUNC) &_KRIG_sens_var, 2},
+    {"_KRIG_Krigidx", (DL_FUNC) &_KRIG_Krigidx, 4},
+    {"_KRIG_Krigvar", (DL_FUNC) &_KRIG_Krigvar, 2},
     {"_KRIG_variogram", (DL_FUNC) &_KRIG_variogram, 3},
     {NULL, NULL, 0}
 };

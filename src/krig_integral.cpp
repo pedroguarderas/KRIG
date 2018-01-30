@@ -20,7 +20,7 @@ arma::colvec vector_integrate_kernel( Function Kern, const arma::colvec x,
 }
 
 //--------------------------------------------------------------------------------------------------
-double complete_integrate_kernel( Function Kern, const double& a, const double& b, const double& n ) {
+double integrate_kernel( Function Kern, const double& a, const double& b, const double& n ) {
   int i, j;
   double h = ( b - a ) / ( n - 1 );
   double I = 0;
@@ -51,7 +51,7 @@ List list_integrate_kernel( const DataFrame& Kernels, const arma::mat& X ) {
     Function Kern( as< std::string >( FName[k] ) ); 
     
     integral.col( k ) = vector_integrate_kernel( Kern, X.col( k ), a( k ), b( k ), n( k ) );
-    alpha( k ) = complete_integrate_kernel( Kern, a( k ), b( k ), n( k ) );
+    alpha( k ) = integrate_kernel( Kern, a( k ), b( k ), n( k ) );
     
   }
   

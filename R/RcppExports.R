@@ -59,8 +59,8 @@ vector_integrate_kernel <- function(Kern, x, a, b, n) {
 #' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 #' @seealso For a complete application you can check the documentation of \code{\link{Kanova}}.
 #' @export
-complete_integrate_kernel <- function(Kern, a, b, n) {
-    .Call('_KRIG_complete_integrate_kernel', PACKAGE = 'KRIG', Kern, a, b, n)
+integrate_kernel <- function(Kern, a, b, n) {
+    .Call('_KRIG_integrate_kernel', PACKAGE = 'KRIG', Kern, a, b, n)
 }
 
 #' @title Integrals of a list of kernels.
@@ -120,10 +120,10 @@ list_integrate_kernel <- function(Kernels, X) {
 #'               seq( -1, 1, length.out = n ),
 #'               seq( -5, 5, length.out = n ) ), n, 3 )
 #'               
-#' KI<-vector_integrate_kernel( Kernels, X )
+#' KI<-list_integrate_kernel( Kernels, X )
 #' GK<-Kanova( Kernels, KI, X )
 #'     
-#' f<-function( x ) abs( x[1] + 30 * x[2] + 60 * x[3] )
+#' f<-function( x ) x[1] + 30 * x[2] + 60 * x[3]
 #' Func<-apply( X, 1, FUN = f )
 #'     
 #' KF<-solve( GK$Kanova + diag( 1e-8, n, n ), Func )
@@ -384,12 +384,12 @@ Krig <- function(Z, K, k, G, g, type = "ordinary", cinv = "syminv") {
 #' @param Gamma Cube with integral results.
 #' @return Real value of sensitivity.
 #' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
-#' @seealso For a complete application you can check the documentation of \code{\link{sens_var}}.
+#' @seealso For a complete application you can check the documentation of \code{\link{Krigvar}}.
 #' @references
 #' \insertRef{Kanova:2013}{KRIG}
 #' @export
-sens_idx <- function(KF, comb, X, Gamma) {
-    .Call('_KRIG_sens_idx', PACKAGE = 'KRIG', KF, comb, X, Gamma)
+Krigidx <- function(KF, comb, X, Gamma) {
+    .Call('_KRIG_Krigidx', PACKAGE = 'KRIG', KF, comb, X, Gamma)
 }
 
 #' @title Combinatorial variance computation.
@@ -428,12 +428,12 @@ sens_idx <- function(KF, comb, X, Gamma) {
 #' for ( j in 1:3 ) {
 #'   CB<-combn( 1:3, j )  
 #'   for ( l in 1:ncol( CB ) ) {
-#'     SbI<-c( SbI, sens_idx( KF, CB[,l], X, GK$Gamma ) )
+#'     SbI<-c( SbI, Krigidx( KF, CB[,l], X, GK$Gamma ) )
 #'     names(SbI)[length(SbI)]<-paste( 'C.', paste( CB[,l], collapse='.' ), sep = '' )
 #'   }
 #' }
 #'   
-#' Var<-sens_var( KF, GK$Gamma )
+#' Var<-Krigvar( KF, GK$Gamma )
 #'     
 #' SVar<-sum( SbI / Var )
 #' 
@@ -441,8 +441,8 @@ sens_idx <- function(KF, comb, X, Gamma) {
 #' \insertRef{Kanova:2013}{KRIG}
 #' 
 #' @export
-sens_var <- function(KF, Gamma) {
-    .Call('_KRIG_sens_var', PACKAGE = 'KRIG', KF, Gamma)
+Krigvar <- function(KF, Gamma) {
+    .Call('_KRIG_Krigvar', PACKAGE = 'KRIG', KF, Gamma)
 }
 
 #' @title Computes the variogram.

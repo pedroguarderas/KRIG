@@ -18,7 +18,7 @@ using namespace Rcpp;
 //' @param Gamma Cube with integral results.
 //' @return Real value of sensitivity.
 //' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
-//' @seealso For a complete application you can check the documentation of \code{\link{sens_var}}.
+//' @seealso For a complete application you can check the documentation of \code{\link{Krigvar}}.
 //' @references
 //' \insertRef{Kanova:2013}{KRIG}
 //' @export
