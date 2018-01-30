@@ -19,6 +19,12 @@ Real value.
 \description{
 Isotropic kernel.
 }
+\examples{
+h<-0.3
+sigma<-1.0
+theta<-10
+exp_kernel( h, sigma, theta )
+}
 \author{
 Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.
 }

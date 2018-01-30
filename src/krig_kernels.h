@@ -28,6 +28,12 @@ using namespace Rcpp;
 //' @param alpha amplitude parameter.
 //' @return Real value.
 //' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
+//' @examples
+//' n<-10
+//' x<-matrix( runif( n ), n, 1 )
+//' y<-matrix( runif( n ), n, 1 )
+//' alpha<-0.5
+//' linear_kernel( x, y, alpha )
 //' @export
 // [[Rcpp::export]]
 double linear_kernel( const arma::colvec& x, const arma::colvec& y, const double& alpha );
@@ -42,6 +48,13 @@ double linear_kernel( const arma::colvec& x, const arma::colvec& y, const double
 //' @param n power parameter.
 //' @return Real value.
 //' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
+//' N<-10
+//' x<-matrix( runif( N ), N, 1 )
+//' y<-matrix( runif( N ), N, 1 )
+//' alpha<-0.5
+//' beta<-2
+//' n<-3
+//' polynomial_kernel( x, y, alpha, beta, n )
 //' @export
 // [[Rcpp::export]]
 double polynomial_kernel( const arma::colvec& x, const arma::colvec& y, 
@@ -61,6 +74,10 @@ double polynomial_kernel( const arma::colvec& x, const arma::colvec& y,
 //' @param alpha amplitude parameter.
 //' @return Real value.
 //' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
+//' @examples
+//' h<-4
+//' alpha<-2
+//' square_kernel( h, alpha )
 //' @export
 // [[Rcpp::export]]
 double square_kernel( const double& h, const double& alpha = 1.0 );
@@ -73,6 +90,11 @@ double square_kernel( const double& h, const double& alpha = 1.0 );
 //' @param alpha maximum distance value.
 //' @return Real value.
 //' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
+//' @examples
+//' h<-0.2
+//' c<-5
+//' alpha<-2
+//' triangular_kernel( h, c, alpha )
 //' @export
 // [[Rcpp::export]]
 double triangular_kernel( const double& h, const double& c = 1.0, const double& alpha = 1.0 );
@@ -85,6 +107,11 @@ double triangular_kernel( const double& h, const double& c = 1.0, const double& 
 //' @param theta smoothness parameter.
 //' @return Real value.
 //' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
+//' @examples
+//' h<-0.3
+//' sigma<-1.0
+//' theta<-10
+//' exp_kernel( h, sigma, theta )
 //' @export
 // [[Rcpp::export]]
 double exp_kernel( const double& h, const double& sigma = 1.0, const double& theta = 1.0 );
@@ -97,6 +124,10 @@ double exp_kernel( const double& h, const double& sigma = 1.0, const double& the
 //' @param theta smoothness parameter.
 //' @return Real value.
 //' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
+//' @examples
+//' h<-4
+//' alpha<-2
+//' gaussian_kernel( h, alpha )
 //' @export
 // [[Rcpp::export]]
 double gaussian_kernel( const double& h, const double& sigma = 1.0, const double& theta = 1.0 );
@@ -109,6 +140,11 @@ double gaussian_kernel( const double& h, const double& sigma = 1.0, const double
 //' @param theta smoothness parameter.
 //' @return Real value.
 //' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
+//' @examples
+//' h<-4.0
+//' phi<-1.0
+//' theta<-100.0
+//' spherical_kernel( h, phi, theta )
 //' @export
 // [[Rcpp::export]]
 double spherical_kernel( const double& h, const double& phi, const double& theta );
@@ -122,6 +158,12 @@ double spherical_kernel( const double& h, const double& phi, const double& theta
 //' @param theta smoothness parameter.
 //' @return Real value.
 //' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
+//' @examples
+//' h<-4.0
+//' v<-2.0
+//' sigma<-2.0
+//' theta<-100.0
+//' matern_kernel( h, v, sigma, theta )
 //' @export
 // [[Rcpp::export]]
 double matern_kernel( const double& h, const double& v = 2.0, const double& sigma = 1.0,
@@ -134,6 +176,10 @@ double matern_kernel( const double& h, const double& v = 2.0, const double& sigm
 //' @param R displacement parameter.
 //' @return Real value.
 //' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
+//' @examples
+//' h<-4
+//' R<-2.3
+//' multilog_kernel( h, R )
 //' @export
 // [[Rcpp::export]]
 double multilog_kernel( const double& h, const double& R = 1.0 );
@@ -145,6 +191,10 @@ double multilog_kernel( const double& h, const double& R = 1.0 );
 //' @param R displacement parameter.
 //' @return Real value.
 //' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
+//' @examples
+//' h<-4.0
+//' R<-2.3
+//' nat_cubic_spline_kernel( h, R )
 //' @export
 // [[Rcpp::export]]
 double nat_cubic_spline_kernel( const double& h, const double& R = 1.0 );
@@ -156,6 +206,10 @@ double nat_cubic_spline_kernel( const double& h, const double& R = 1.0 );
 //' @param R displacement parameter.
 //' @return Real value.
 //' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
+//' @examples
+//' h<-4.0
+//' R<-0.5
+//' thin_plate_kernel( h, R )
 //' @export
 // [[Rcpp::export]]
 double thin_plate_kernel( const double& h, const double& R = 1.0 );

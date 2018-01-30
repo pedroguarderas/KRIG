@@ -19,6 +19,12 @@ Real value.
 \description{
 Isotropic kernel commonly employed in geostatistic.
 }
+\examples{
+h<-4.0
+phi<-1.0
+theta<-100.0
+spherical_kernel( h, phi, theta )
+}
 \author{
 Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.
 }

@@ -11,14 +11,18 @@
 #' has to be greater than 1.
 #' @return Real value of the weighted p-distance.
 #' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
-#' @example
+#' @examples
+#' library(KRIG)
+#' 
 #' n<-1e5
 #' x<-runif( n )
 #' y<-runif( n )
 #' p<-rep(2.5,n)
 #' w<-runif(n)
+#' 
 #' kw<-weight_pow_dist( x, y, w, p )
 #' nw<-sum( w * abs( x - y )^p )
+#' 
 #' nw == kw
 #' @export
 weight_pow_dist <- function(x, y, w, p) {
@@ -98,7 +102,7 @@ list_integrate_kernel <- function(Kernels, X) {
 #' @return List with containing the Gamma 3D array where the different combination variance are
 #' stocked and the total matrix variance named Kanova. 
 #' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
-#' @example 
+#' @examples 
 #' library( KRIG )
 #' options( stringsAsFactors = FALSE )
 #'  
@@ -136,6 +140,12 @@ Kanova <- function(Kernels, Integral, X) {
 #' @param alpha amplitude parameter.
 #' @return Real value.
 #' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
+#' @examples
+#' n<-10
+#' x<-matrix( runif( n ), n, 1 )
+#' y<-matrix( runif( n ), n, 1 )
+#' alpha<-0.5
+#' linear_kernel( x, y, alpha )
 #' @export
 linear_kernel <- function(x, y, alpha) {
     .Call('_KRIG_linear_kernel', PACKAGE = 'KRIG', x, y, alpha)
@@ -150,6 +160,13 @@ linear_kernel <- function(x, y, alpha) {
 #' @param n power parameter.
 #' @return Real value.
 #' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
+#' N<-10
+#' x<-matrix( runif( N ), N, 1 )
+#' y<-matrix( runif( N ), N, 1 )
+#' alpha<-0.5
+#' beta<-2
+#' n<-3
+#' polynomial_kernel( x, y, alpha, beta, n )
 #' @export
 polynomial_kernel <- function(x, y, alpha, beta, n) {
     .Call('_KRIG_polynomial_kernel', PACKAGE = 'KRIG', x, y, alpha, beta, n)
@@ -161,6 +178,10 @@ polynomial_kernel <- function(x, y, alpha, beta, n) {
 #' @param alpha amplitude parameter.
 #' @return Real value.
 #' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
+#' @examples
+#' h<-4
+#' alpha<-2
+#' square_kernel( h, alpha )
 #' @export
 square_kernel <- function(h, alpha = 1.0) {
     .Call('_KRIG_square_kernel', PACKAGE = 'KRIG', h, alpha)
@@ -173,6 +194,11 @@ square_kernel <- function(h, alpha = 1.0) {
 #' @param alpha maximum distance value.
 #' @return Real value.
 #' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
+#' @examples
+#' h<-0.2
+#' c<-5
+#' alpha<-2
+#' triangular_kernel( h, c, alpha )
 #' @export
 triangular_kernel <- function(h, c = 1.0, alpha = 1.0) {
     .Call('_KRIG_triangular_kernel', PACKAGE = 'KRIG', h, c, alpha)
@@ -185,6 +211,11 @@ triangular_kernel <- function(h, c = 1.0, alpha = 1.0) {
 #' @param theta smoothness parameter.
 #' @return Real value.
 #' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
+#' @examples
+#' h<-0.3
+#' sigma<-1.0
+#' theta<-10
+#' exp_kernel( h, sigma, theta )
 #' @export
 exp_kernel <- function(h, sigma = 1.0, theta = 1.0) {
     .Call('_KRIG_exp_kernel', PACKAGE = 'KRIG', h, sigma, theta)
@@ -197,6 +228,10 @@ exp_kernel <- function(h, sigma = 1.0, theta = 1.0) {
 #' @param theta smoothness parameter.
 #' @return Real value.
 #' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
+#' @examples
+#' h<-4
+#' alpha<-2
+#' gaussian_kernel( h, alpha )
 #' @export
 gaussian_kernel <- function(h, sigma = 1.0, theta = 1.0) {
     .Call('_KRIG_gaussian_kernel', PACKAGE = 'KRIG', h, sigma, theta)
@@ -209,6 +244,11 @@ gaussian_kernel <- function(h, sigma = 1.0, theta = 1.0) {
 #' @param theta smoothness parameter.
 #' @return Real value.
 #' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
+#' @examples
+#' h<-4.0
+#' phi<-1.0
+#' theta<-100.0
+#' spherical_kernel( h, phi, theta )
 #' @export
 spherical_kernel <- function(h, phi, theta) {
     .Call('_KRIG_spherical_kernel', PACKAGE = 'KRIG', h, phi, theta)
@@ -222,6 +262,12 @@ spherical_kernel <- function(h, phi, theta) {
 #' @param theta smoothness parameter.
 #' @return Real value.
 #' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
+#' @examples
+#' h<-4.0
+#' v<-2.0
+#' sigma<-2.0
+#' theta<-100.0
+#' matern_kernel( h, v, sigma, theta )
 #' @export
 matern_kernel <- function(h, v = 2.0, sigma = 1.0, theta = 1.0) {
     .Call('_KRIG_matern_kernel', PACKAGE = 'KRIG', h, v, sigma, theta)
@@ -233,6 +279,10 @@ matern_kernel <- function(h, v = 2.0, sigma = 1.0, theta = 1.0) {
 #' @param R displacement parameter.
 #' @return Real value.
 #' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
+#' @examples
+#' h<-4
+#' R<-2.3
+#' multilog_kernel( h, R )
 #' @export
 multilog_kernel <- function(h, R = 1.0) {
     .Call('_KRIG_multilog_kernel', PACKAGE = 'KRIG', h, R)
@@ -244,6 +294,10 @@ multilog_kernel <- function(h, R = 1.0) {
 #' @param R displacement parameter.
 #' @return Real value.
 #' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
+#' @examples
+#' h<-4.0
+#' R<-2.3
+#' nat_cubic_spline_kernel( h, R )
 #' @export
 nat_cubic_spline_kernel <- function(h, R = 1.0) {
     .Call('_KRIG_nat_cubic_spline_kernel', PACKAGE = 'KRIG', h, R)
@@ -255,6 +309,10 @@ nat_cubic_spline_kernel <- function(h, R = 1.0) {
 #' @param R displacement parameter.
 #' @return Real value.
 #' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
+#' @examples
+#' h<-4.0
+#' R<-0.5
+#' thin_plate_kernel( h, R )
 #' @export
 thin_plate_kernel <- function(h, R = 1.0) {
     .Call('_KRIG_thin_plate_kernel', PACKAGE = 'KRIG', h, R)
@@ -338,7 +396,7 @@ sens_idx <- function(KF, comb, X, Gamma) {
 #' @param Gamma Cube with integral results.
 #' @return Real value of sensitivity.
 #' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
-#' @example
+#' @examples
 #' library( KRIG ) 
 #' options( stringsAsFactors = FALSE )
 #'  
@@ -390,6 +448,7 @@ sens_var <- function(KF, Gamma) {
 #' @param d Distance function.
 #' @return Variogram vector.
 #' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
+#' @examples
 #' library( KRIG )
 #' vignette( topic = 'copper_mining_2d', package = 'KRIG' )
 #' @export

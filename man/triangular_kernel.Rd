@@ -19,6 +19,12 @@ Real value.
 \description{
 Isotropic kernel defined with the max function.
 }
+\examples{
+h<-0.2
+c<-5
+alpha<-2
+triangular_kernel( h, c, alpha )
+}
 \author{
 Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.
 }

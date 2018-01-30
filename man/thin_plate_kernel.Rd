@@ -17,6 +17,11 @@ Real value.
 \description{
 Isotropic kernel.
 }
+\examples{
+h<-4.0
+R<-0.5
+thin_plate_kernel( h, R )
+}
 \author{
 Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.
 }

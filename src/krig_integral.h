@@ -84,7 +84,7 @@ List list_integrate_kernel( const DataFrame& Kernels, const arma::mat& X );
 //' @return List with containing the Gamma 3D array where the different combination variance are
 //' stocked and the total matrix variance named Kanova. 
 //' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
-//' @example 
+//' @examples 
 //' library( KRIG )
 //' options( stringsAsFactors = FALSE )
 //'  

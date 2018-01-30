@@ -17,6 +17,11 @@ Real value.
 \description{
 Isotropic kernel given by the square distance.
 }
+\examples{
+h<-4
+alpha<-2
+square_kernel( h, alpha )
+}
 \author{
 Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.
 }

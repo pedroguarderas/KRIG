@@ -19,6 +19,11 @@ Real value.
 \description{
 Isotropic kernel.
 }
+\examples{
+h<-4
+alpha<-2
+gaussian_kernel( h, alpha )
+}
 \author{
 Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.
 }

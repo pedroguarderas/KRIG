@@ -34,7 +34,7 @@ double sens_idx( const arma::colvec KF,
 //' @param Gamma Cube with integral results.
 //' @return Real value of sensitivity.
 //' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
-//' @example
+//' @examples
 //' library( KRIG ) 
 //' options( stringsAsFactors = FALSE )
 //'  

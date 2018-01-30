@@ -21,6 +21,13 @@ Real value.
 \description{
 Isotropic kernel.
 }
+\examples{
+h<-4.0
+v<-2.0
+sigma<-2.0
+theta<-100.0
+matern_kernel( h, v, sigma, theta )
+}
 \author{
 Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.
 }

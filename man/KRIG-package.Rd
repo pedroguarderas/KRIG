@@ -9,7 +9,7 @@
 Implements different methods for spatial statistics, in particular focused with 
 Kriging based models. We count with different implemented models, simple, ordinary and 
 universal forms of Kriging, co-Kriging and regression Kriging models. Includes, multivariate 
-sensitivity analysis under an approximation designed over Reproducing Kernel Hilbert Spaces and 
+sensitivity analysis under an approximation designed over reproducing kernel Hilbert spaces and 
 computation of Sobol indexes under this framework.
 
 The linear algebra operations are supported by RcppArmadillo.

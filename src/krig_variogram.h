@@ -22,6 +22,7 @@ using namespace Rcpp;
 //' @param d Distance function.
 //' @return Variogram vector.
 //' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
+//' @examples
 //' library( KRIG )
 //' vignette( topic = 'copper_mining_2d', package = 'KRIG' )
 //' @export

@@ -25,4 +25,11 @@ Anisotropic kernel defined like a polynomial in the scalar product.
 }
 \author{
 Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.
+N<-10
+x<-matrix( runif( N ), N, 1 )
+y<-matrix( runif( N ), N, 1 )
+alpha<-0.5
+beta<-2
+n<-3
+polynomial_kernel( x, y, alpha, beta, n )
 }

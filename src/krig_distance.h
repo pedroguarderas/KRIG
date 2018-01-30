@@ -21,7 +21,7 @@ using namespace Rcpp;
 //' has to be greater than 1.
 //' @return Real value of the weighted p-distance.
 //' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
-//' @example
+//' @examples
 //' library(KRIG)
 //' 
 //' n<-1e5

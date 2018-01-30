@@ -19,6 +19,13 @@ Real value.
 \description{
 Anisotropic kernel defined by the scalar product.
 }
+\examples{
+n<-10
+x<-matrix( runif( n ), n, 1 )
+y<-matrix( runif( n ), n, 1 )
+alpha<-0.5
+linear_kernel( x, y, alpha )
+}
 \author{
 Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.
 }

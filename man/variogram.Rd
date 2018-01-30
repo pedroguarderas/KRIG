@@ -20,8 +20,10 @@ Variogram vector.
 This useful function is commonly employed in the study of isotropic stationary 
 spatial processes.
 }
-\author{
-Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.
+\examples{
 library( KRIG )
 vignette( topic = 'copper_mining_2d', package = 'KRIG' )
+}
+\author{
+Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.
 }

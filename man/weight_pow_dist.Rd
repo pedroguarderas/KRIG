@@ -23,6 +23,20 @@ Real value of the weighted p-distance.
 Many isotropic models can be defined employing a distance. In particular this 
 function implements a distance employing weights and different powers.
 }
+\examples{
+library(KRIG)
+
+n<-1e5
+x<-runif( n )
+y<-runif( n )
+p<-rep(2.5,n)
+w<-runif(n)
+
+kw<-weight_pow_dist( x, y, w, p )
+nw<-sum( w * abs( x - y )^p )
+
+nw == kw
+}
 \author{
 Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.
 }
