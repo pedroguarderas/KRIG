@@ -19,12 +19,14 @@ using namespace Rcpp;
 //' @return Real value of sensitivity.
 //' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 //' @seealso For a complete application you can check the documentation of \code{\link{sens_var}}.
+//' @references
+//' \insertRef{Kanova:2013}{KRIG}
 //' @export
 // [[Rcpp::export]]
-double sens_idx( const arma::colvec KF,
-                 const arma::colvec comb,
-                 const arma::mat X,
-                 const arma::cube Gamma );
+double Krigidx( const arma::colvec KF,
+                const arma::colvec comb,
+                const arma::mat X,
+                const arma::cube Gamma );
 
 
 //--------------------------------------------------------------------------------------------------
@@ -64,18 +66,21 @@ double sens_idx( const arma::colvec KF,
 //' for ( j in 1:3 ) {
 //'   CB<-combn( 1:3, j )  
 //'   for ( l in 1:ncol( CB ) ) {
-//'     SbI<-c( SbI, sens_idx( KF, CB[,l], X, GK$Gamma ) )
+//'     SbI<-c( SbI, Krigidx( KF, CB[,l], X, GK$Gamma ) )
 //'     names(SbI)[length(SbI)]<-paste( 'C.', paste( CB[,l], collapse='.' ), sep = '' )
 //'   }
 //' }
 //'   
-//' Var<-sens_var( KF, GK$Gamma )
+//' Var<-Krigvar( KF, GK$Gamma )
 //'     
 //' SVar<-sum( SbI / Var )
 //' 
+//' @references
+//' \insertRef{Kanova:2013}{KRIG}
+//' 
 //' @export
 // [[Rcpp::export]]
-double sens_var( const arma::colvec KF, 
-                 const arma::cube Gamma );
+double Krigvar( const arma::colvec KF, 
+                const arma::cube Gamma );
 
 #endif

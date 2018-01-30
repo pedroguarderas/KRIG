@@ -385,6 +385,8 @@ Krig <- function(Z, K, k, G, g, type = "ordinary", cinv = "syminv") {
 #' @return Real value of sensitivity.
 #' @author Pedro Guarderas \email{pedro.felipe.guarderas@@gmail.com}.
 #' @seealso For a complete application you can check the documentation of \code{\link{sens_var}}.
+#' @references
+#' \insertRef{Kanova:2013}{KRIG}
 #' @export
 sens_idx <- function(KF, comb, X, Gamma) {
     .Call('_KRIG_sens_idx', PACKAGE = 'KRIG', KF, comb, X, Gamma)
@@ -434,6 +436,9 @@ sens_idx <- function(KF, comb, X, Gamma) {
 #' Var<-sens_var( KF, GK$Gamma )
 #'     
 #' SVar<-sum( SbI / Var )
+#' 
+#' @references
+#' \insertRef{Kanova:2013}{KRIG}
 #' 
 #' @export
 sens_var <- function(KF, Gamma) {

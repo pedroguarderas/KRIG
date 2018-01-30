@@ -2,7 +2,7 @@
 #include "krig_sensitivity.h"
 
 //--------------------------------------------------------------------------------------------------
-double sens_idx( const arma::colvec KF,
+double Krigidx( const arma::colvec KF,
                  const arma::colvec comb,
                  const arma::mat X,
                  const arma::cube Gamma ) {
@@ -22,7 +22,7 @@ double sens_idx( const arma::colvec KF,
 }
 
 //--------------------------------------------------------------------------------------------------
-double sens_var( const arma::colvec KF, 
+double Krigvar( const arma::colvec KF, 
                  const arma::cube Gamma ) {
   
   int i;

@@ -9,13 +9,14 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-## Introduction
+An example presenting an application of universal kriging.
+
 Loading the library
 ```{r,eval=TRUE,message=FALSE, warning=FALSE}
 library( KRIG )
 ```
 
-Data from the original curve
+Defining objective function to approach.
 ```{r,eval=TRUE,message=FALSE, warning=FALSE}
 m<-100
 XLim<-c( -3, 6 )
@@ -26,7 +27,7 @@ f<-function(x){
 z<-sapply( x, f )
 ```
 
-Sampling
+Sampling function values.
 ```{r,eval=TRUE,message=FALSE, warning=FALSE}
 n<-10
 X<-matrix( runif( n, XLim[1], XLim[2] ), n, 1 )
@@ -45,7 +46,7 @@ G<-rbind( t( X ), t( X * X ), t( X * X * X ) )
 g<-rbind( t( Y ), t( Y * Y ), t( Y * Y * Y ) )
 ```
 
-Stablishing the kernel
+Kernel definition.
 ```{r,eval=TRUE,message=FALSE, warning=FALSE}
 s<-0.1
 t<-1
@@ -56,7 +57,7 @@ Kern<-function( x, y ) {
 }
 ```
 
-Solving kriging problem
+Computing kriging.
 ```{r,eval=TRUE,message=FALSE, warning=FALSE}
 K = Kov( X, X, Kern, TRUE )
 k = Kov( Y, X, Kern );
@@ -70,12 +71,12 @@ KRIG<-Krig( Z = Z,
             cinv = 'syminv' )
 ```
 
-Verification that the constraint is satisfied 
+Verification that the constraint is satisfied.
 ```{r,eval=TRUE,message=FALSE, warning=FALSE}
 round( max( G %*% KRIG$L - g ), 10 )
 ```
 
-Plotting the results
+Plotting results.
 ```{r,eval=TRUE,fig.show='hold', fig.show='hold', fig.align="center", fig.width=7, fig.height=4}
 ymin<-min( z, KRIG$Z[,1], Z[,1] )
 ymax<-max( z, KRIG$Z[,1], Z[,1] )

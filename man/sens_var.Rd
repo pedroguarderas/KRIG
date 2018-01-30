@@ -57,6 +57,9 @@ Var<-sens_var( KF, GK$Gamma )
 SVar<-sum( SbI / Var )
 
 }
+\references{
+\insertRef{Kanova:2013}{KRIG}
+}
 \author{
 Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.
 }

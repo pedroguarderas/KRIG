@@ -9,11 +9,14 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-## Introduction
+An example presenting an application of ordinary kriging.
+
+Loading packages
 ```{r,eval=TRUE,message=FALSE, warning=FALSE}
 library( KRIG )
 ```
 
+Defining objective function to approach.
 ```{r,eval=TRUE,message=FALSE, warning=FALSE}
 m<-100
 XLim<-c( -3, 6 )
@@ -24,6 +27,7 @@ f<-function(x){
 z<-sapply( x, f )
 ```
 
+Sampling function values.
 ```{r,eval=TRUE,message=FALSE, warning=FALSE}
 n<-10
 X<-matrix( runif( n, XLim[1], XLim[2] ), n, 1 )
@@ -35,6 +39,7 @@ YLim<-c(-6,8)
 Y<-matrix( seq( YLim[1], YLim[2], length.out = m ), m, 1 )
 ```
 
+Kernel definition.
 ```{r,eval=TRUE,message=FALSE, warning=FALSE}
 s<-0.1
 t<-1
@@ -45,6 +50,7 @@ Kern<-function( x, y ) {
 }
 ```
 
+Computing kriging.
 ```{r,eval=TRUE,message=FALSE, warning=FALSE}
 K = Kov( X, X, Kern, TRUE )
 k = Kov( Y, X, Kern );
@@ -58,6 +64,7 @@ KRIG<-Krig( Z = Z,
             cinv = 'syminv' )
 ```
 
+Plotting results.
 ```{r,eval=TRUE,fig.show='hold', fig.show='hold', fig.align="center", fig.width=7, fig.height=4}
 ymin<-min( z, KRIG$Z[,1], Z[,1] )
 ymax<-max( z, KRIG$Z[,1], Z[,1] )
