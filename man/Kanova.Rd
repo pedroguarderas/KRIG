@@ -39,7 +39,7 @@ kernel_2<-function( x, y ) exp( -0.7*(x-y)^2)
 kernel_3<-function( x, y ) exp( -0.1*(x-y)^2)
 
 Kernels<-data.frame( kernel = c( 'kernel_1', 'kernel_2', 'kernel_3' ), 
-                     min = c( 0, -1, -5 ), 
+                     min = c( -1, -1, -5 ), 
                      max = c( 1, 1, 5 ),
                      n = c( 500, 500, 500 ) )
                      
