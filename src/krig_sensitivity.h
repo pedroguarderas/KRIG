@@ -28,7 +28,6 @@ double Krigidx( const arma::colvec KF,
                 const arma::mat X,
                 const arma::cube Gamma );
 
-
 //--------------------------------------------------------------------------------------------------
 //' @title Combinatorial variance computation.
 //' @description Computation of variance
