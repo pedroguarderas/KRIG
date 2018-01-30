@@ -22,7 +22,6 @@ using namespace Rcpp;
 //' @references
 //' \insertRef{Kanova:2013}{KRIG}
 //' \insertRef{Aronszajn:ThRK}{KRIG}
-//' 
 //' @export
 // [[Rcpp::export]]
 double Krigidx( const arma::colvec KF,
@@ -46,14 +45,14 @@ double Krigidx( const arma::colvec KF,
 //' kernel_3<-function( x, y ) exp( -0.1*(x-y)^2)
 //' 
 //' Kernels<-data.frame( kernel = c( 'kernel_1', 'kernel_2', 'kernel_3' ), 
-//'                      min = c( -1, -1, -5 ), 
-//'                      max = c( 1, 1, 5 ),
-//'                      n = c( 500, 500, 500 ) )
+//'                      min = c( -1, -1, -2 ), 
+//'                      max = c( 1, 1, 2 ),
+//'                      n = c( 100, 100, 100 ) )
 //'                      
 //' n<-20
 //' X<-matrix( c( seq( -1, 1, length.out = n ), 
 //'               seq( -1, 1, length.out = n ),
-//'               seq( -5, 5, length.out = n ) ), n, 3 )
+//'               seq( -2, 2, length.out = n ) ), n, 3 )
 //'               
 //' KI<-list_integrate_kernel( Kernels, X )
 //' GK<-Kanova( Kernels, KI, X )

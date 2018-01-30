@@ -24,7 +24,7 @@ calculate the integral in both coordinate \eqn{x} and \eqn{y} of the kernel, ove
 domain give by the limits \eqn{a} and \eqn{b}.
 }
 \seealso{
-For a complete application you can check the documentation of \code{\link{Kanova}}.
+For a complete application you can check the documentation of \code{\link{Krigvar}}.
 }
 \author{
 Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.

@@ -27,7 +27,7 @@ computes vector of integrals and complete integrals of kernels specified in the 
 Kernels.
 }
 \seealso{
-For a complete application you can check the documentation of \code{\link{Kanova}}.
+For a complete application you can check the documentation of \code{\link{Krigvar}}.
 }
 \author{
 Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.
