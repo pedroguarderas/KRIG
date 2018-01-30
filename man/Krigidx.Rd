@@ -24,6 +24,7 @@ variable enumerated by the combination values.
 }
 \references{
 \insertRef{Kanova:2013}{KRIG}
+\insertRef{Aronszajn:ThRK}{KRIG}
 }
 \seealso{
 For a complete application you can check the documentation of \code{\link{Krigvar}}.

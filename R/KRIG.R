@@ -26,4 +26,6 @@
 #' 
 #' \insertRef{Clark1979Geo}{KRIG}
 #' 
+#' \insertRef{Aronszajn:ThRK}{KRIG}
+#' 
 "_PACKAGE"

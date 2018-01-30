@@ -55,7 +55,10 @@ f<-function( x ) x[1] + 30 * x[2] + 60 * x[3]
 Func<-apply( X, 1, FUN = f )
     
 KF<-solve( GK$Kanova + diag( 1e-8, n, n ), Func )
-    
+}
+\references{
+\insertRef{Kanova:2013}{KRIG}
+\insertRef{Aronszajn:ThRK}{KRIG}
 }
 \author{
 Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.

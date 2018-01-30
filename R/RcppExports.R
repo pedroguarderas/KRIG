@@ -127,7 +127,10 @@ list_integrate_kernel <- function(Kernels, X) {
 #' Func<-apply( X, 1, FUN = f )
 #'     
 #' KF<-solve( GK$Kanova + diag( 1e-8, n, n ), Func )
-#'     
+#' @references
+#' \insertRef{Kanova:2013}{KRIG}
+#' \insertRef{Aronszajn:ThRK}{KRIG}
+#' 
 #' @export
 Kanova <- function(Kernels, Integral, X) {
     .Call('_KRIG_Kanova', PACKAGE = 'KRIG', Kernels, Integral, X)
@@ -387,6 +390,8 @@ Krig <- function(Z, K, k, G, g, type = "ordinary", cinv = "syminv") {
 #' @seealso For a complete application you can check the documentation of \code{\link{Krigvar}}.
 #' @references
 #' \insertRef{Kanova:2013}{KRIG}
+#' \insertRef{Aronszajn:ThRK}{KRIG}
+#' 
 #' @export
 Krigidx <- function(KF, comb, X, Gamma) {
     .Call('_KRIG_Krigidx', PACKAGE = 'KRIG', KF, comb, X, Gamma)
@@ -439,6 +444,7 @@ Krigidx <- function(KF, comb, X, Gamma) {
 #' 
 #' @references
 #' \insertRef{Kanova:2013}{KRIG}
+#' \insertRef{Aronszajn:ThRK}{KRIG}
 #' 
 #' @export
 Krigvar <- function(KF, Gamma) {

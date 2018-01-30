@@ -59,6 +59,7 @@ SVar<-sum( SbI / Var )
 }
 \references{
 \insertRef{Kanova:2013}{KRIG}
+\insertRef{Aronszajn:ThRK}{KRIG}
 }
 \author{
 Pedro Guarderas \email{pedro.felipe.guarderas@gmail.com}.

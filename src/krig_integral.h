@@ -109,7 +109,10 @@ List list_integrate_kernel( const DataFrame& Kernels, const arma::mat& X );
 //' Func<-apply( X, 1, FUN = f )
 //'     
 //' KF<-solve( GK$Kanova + diag( 1e-8, n, n ), Func )
-//'     
+//' @references
+//' \insertRef{Kanova:2013}{KRIG}
+//' \insertRef{Aronszajn:ThRK}{KRIG}
+//' 
 //' @export
 // [[Rcpp::export]]
 List Kanova( const DataFrame& Kernels, const List& Integral,  const arma::mat& X );

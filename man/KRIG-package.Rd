@@ -31,6 +31,8 @@ vignette( topic = 'copper_mining_2d', package = 'KRIG' )
 \insertRef{SteinInterSpatial}{KRIG}
 
 \insertRef{Clark1979Geo}{KRIG}
+
+\insertRef{Aronszajn:ThRK}{KRIG}
 }
 \seealso{
 Useful links:
