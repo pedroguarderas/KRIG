@@ -24,10 +24,10 @@ using namespace Rcpp;
 //' \insertRef{Aronszajn:ThRK}{KRIG}
 //' @export
 // [[Rcpp::export]]
-double Krigidx( const arma::colvec KF,
-                const arma::colvec comb,
-                const arma::mat X,
-                const arma::cube Gamma );
+double Krigidx( const arma::colvec& KF,
+                const arma::colvec& comb,
+                const arma::mat& X,
+                const arma::cube& Gamma );
 
 //--------------------------------------------------------------------------------------------------
 //' @title Combinatorial variance computation.
@@ -81,7 +81,7 @@ double Krigidx( const arma::colvec KF,
 //' 
 //' @export
 // [[Rcpp::export]]
-double Krigvar( const arma::colvec KF, 
-                const arma::cube Gamma );
+double Krigvar( const arma::colvec& KF, 
+                const arma::cube& Gamma );
 
 #endif
