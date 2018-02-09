@@ -2,7 +2,7 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 #' @title co-Kriging computation.
-#' @description Computes the co-kriging linear estimator for different types of co-kriging models.
+#' @description Computes the co-kriging linear estimator for different types models.
 #' @param Z Matrix of observed values of the spatial process.
 #' @param K Covariance matrix computed for the position \eqn{X} where the spatial process \eqn{Z}
 #' was observed.
