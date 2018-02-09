@@ -9,17 +9,26 @@ List coKrig( const arma::mat& Z,
              const arma::mat& g,
              const std::string type = "ordinary", 
              const std::string cinv = "syminv" ) {
-  
+ 
+   // The dimensions considerations
+   // dim( K ) = nq x nq
+   // dim( k_r ) = nq x m x q
+   // dim( l_r ) = dim( K * k_r )  = nq x m
+   // dim( Z ) = n x q => dim( vect( Z ) ) = nq x 1
+   // dim( X ) = m x d
+   // dim( W ) = m x q
   int nq = K.n_rows;
   int n = Z.n_rows;
   int m = k.n_cols;
   int q = k.n_slices;
   
+  int k;
+  
   List KRIG;
   
   arma::mat J( nq, nq );
-  arma::mat W( m, n );
-  arma::mat L( m, n );
+  arma::mat W( m, q );
+  arma::cube L( nq, m, q );
   
   // Inverse computation of the covariance matrix
   if ( cinv == "syminv" ) {
@@ -40,13 +49,9 @@ List coKrig( const arma::mat& Z,
   // Kriging computation
   if ( type == "simple" ) { // Simple kriging
     
-    L = J *  k;
-    W = L.t() * Z;  
-    
-    KRIG[ "Z" ] = W;
-    KRIG[ "L" ] = L;
-    KRIG[ "J" ] = J;
-    
+    for ( k = 0; k < q; k++ ) {
+      L.slice( k ) = J * k.slice( k );
+    }
     
   } else if ( type == "ordinary" ) {  // Ordinary kriging
     double alpha;
@@ -57,13 +62,9 @@ List coKrig( const arma::mat& Z,
     tau = arma::ones( n, m ) - arma::ones( n, n ) * J * k;
     
     L = J * ( k + alpha * tau ) ;
-    W = L.t() * Z;
-    
-    KRIG[ "Z" ] = W;
-    KRIG[ "L" ] = L;
-    KRIG[ "J" ] = J;
-    KRIG[ "alpha" ] = alpha;
-    KRIG[ "tau" ] = tau;
+    for ( k = 0; k < q; k++ ) {
+      L.slice( k ) = J * k.slice( k );
+    }+
     
   } else if ( type == "universal" ) { // Universal kriging
     
@@ -73,17 +74,13 @@ List coKrig( const arma::mat& Z,
     
     A = G.t() * inv_sympd( G * J * G.t() );
     tau = g - G * J * k;
-    
-    L = J * ( k + A * tau ) ;
-    W = L.t() * Z;
-    
-    KRIG[ "Z" ] = W;
-    KRIG[ "L" ] = L;
-    KRIG[ "J" ] = J;
-    KRIG[ "A" ] = A;
-    KRIG[ "tau" ] = tau;
+    for ( k = 0; k < q; k++ ) {
+      L.slice( k ) = J * k.slice( k );
+    }
     
   }
+  
+  W = L.t() * Z;
   
   return KRIG;
   

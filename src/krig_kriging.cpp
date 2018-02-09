@@ -53,6 +53,12 @@ List Krig( const arma::mat& Z,
            const std::string type, 
            const std::string cinv ) {
 
+  // The dimensions considerations
+  // dim( K ) = n x n
+  // dim( k_r ) = n x m
+  // dim( l_r ) = dim( J * k_r )  = n x m
+  // dim( Z ) = n x 1
+  // dim( W ) = dim( k_r^t * J^t * Z ) = m x 1
   int n = Z.n_rows;
   int m = k.n_cols;
 
