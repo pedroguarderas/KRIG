@@ -47,7 +47,7 @@ List coKrig( const arma::mat& Z,
              const arma::mat& K, 
              const arma::cube& k,
              const arma::mat& G, 
-             const arma::mat& g,
+             const arma::cube& g,
              const std::string type = "ordinary", 
              const std::string cinv = "syminv" );
 

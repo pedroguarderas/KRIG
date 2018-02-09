@@ -6,9 +6,9 @@ List coKrig( const arma::mat& Z,
              const arma::mat& K, 
              const arma::cube& k,
              const arma::mat& G, 
-             const arma::mat& g,
-             const std::string type = "ordinary", 
-             const std::string cinv = "syminv" ) {
+             const arma::cube& g,
+             const std::string type, 
+             const std::string cinv ) {
  
    // The dimensions considerations
    // dim( K ) = nq x nq
@@ -22,7 +22,7 @@ List coKrig( const arma::mat& Z,
   int m = k.n_cols;
   int q = k.n_slices;
   
-  int k;
+  int i, j, r, s;
   
   List KRIG;
   
@@ -49,38 +49,51 @@ List coKrig( const arma::mat& Z,
   // Kriging computation
   if ( type == "simple" ) { // Simple kriging
     
-    for ( k = 0; k < q; k++ ) {
-      L.slice( k ) = J * k.slice( k );
+    for ( r = 0; r < q; r++ ) {
+      L.slice( r ) = J * k.slice( r );
     }
     
   } else if ( type == "ordinary" ) {  // Ordinary kriging
     double alpha;
-    arma::mat u = arma::ones( n, 1 );
-    arma::mat tau( n, m );
+    arma::mat u = arma::ones( nq, 1 );
+    arma::mat tau( nq, m );
     
     alpha = 1.0 / as_scalar( u.t() * J * u );
-    tau = arma::ones( n, m ) - arma::ones( n, n ) * J * k;
     
-    L = J * ( k + alpha * tau ) ;
-    for ( k = 0; k < q; k++ ) {
-      L.slice( k ) = J * k.slice( k );
-    }+
+    for ( r = 0; r < q; r++ ) {
+      tau = arma::ones( nq, m ) - arma::ones( nq, nq ) * J * k.slice( r );
+      L.slice( r ) = J * ( k.slice( r ) + alpha * tau );
+    }
     
   } else if ( type == "universal" ) { // Universal kriging
     
     int p = G.n_rows;
-    arma::mat A( n, p );
-    arma::mat tau( p, 1 );
+    arma::mat A( nq, p );
+    arma::mat tau( p, m );
     
     A = G.t() * inv_sympd( G * J * G.t() );
-    tau = g - G * J * k;
-    for ( k = 0; k < q; k++ ) {
-      L.slice( k ) = J * k.slice( k );
+    for ( r = 0; r < q; r++ ) {
+      tau = g.slice( r ) - G * J * k.slice( r );
+      L.slice( r ) = J * ( k.slice( r ) + A * tau );
     }
     
   }
   
-  W = L.t() * Z;
+  // for ( i = 0; i < n; i++ ) {
+  //   for ( r = 0; r < q; r++ ) {
+  //     for( j = 0; j < q; j++ ) {
+  //       l( r, j, i ) = L( i + j * ( n - 1 ), s, r );
+  //     }
+  //   }
+  // }
+    
+  for ( r = 0; r < q; r++ ) {
+    W.col( r ) = L.slice( r ).t() * vectorise( Z, 1 );
+  }
+  
+  KRIG[ "Z" ] = W;
+  KRIG[ "L" ] = L;
+  KRIG[ "J" ] = J;
   
   return KRIG;
   

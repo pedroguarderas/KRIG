@@ -6,6 +6,23 @@
 
 using namespace Rcpp;
 
+// coKrig
+List coKrig(const arma::mat& Z, const arma::mat& K, const arma::cube& k, const arma::mat& G, const arma::cube& g, const std::string type, const std::string cinv);
+RcppExport SEXP _KRIG_coKrig(SEXP ZSEXP, SEXP KSEXP, SEXP kSEXP, SEXP GSEXP, SEXP gSEXP, SEXP typeSEXP, SEXP cinvSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::mat& >::type Z(ZSEXP);
+    Rcpp::traits::input_parameter< const arma::mat& >::type K(KSEXP);
+    Rcpp::traits::input_parameter< const arma::cube& >::type k(kSEXP);
+    Rcpp::traits::input_parameter< const arma::mat& >::type G(GSEXP);
+    Rcpp::traits::input_parameter< const arma::cube& >::type g(gSEXP);
+    Rcpp::traits::input_parameter< const std::string >::type type(typeSEXP);
+    Rcpp::traits::input_parameter< const std::string >::type cinv(cinvSEXP);
+    rcpp_result_gen = Rcpp::wrap(coKrig(Z, K, k, G, g, type, cinv));
+    return rcpp_result_gen;
+END_RCPP
+}
 // weight_pow_dist
 double weight_pow_dist(const arma::colvec& x, const arma::colvec& y, const arma::colvec& w, const arma::colvec& p);
 RcppExport SEXP _KRIG_weight_pow_dist(SEXP xSEXP, SEXP ySEXP, SEXP wSEXP, SEXP pSEXP) {
@@ -248,27 +265,27 @@ BEGIN_RCPP
 END_RCPP
 }
 // Krigidx
-double Krigidx(const arma::colvec KF, const arma::colvec comb, const arma::mat X, const arma::cube Gamma);
+double Krigidx(const arma::colvec& KF, const arma::colvec& comb, const arma::mat& X, const arma::cube& Gamma);
 RcppExport SEXP _KRIG_Krigidx(SEXP KFSEXP, SEXP combSEXP, SEXP XSEXP, SEXP GammaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::colvec >::type KF(KFSEXP);
-    Rcpp::traits::input_parameter< const arma::colvec >::type comb(combSEXP);
-    Rcpp::traits::input_parameter< const arma::mat >::type X(XSEXP);
-    Rcpp::traits::input_parameter< const arma::cube >::type Gamma(GammaSEXP);
+    Rcpp::traits::input_parameter< const arma::colvec& >::type KF(KFSEXP);
+    Rcpp::traits::input_parameter< const arma::colvec& >::type comb(combSEXP);
+    Rcpp::traits::input_parameter< const arma::mat& >::type X(XSEXP);
+    Rcpp::traits::input_parameter< const arma::cube& >::type Gamma(GammaSEXP);
     rcpp_result_gen = Rcpp::wrap(Krigidx(KF, comb, X, Gamma));
     return rcpp_result_gen;
 END_RCPP
 }
 // Krigvar
-double Krigvar(const arma::colvec KF, const arma::cube Gamma);
+double Krigvar(const arma::colvec& KF, const arma::cube& Gamma);
 RcppExport SEXP _KRIG_Krigvar(SEXP KFSEXP, SEXP GammaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::colvec >::type KF(KFSEXP);
-    Rcpp::traits::input_parameter< const arma::cube >::type Gamma(GammaSEXP);
+    Rcpp::traits::input_parameter< const arma::colvec& >::type KF(KFSEXP);
+    Rcpp::traits::input_parameter< const arma::cube& >::type Gamma(GammaSEXP);
     rcpp_result_gen = Rcpp::wrap(Krigvar(KF, Gamma));
     return rcpp_result_gen;
 END_RCPP
@@ -288,6 +305,7 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_KRIG_coKrig", (DL_FUNC) &_KRIG_coKrig, 7},
     {"_KRIG_weight_pow_dist", (DL_FUNC) &_KRIG_weight_pow_dist, 4},
     {"_KRIG_vector_integrate_kernel", (DL_FUNC) &_KRIG_vector_integrate_kernel, 5},
     {"_KRIG_integrate_kernel", (DL_FUNC) &_KRIG_integrate_kernel, 4},

@@ -116,7 +116,7 @@ List Krig( const arma::mat& Z,
     
     int p = G.n_rows;
     arma::mat A( n, p );
-    arma::mat tau( p, 1 );
+    arma::mat tau( p, m );
 
     A = G.t() * inv_sympd( G * J * G.t() );
     tau = g - G * J * k;
