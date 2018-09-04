@@ -68,7 +68,7 @@ ksd<-kappa - sapply( 1:ncol(k), FUN = function(i) t(k[,i]) %*% KRIG$J %*% k[,i] 
 KRIG$alpha * KRIG$tau[1,]^2
 ksd<-sqrt( ksd )
 Zup<-KRIG$Z + ksd
-Zdow<-KRIG$Z - ksd
+Zdown<-KRIG$Z - ksd
 ```
 
 Plotting results.
@@ -78,6 +78,6 @@ ymax<-max( z, KRIG$Z[,1], Z[,1] )
 plot( x, z, type = 'l', lwd = 2, col='gold', ylim = c( ymin, ymax ), xlim = YLim )
 points( Y, KRIG$Z, col='darkgreen', type = 'l', lwd = 2 )
 points( X, Z, col = 'dodgerblue3', pch = 16, cex = 1.2 )
-polygon( c( Y, rev( Y ) ), c( Zup, rev(Zdow) ), 
+polygon( c( Y, rev( Y ) ), c( Zup, rev(Zdown) ), 
          col = rgb(154,205,50,100, maxColorValue = 255 ), border = NA )
 ```
