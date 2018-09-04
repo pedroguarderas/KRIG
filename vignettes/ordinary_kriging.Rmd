@@ -62,6 +62,12 @@ KRIG<-Krig( Z = Z,
             g = matrix( 0, 1, 1),
             type = "ordinary", 
             cinv = 'syminv' )
+
+kappa<-sapply( Y[,1], FUN = function( y ) Kov( matrix(y,1,1), matrix(y,1,1), Kern ) )
+sd<-kappa - sapply( 1:ncol(k), FUN = function(i) t(k[,i]) %*% KRIG$J %*% k[,i] ) +
+KRIG$alpha * KRIG$tau[1,]^2
+Zup<-KRIG$Z + 3 * sd
+Zdow<-KRIG$Z - 3 * sd
 ```
 
 Plotting results.
@@ -69,6 +75,8 @@ Plotting results.
 ymin<-min( z, KRIG$Z[,1], Z[,1] )
 ymax<-max( z, KRIG$Z[,1], Z[,1] )
 plot( x, z, type = 'l', lwd = 2, col='gold', ylim = c( ymin, ymax ), xlim = YLim )
-points( Y, KRIG$Z[,1], col='darkgreen', type = 'l', lwd = 2 )
-points( X, Z[,1], col = 'dodgerblue3', pch = 16, cex = 1.2 )
+points( Y, KRIG$Z, col='darkgreen', type = 'l', lwd = 2 )
+points( X, Z, col = 'dodgerblue3', pch = 16, cex = 1.2 )
+polygon( c( Y, rev( Y ) ), c( Zup, rev(Zdow) ), 
+         col = rgb(154,205,50,100, maxColorValue = 255 ), border = NA )
 ```
