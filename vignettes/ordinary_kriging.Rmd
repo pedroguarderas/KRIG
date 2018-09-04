@@ -64,10 +64,11 @@ KRIG<-Krig( Z = Z,
             cinv = 'syminv' )
 
 kappa<-sapply( Y[,1], FUN = function( y ) Kov( matrix(y,1,1), matrix(y,1,1), Kern ) )
-sd<-kappa - sapply( 1:ncol(k), FUN = function(i) t(k[,i]) %*% KRIG$J %*% k[,i] ) +
+ksd<-kappa - sapply( 1:ncol(k), FUN = function(i) t(k[,i]) %*% KRIG$J %*% k[,i] ) +
 KRIG$alpha * KRIG$tau[1,]^2
-Zup<-KRIG$Z + 3 * sd
-Zdow<-KRIG$Z - 3 * sd
+ksd<-sqrt( ksd )
+Zup<-KRIG$Z + ksd
+Zdow<-KRIG$Z - ksd
 ```
 
 Plotting results.
