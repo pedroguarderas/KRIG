@@ -15,11 +15,9 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Simple Kriging application
-This current example gives an application of Kriging to the miming industry. A sample of grade 
-values for a copper mine has been taked, every sample is referenced in a three dimensional space. 
-We are going to predict in additional positions the possible values of grades.
+This example shows an application of kriging to the mining industry.
 
-Loading necessary packages.
+Load packages
 ```{r load,eval=TRUE,message=FALSE, warning=FALSE}
 library( data.table )
 library( KRIG )
@@ -27,13 +25,20 @@ library( plotly )
 library( colorRamps )
 ```
 
-Inside the package **KRIG**, there is a dataset of a copper mine.
+Load dataset
+
+For this exercise, we’ll use KRIG::Copper. This dataset can be found on Isobel Clark's homepage
+http://www.kriging.com/datasets/ "It contains a simulation based on a stockpile of mined material in
+the former Soviet Union. Boreholes have been drilled into the dump. The drill core is cut every 5
+metres and assayed for copper and cobalt content in percentage by weight. This is the only three
+dimensional set of tutorial data. Co-ordinates are in metres."
 ```{r data,eval=TRUE,message=FALSE, warning=FALSE}
 data( 'Copper', package = 'KRIG' )
 ```
 
-Preprocessing information, a examplel applying 2D Kriging will be implemented, for such reason
-the we are going to employ just some values at certain deep.
+Preprocess information
+
+For this example, we select depths from 100 to 105 meters.
 ```{r processing,eval=TRUE,message=FALSE, warning=FALSE}
 X3<-c( 100, 105 )
 Dat<-Copper[ x3 >= X3[1] & x3 <= X3[2] & Z > 0, list( x1, x2, Z ) ]
@@ -59,8 +64,7 @@ Y<-expand.grid( Y1, Y2 )
 Y<-as.matrix( Y )
 ```
 
-The important step of fitting the variogram or in general fitting the covariance model, gives
-statistical rigor to the Kriging modelling, in this particular case we employ a spherical kernel.
+Fit spherical kernel to empirical variogram
 ```{r est,eval=TRUE,message=FALSE, warning=FALSE}
 dist<-function( x, y ) {
   return( sqrt( sum( ( x - y )^2 ) ) )
@@ -82,7 +86,7 @@ str( NLM )
 FV<-sapply( d, FUN = spherical_variogram, NLM$estimate[1], NLM$estimate[2] )
 ```
 
-Plotting fitting results for the variogram.
+Plot variogram fitting results
 ```{r varg,eval=TRUE,fig.show='hold', fig.show='hold', fig.align="center", fig.width=7, fig.height=5}
 plot( d, V$variogram[,1], 
       cex = 0.5, pch = 16, col = 'purple4',
@@ -91,7 +95,7 @@ plot( d, V$variogram[,1],
 points( d, FV, type = 'l', col = 'dodgerblue2' , lwd = 2 )
 ```
 
-Setting the kernel based in the fitted parameters from the variogram.
+Set the kernel based on fitted variogram parameters
 ```{r kern,eval=TRUE,message=FALSE, warning=FALSE}
 Kern<-function( x, y ) {
   h<-sqrt( sum( ( x - y )^2 ) )
@@ -99,7 +103,7 @@ Kern<-function( x, y ) {
 }
 ```
 
-Computing covariance matrices and estimating the linear parametros throght ordinary Kriging.
+Compute covariance matrices and estimate linear parameters through ordinary kriging
 ```{r krig,eval=TRUE,message=FALSE, warning=FALSE}
 K = Kov( X, X, Kern, TRUE )
 k = Kov( Y, X, Kern )
@@ -115,7 +119,7 @@ KRIG<-Krig( Z = Z,
 W<-matrix( KRIG$Z, m[1], m[2] )
 ```
 
-Plotting level curves results.
+Plot level curves
 ```{r curv,eval=TRUE,fig.show='hold', fig.show='hold', fig.align="center", fig.width=7, fig.height=5}
 cols<-matlab.like2( 40 )
 plot_ly( x = Y1, y = Y2, z = W, type = "contour", colors = cols,
