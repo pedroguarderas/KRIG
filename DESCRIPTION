@@ -13,7 +13,8 @@ Description: Implements different methods for spatial statistics, in particular 
 Authors@R: c(
     person("Pedro", "Guarderas", email = "pedro.felipe.guarderas@gmail.com", role = c("aut","cre") ),
     person("Daniel", "Lagos", role="ctb"),
-    person("Andrés", "Lopez", role="ctb")
+    person("Andrés", "Lopez", role="ctb"),
+    person("Juan", "Teran", role="ctb")
     )
 URL: https://github.com/pedroguarderas/KRIG
 BugReports: https://github.com/pedroguarderas/KRIG/issues
