@@ -8,8 +8,8 @@ Eigen::MatrixXd Kov( const Eigen::MatrixXd& X,
                      Function Kern, 
                      const bool symmetric ) {
   int i, j;
-  int m = X.n_rows;
-  int n = Y.n_rows;
+  int m = X.rows();
+  int n = Y.rows();
   Eigen::MatrixXd K( n, m );
   
   
@@ -75,8 +75,8 @@ List Krig( const Eigen::MatrixXd& Z,
   // dim( l_r ) = dim( J * k_r )  = n x m
   // dim( Z ) = n x 1
   // dim( W ) = dim( k_r^t * J^t * Z ) = m x 1
-  int n = Z.n_rows;
-  int m = k.n_cols;
+  int n = Z.rows();
+  int m = k.cols();
   
   List KRIG;
   
@@ -94,7 +94,7 @@ List Krig( const Eigen::MatrixXd& Z,
   } else if ( cinv == "cholinv" ) {
     J = chol( K );
     J = inv( J );
-    J = J.t() * J;
+    J = J.transpose() * J;
     
   } else if ( cinv == "ginv" ) {
     J = K;
@@ -104,7 +104,7 @@ List Krig( const Eigen::MatrixXd& Z,
   if ( type == "simple" ) { // Simple kriging
     
     L = J *  k;
-    W = L.t() * Z;  
+    W = L.transpose() * Z;  
     
     KRIG[ "Z" ] = W;
     KRIG[ "L" ] = L;
@@ -116,11 +116,11 @@ List Krig( const Eigen::MatrixXd& Z,
     Eigen::MatrixXd u = Eigen::MatrixXd::Ones( n, 1 );
     Eigen::MatrixXd tau( n, m );
     
-    alpha = 1.0 / as_scalar( u.t() * J * u );
+    alpha = 1.0 / u.transpose() * J * u;
     tau = Eigen::MatrixXd::Ones( n, m ) - Eigen::MatrixXd::Ones( n, n ) * J * k;
     
     L = J * ( k + alpha * tau ) ;
-    W = L.t() * Z;
+    W = L.transpose() * Z;
     
     KRIG[ "Z" ] = W;
     KRIG[ "L" ] = L;
@@ -130,15 +130,15 @@ List Krig( const Eigen::MatrixXd& Z,
     
   } else if ( type == "universal" ) { // Universal kriging
     
-    int p = G.n_rows;
+    int p = G.rows();
     Eigen::MatrixXd A( n, p );
     Eigen::MatrixXd tau( p, m );
     
-    A = G.t() * inv_sympd( G * J * G.t() );
+    A = G.transpose() * inv_sympd( G * J * G.transpose() );
     tau = g - G * J * k;
     
     L = J * ( k + A * tau ) ;
-    W = L.t() * Z;
+    W = L.transpose() * Z;
     
     KRIG[ "Z" ] = W;
     KRIG[ "L" ] = L;

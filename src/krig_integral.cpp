@@ -4,10 +4,10 @@
 
 //--------------------------------------------------------------------------------------------------
 Eigen::VectorXd vector_integrate_kernel( Function Kern, 
-                                      const Eigen::VectorXd x, 
-                                      const double& a, 
-                                      const double& b, 
-                                      const double& n ) {
+                                         const Eigen::VectorXd x, 
+                                         const double& a, 
+                                         const double& b, 
+                                         const double& n ) {
   int i, k;
   int m = x.size();
   double h = ( b - a ) / ( n - 1 );
@@ -43,7 +43,7 @@ List list_integrate_kernel( const DataFrame& Kernels,
   
   int k;
   int N = Kernels.nrows();
-  Eigen::MatrixXd integral( X.n_rows, N );
+  Eigen::MatrixXd integral( X.rows(), N );
   Eigen::VectorXd alpha( N );
   
   Eigen::VectorXd a = Kernels[1];
@@ -71,9 +71,9 @@ List Kanova( const DataFrame& Kernels,
   int N, n, i, j, k;
   
   N = Kernels.nrows();
-  n = X.n_rows;
+  n = X.rows();
   CharacterVector FName = Kernels[0];
-
+  
   Eigen::MatrixXd Kanova = Eigen::MatrixXd::Ones( n, n );
   Eigen::ArrayXd Gamma( n, n, N );
   Eigen::MatrixXd I = Integral[0];
@@ -82,7 +82,7 @@ List Kanova( const DataFrame& Kernels,
   for ( k = 0; k < N; k++ ) {
     
     Function Kern( as< std::string >( FName[k] ) ); 
-
+    
     for ( i = 0; i < n; i++ ) {
       for ( j = i; j < n; j++ ) {
         
@@ -95,7 +95,7 @@ List Kanova( const DataFrame& Kernels,
         }
       }
     }
-
+    
   }
   return List::create( Named( "Gamma" ) = Gamma, 
                        Named( "Kanova" ) = Kanova );

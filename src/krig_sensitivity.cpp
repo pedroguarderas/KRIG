@@ -7,7 +7,7 @@ double Krigidx( const Eigen::VectorXd& KF,
                 const Eigen::MatrixXd& X,
                 const Eigen::ArrayXd& Gamma ) {
   int k;
-  int n = X.n_rows;
+  int n = X.rows();
   int c = comb.size();
   double S;
   
@@ -16,7 +16,7 @@ double Krigidx( const Eigen::VectorXd& KF,
   for ( k = 0; k < c; k++ ) {
     W = W % Gamma.slice( comb( k ) - 1 );
   }
-  S = as_scalar( KF.t() * W * KF );
+  S = KF.transpose() * W * KF;
   
   return S;
 }
@@ -26,7 +26,7 @@ double Krigvar( const Eigen::VectorXd& KF,
                 const Eigen::ArrayXd& Gamma ) {
   
   int i;
-  int n = Gamma.n_rows;
+  int n = Gamma.rows();
   int m = Gamma.n_slices;
   double Var;
   
@@ -36,7 +36,7 @@ double Krigvar( const Eigen::VectorXd& KF,
   }
   V = V - Eigen::MatrixXd::Ones(( n, n );
   
-  Var = as_scalar( KF.t() * V * KF );
+  Var = KF.transpose() * V * KF;
   
   return Var;
 }

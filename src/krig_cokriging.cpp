@@ -17,9 +17,9 @@ List coKrig( const Eigen::MatrixXd& Z,
    // dim( Z ) = n x q => dim( vect( Z ) ) = nq x 1
    // dim( X ) = m x d
    // dim( W ) = m x q
-  int nq = K.n_rows;
-  int n = Z.n_rows;
-  int m = k.n_cols;
+  int nq = K.rows();
+  int n = Z.rows();
+  int m = k.cols();
   int q = k.n_slices;
   
   int i, j, r, s;
@@ -32,16 +32,14 @@ List coKrig( const Eigen::MatrixXd& Z,
   
   // Inverse computation of the covariance matrix
   if ( cinv == "syminv" ) {
-    J = inv_sympd( K );
+    J = K.inverse();
     
   } else if ( cinv == "inv" ) {
-    J = inv( K );
+    J = K.inverse();
     
   } else if ( cinv == "cholinv" ) {
-    J = chol( K );
-    J = inv( J );
-    J = J.t() * J;
-    
+    J = K.ldlt();
+
   } else if ( cinv == "ginv" ) {
     J = K;
   }
@@ -58,7 +56,7 @@ List coKrig( const Eigen::MatrixXd& Z,
     Eigen::MatrixXd u = Eigen::MatrixXd::Ones( nq, 1 );
     Eigen::MatrixXd tau( nq, m );
     
-    alpha = 1.0 / as_scalar( u.t() * J * u );
+    alpha = 1.0 / u.transpose() * J * u;
     
     for ( r = 0; r < q; r++ ) {
       tau = Eigen::MatrixXd::Ones( nq, m ) - Eigen::MatrixXd::Ones( nq, nq ) * J * k.slice( r );
@@ -67,11 +65,11 @@ List coKrig( const Eigen::MatrixXd& Z,
     
   } else if ( type == "universal" ) { // Universal kriging
     
-    int p = G.n_rows;
+    int p = G.rows();
     Eigen::MatrixXd A( nq, p );
     Eigen::MatrixXd tau( p, m );
     
-    A = G.t() * inv_sympd( G * J * G.t() );
+    A = G.transpose() * inv_sympd( G * J * G.transpose() );
     for ( r = 0; r < q; r++ ) {
       tau = g.slice( r ) - G * J * k.slice( r );
       L.slice( r ) = J * ( k.slice( r ) + A * tau );
@@ -88,7 +86,7 @@ List coKrig( const Eigen::MatrixXd& Z,
   // }
     
   for ( r = 0; r < q; r++ ) {
-    W.col( r ) = L.slice( r ).t() * vectorise( Z, 1 );
+    W.col( r ) = L.slice( r ).transpose() * vectorise( Z, 1 );
   }
   
   KRIG[ "Z" ] = W;

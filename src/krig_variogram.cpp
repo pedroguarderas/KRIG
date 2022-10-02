@@ -6,7 +6,7 @@ List variogram( const Eigen::MatrixXd& Z,
                 const Eigen::MatrixXd& X, 
                 Function d ) {
   int i, j, k;
-  int n = X.n_rows;
+  int n = X.rows();
   int N = n * ( n + 1 ) / 2;
   
   std::vector< int > I( N );

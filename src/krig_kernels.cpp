@@ -3,13 +3,13 @@
 
 //--------------------------------------------------------------------------------------------------
 double linear_kernel( const Eigen::VectorXd& x, const Eigen::VectorXd& y, const double& alpha ) {
-  return as_scalar( alpha * x.t() * y );
+  return alpha * x.transpose() * y;
 }
 
 //--------------------------------------------------------------------------------------------------
 double polynomial_kernel( const Eigen::VectorXd& x, const Eigen::VectorXd& y, 
                           const double& alpha, const double& beta, const double& n ) {
-  return pow( as_scalar( alpha * x.t() * y ) + beta, n );
+  return pow( alpha * x.transpose() * y + beta, n );
 }
 
 //--------------------------------------------------------------------------------------------------
