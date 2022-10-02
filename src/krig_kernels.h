@@ -1,7 +1,7 @@
 #ifndef __KRIG_kernels__
 #define __KRIG_kernels__
 
-#include <RcppArmadillo.h>
+#include <RcppEigen.h>
 #include <gsl/gsl_sf_bessel.h>
 #include <gsl/gsl_sf_exp.h>
 #include <gsl/gsl_sf_gamma.h>
@@ -9,7 +9,7 @@
 #include <gsl/gsl_math.h>
 
 // [[Rcpp::plugins(cpp14)]]
-// [[Rcpp::depends(RcppArmadillo)]]
+// [[Rcpp::depends(RcppEigen)]]
 
 using namespace Rcpp;
 
@@ -36,7 +36,7 @@ using namespace Rcpp;
 //' linear_kernel( x, y, alpha )
 //' @export
 // [[Rcpp::export]]
-double linear_kernel( const arma::colvec& x, const arma::colvec& y, const double& alpha );
+double linear_kernel( const Eigen::VectorXd& x, const Eigen::VectorXd& y, const double& alpha );
 
 //--------------------------------------------------------------------------------------------------
 //' @title Polynomial kernel
@@ -57,7 +57,7 @@ double linear_kernel( const arma::colvec& x, const arma::colvec& y, const double
 //' polynomial_kernel( x, y, alpha, beta, n )
 //' @export
 // [[Rcpp::export]]
-double polynomial_kernel( const arma::colvec& x, const arma::colvec& y, 
+double polynomial_kernel( const Eigen::VectorXd& x, const Eigen::VectorXd& y, 
                           const double& alpha, const double& beta, const double& n );
 
 

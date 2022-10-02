@@ -1,13 +1,13 @@
 #ifndef __KRIG_distance__
 #define __KRIG_distance__
 
-#include <RcppArmadillo.h>
+#include <RcppEigen.h>
 #include <cmath>
 #include <omp.h>
 
 // [[Rcpp::plugins(cpp14)]]
 // [[Rcpp::plugins(openmp)]]
-// [[Rcpp::depends(RcppArmadillo)]]
+// [[Rcpp::depends(RcppEigen)]]
 
 using namespace Rcpp;
 
@@ -36,8 +36,8 @@ using namespace Rcpp;
 //' nw == kw
 //' @export
 // [[Rcpp::export]]
-double weight_pow_dist( const arma::colvec& x, 
-                        const arma::colvec& y, 
-                        const arma::colvec& w, 
-                        const arma::colvec& p );
+double weight_pow_dist( const Eigen::VectorXd& x, 
+                        const Eigen::VectorXd& y, 
+                        const Eigen::VectorXd& w, 
+                        const Eigen::VectorXd& p );
 #endif

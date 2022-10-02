@@ -2,18 +2,18 @@
 #include "krig_variogram.h"
 
 //--------------------------------------------------------------------------------------------------
-List variogram( const arma::mat& Z,
-                const arma::mat& X, 
+List variogram( const Eigen::MatrixXd& Z,
+                const Eigen::MatrixXd& X, 
                 Function d ) {
   int i, j, k;
   int n = X.n_rows;
   int N = n * ( n + 1 ) / 2;
   
   std::vector< int > I( N );
-  arma::rowvec x, y;
-  arma::colvec V( N );
-  arma::colvec D( N );
-  arma::colvec S( N );
+  Eigen::VectorXd x, y;
+  Eigen::VectorXd V( N );
+  Eigen::VectorXd D( N );
+  Eigen::VectorXd S( N );
   
   List Varg;
   

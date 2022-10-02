@@ -3,25 +3,33 @@
 
 
 //--------------------------------------------------------------------------------------------------
-arma::mat Kov( const arma::mat& X, 
-               const arma::mat& Y, 
-               Function Kern, 
-               const bool symmetric ) {
+Eigen::MatrixXd Kov( const Eigen::MatrixXd& X, 
+                     const Eigen::MatrixXd& Y, 
+                     Function Kern, 
+                     const bool symmetric ) {
   int i, j;
   int m = X.n_rows;
   int n = Y.n_rows;
-  arma::mat K( n, m );
-  arma::rowvec x, y;
+  Eigen::MatrixXd K( n, m );
+  
   
   // KernPtr k = *XPtr< KernPtr >( Kern );
   
   // Filling Gaussian process covariance matrix
   if ( symmetric ) {
+    // #pragma omp parallel for private(i, j, x, y, Kern) shared( X, Y ) schedule( static ) collapse(2)
+    // #pragma omp parallel for private( i, j, x, y ) shared( K )
+    // #pragma omp parallel for shared( K )
+#pragma omp parallel for shared( K )
     for ( i = 0; i < n; i++ ) { 
       for ( j = i; j < n; j++ ) {
+        Eigen::VectorXd x, y;
         x = X.row( i );
         y = Y.row( j );
+        // #pragma omp critical
+        // {
         K( i, j ) = as<double>( Kern( x, y ) );
+        // }
         
         if ( j > i ) {
           K( j, i ) = K( i, j );
@@ -31,28 +39,36 @@ arma::mat Kov( const arma::mat& X,
     }
     
   } else { 
+    // #pragma omp parallel for private(i, j, x, y) shared( X, Y ) schedule( static ) collapse(2)
+    // #pragma omp parallel for private( i, j, x, y ) shared( K )
+    // #pragma omp parallel for private( i, j ) shared( X, Y, K )
     for ( i = 0; i < n; i++ ) { 
       for ( j = 0; j < m; j++ ) {
+        Eigen::VectorXd x, y;
         x = X.row( j );
         y = Y.row( i );
+        
+        // #pragma omp critical
+        // {
         K( i, j ) = as<double>( Kern( x, y ) );
+        // }
       }
     }
   }
   
   return K;
-
+  
 }
 
 //--------------------------------------------------------------------------------------------------
-List Krig( const arma::mat& Z, 
-           const arma::mat& K, 
-           const arma::mat& k,
-           const arma::mat& G, 
-           const arma::mat& g,
+List Krig( const Eigen::MatrixXd& Z, 
+           const Eigen::MatrixXd& K, 
+           const Eigen::MatrixXd& k,
+           const Eigen::MatrixXd& G, 
+           const Eigen::MatrixXd& g,
            const std::string type, 
            const std::string cinv ) {
-
+  
   // The dimensions considerations
   // dim( K ) = n x n
   // dim( k_r ) = n x m
@@ -61,13 +77,13 @@ List Krig( const arma::mat& Z,
   // dim( W ) = dim( k_r^t * J^t * Z ) = m x 1
   int n = Z.n_rows;
   int m = k.n_cols;
-
+  
   List KRIG;
   
-  arma::mat J( n, n );
-  arma::mat W( m, n );
-  arma::mat L( m, n );
-
+  Eigen::MatrixXd J( n, n );
+  Eigen::MatrixXd W( m, n );
+  Eigen::MatrixXd L( m, n );
+  
   // Inverse computation
   if ( cinv == "syminv" ) {
     J = inv_sympd( K );
@@ -97,11 +113,11 @@ List Krig( const arma::mat& Z,
     
   } else if ( type == "ordinary" ) {  // Ordinary kriging
     double alpha;
-    arma::mat u = arma::ones( n, 1 );
-    arma::mat tau( n, m );
-
+    Eigen::MatrixXd u = Eigen::MatrixXd::Ones( n, 1 );
+    Eigen::MatrixXd tau( n, m );
+    
     alpha = 1.0 / as_scalar( u.t() * J * u );
-    tau = arma::ones( n, m ) - arma::ones( n, n ) * J * k;
+    tau = Eigen::MatrixXd::Ones( n, m ) - Eigen::MatrixXd::Ones( n, n ) * J * k;
     
     L = J * ( k + alpha * tau ) ;
     W = L.t() * Z;
@@ -115,9 +131,9 @@ List Krig( const arma::mat& Z,
   } else if ( type == "universal" ) { // Universal kriging
     
     int p = G.n_rows;
-    arma::mat A( n, p );
-    arma::mat tau( p, m );
-
+    Eigen::MatrixXd A( n, p );
+    Eigen::MatrixXd tau( p, m );
+    
     A = G.t() * inv_sympd( G * J * G.t() );
     tau = g - G * J * k;
     
@@ -129,10 +145,10 @@ List Krig( const arma::mat& Z,
     KRIG[ "J" ] = J;
     KRIG[ "A" ] = A;
     KRIG[ "tau" ] = tau;
-
+    
   }
   
   return KRIG;
-
+  
 }
 

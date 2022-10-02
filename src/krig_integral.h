@@ -1,11 +1,11 @@
 #ifndef __KRIG_integral__
 #define __KRIG_integral__
 
-#include <RcppArmadillo.h>
+#include <RcppEigen.h>
 #include "krig_kriging.h"
 
 // [[Rcpp::plugins(cpp14)]]
-// [[Rcpp::depends(RcppArmadillo)]]
+// [[Rcpp::depends(RcppEigen)]]
 
 using namespace Rcpp;
 
@@ -25,8 +25,11 @@ using namespace Rcpp;
 //' @seealso For a complete application you can check the documentation of \code{\link{Krigvar}}.
 //' @export
 // [[Rcpp::export]]
-arma::colvec vector_integrate_kernel( Function Kern, const arma::colvec x, 
-                                      const double& a, const double& b, const double& n );
+Eigen::VectorXd vector_integrate_kernel( Function Kern, 
+                                         const Eigen::VectorXd x, 
+                                         const double& a, 
+                                         const double& b, 
+                                         const double& n );
 
 //--------------------------------------------------------------------------------------------------
 //' @title Complete kernel integral.
@@ -42,7 +45,10 @@ arma::colvec vector_integrate_kernel( Function Kern, const arma::colvec x,
 //' @seealso For a complete application you can check the documentation of \code{\link{Krigvar}}.
 //' @export
 // [[Rcpp::export]]
-double integrate_kernel( Function Kern, const double& a, const double& b, const double& n );
+double integrate_kernel( Function Kern, 
+                         const double& a, 
+                         const double& b, 
+                         const double& n );
 
 //--------------------------------------------------------------------------------------------------
 //' @title Integrals of a list of kernels.
@@ -63,7 +69,8 @@ double integrate_kernel( Function Kern, const double& a, const double& b, const 
 //' @seealso For a complete application you can check the documentation of \code{\link{Krigvar}}.
 //' @export
 // [[Rcpp::export]]
-List list_integrate_kernel( const DataFrame& Kernels, const arma::mat& X );
+List list_integrate_kernel( const DataFrame& Kernels, 
+                            const Eigen::MatrixXd& X );
 
 //--------------------------------------------------------------------------------------------------
 //' @title KANOVA, kernel anova under RKHS approximations.
@@ -90,6 +97,6 @@ List list_integrate_kernel( const DataFrame& Kernels, const arma::mat& X );
 //' \insertRef{Aronszajn:ThRK}{KRIG}
 //' @export
 // [[Rcpp::export]]
-List Kanova( const DataFrame& Kernels, const List& Integral,  const arma::mat& X );
+List Kanova( const DataFrame& Kernels, const List& Integral,  const Eigen::MatrixXd& X );
 
 #endif

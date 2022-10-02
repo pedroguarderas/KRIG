@@ -1,7 +1,7 @@
 #ifndef __KRIG_variog__
 #define __KRIG_variog__
 
-#include <RcppArmadillo.h>
+#include <RcppEigen.h>
 #include <algorithm>
 #include <cmath>
 #include <omp.h>
@@ -10,7 +10,7 @@
 
 // [[Rcpp::plugins(cpp14)]]
 // [[Rcpp::plugins(openmp)]]
-// [[Rcpp::depends(RcppArmadillo)]]
+// [[Rcpp::depends(RcppEigen)]]
 
 using namespace Rcpp;
 
@@ -27,7 +27,7 @@ using namespace Rcpp;
 //' vignette( topic = 'copper_mining_2d', package = 'KRIG' )
 //' @export
 // [[Rcpp::export]]
-List variogram( const arma::mat& Z,
-                const arma::mat& X, 
+List variogram( const Eigen::MatrixXd& Z,
+                const Eigen::MatrixXd& X, 
                 Function d );
 #endif

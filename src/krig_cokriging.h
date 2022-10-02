@@ -1,13 +1,13 @@
 #ifndef __KRIG_cokriging__
 #define __KRIG_cokriging__
 
-#include <RcppArmadillo.h>
+#include <RcppEigen.h>
 #include <string>
 #include <omp.h>
 
 // [[Rcpp::plugins(cpp14)]]
-// [[Rcpp::plugins(oepnmp)]]
-// [[Rcpp::depends(RcppArmadillo)]]
+// [[Rcpp::plugins(openmp)]]
+// [[Rcpp::depends(RcppEigen)]]
 
 using namespace Rcpp;
 
@@ -43,11 +43,11 @@ using namespace Rcpp;
 //' library( KRIG )
 //' @export
 // [[Rcpp::export]]
-List coKrig( const arma::mat& Z, 
-             const arma::mat& K, 
-             const arma::cube& k,
-             const arma::mat& G, 
-             const arma::cube& g,
+List coKrig( const Eigen::MatrixXd& Z, 
+             const Eigen::MatrixXd& K, 
+             const Eigen::ArrayXd& k,
+             const Eigen::MatrixXd& G, 
+             const Eigen::ArrayXd& g,
              const std::string type = "ordinary", 
              const std::string cinv = "syminv" );
 

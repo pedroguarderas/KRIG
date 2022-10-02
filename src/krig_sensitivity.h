@@ -1,10 +1,10 @@
 #ifndef __KRIG_sens__
 #define __KRIG_sens__
 
-#include <RcppArmadillo.h>
+#include <RcppEigen.h>
 
 // [[Rcpp::plugins(cpp14)]]
-// [[Rcpp::depends(RcppArmadillo)]]
+// [[Rcpp::depends(RcppEigen)]]
 
 using namespace Rcpp;
 
@@ -24,10 +24,10 @@ using namespace Rcpp;
 //' \insertRef{Aronszajn:ThRK}{KRIG}
 //' @export
 // [[Rcpp::export]]
-double Krigidx( const arma::colvec& KF,
-                const arma::colvec& comb,
-                const arma::mat& X,
-                const arma::cube& Gamma );
+double Krigidx( const Eigen::VectorXd& KF,
+                const Eigen::VectorXd& comb,
+                const Eigen::MatrixXd& X,
+                const Eigen::ArrayXd& Gamma );
 
 //--------------------------------------------------------------------------------------------------
 //' @title Combinatorial variance computation.
@@ -81,7 +81,7 @@ double Krigidx( const arma::colvec& KF,
 //' 
 //' @export
 // [[Rcpp::export]]
-double Krigvar( const arma::colvec& KF, 
-                const arma::cube& Gamma );
+double Krigvar( const Eigen::VectorXd& KF, 
+                const Eigen::ArrayXd& Gamma );
 
 #endif

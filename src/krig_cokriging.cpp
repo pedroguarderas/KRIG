@@ -2,11 +2,11 @@
 #include "krig_cokriging.h"
 
 //--------------------------------------------------------------------------------------------------
-List coKrig( const arma::mat& Z, 
-             const arma::mat& K, 
-             const arma::cube& k,
-             const arma::mat& G, 
-             const arma::cube& g,
+List coKrig( const Eigen::MatrixXd& Z, 
+             const Eigen::MatrixXd& K, 
+             const Eigen::ArrayXd& k,
+             const Eigen::MatrixXd& G, 
+             const Eigen::ArrayXd& g,
              const std::string type, 
              const std::string cinv ) {
  
@@ -26,9 +26,9 @@ List coKrig( const arma::mat& Z,
   
   List KRIG;
   
-  arma::mat J( nq, nq );
-  arma::mat W( m, q );
-  arma::cube L( nq, m, q );
+  Eigen::MatrixXd J( nq, nq );
+  Eigen::MatrixXd W( m, q );
+  Eigen::ArrayXd L( nq, m, q );
   
   // Inverse computation of the covariance matrix
   if ( cinv == "syminv" ) {
@@ -55,21 +55,21 @@ List coKrig( const arma::mat& Z,
     
   } else if ( type == "ordinary" ) {  // Ordinary kriging
     double alpha;
-    arma::mat u = arma::ones( nq, 1 );
-    arma::mat tau( nq, m );
+    Eigen::MatrixXd u = Eigen::MatrixXd::Ones( nq, 1 );
+    Eigen::MatrixXd tau( nq, m );
     
     alpha = 1.0 / as_scalar( u.t() * J * u );
     
     for ( r = 0; r < q; r++ ) {
-      tau = arma::ones( nq, m ) - arma::ones( nq, nq ) * J * k.slice( r );
+      tau = Eigen::MatrixXd::Ones( nq, m ) - Eigen::MatrixXd::Ones( nq, nq ) * J * k.slice( r );
       L.slice( r ) = J * ( k.slice( r ) + alpha * tau );
     }
     
   } else if ( type == "universal" ) { // Universal kriging
     
     int p = G.n_rows;
-    arma::mat A( nq, p );
-    arma::mat tau( p, m );
+    Eigen::MatrixXd A( nq, p );
+    Eigen::MatrixXd tau( p, m );
     
     A = G.t() * inv_sympd( G * J * G.t() );
     for ( r = 0; r < q; r++ ) {

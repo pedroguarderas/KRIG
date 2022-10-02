@@ -1,10 +1,10 @@
 
 #include "krig_distance.h"
 
-double weight_pow_dist( const arma::colvec& x, 
-                        const arma::colvec& y, 
-                        const arma::colvec& w, 
-                        const arma::colvec& p ) {
+double weight_pow_dist( const Eigen::VectorXd& x, 
+                        const Eigen::VectorXd& y, 
+                        const Eigen::VectorXd& w, 
+                        const Eigen::VectorXd& p ) {
   
   double d = 0.0;
   

@@ -1,13 +1,13 @@
 #ifndef __KRIG_kriging__
 #define __KRIG_kriging__
 
-#include <RcppArmadillo.h>
+#include <RcppEigen.h>
 #include <string>
 #include <omp.h>
 
 // [[Rcpp::plugins(cpp14)]]
-// [[Rcpp::plugins(oepnmp)]]
-// [[Rcpp::depends(RcppArmadillo)]]
+// [[Rcpp::plugins(openmp)]]
+// [[Rcpp::depends(RcppEigen)]]
 
 using namespace Rcpp;
 
@@ -30,10 +30,10 @@ using namespace Rcpp;
 //' @seealso For a complete application you can check the documentation of \code{\link{Krig}}.
 //' @export
 // [[Rcpp::export]]
-arma::mat Kov( const arma::mat& X, 
-               const arma::mat& Y, 
-               Function Kern, 
-               const bool symmetric = false );
+Eigen::MatrixXd Kov( const Eigen::MatrixXd& X, 
+                     const Eigen::MatrixXd& Y, 
+                     Function Kern, 
+                     const bool symmetric = false );
 
 //--------------------------------------------------------------------------------------------------
 //' @title Kriging computation.
@@ -70,11 +70,11 @@ arma::mat Kov( const arma::mat& X,
 //' vignette( topic = 'copper_mining_2d', package = 'KRIG' )
 //' @export
 // [[Rcpp::export]]
-List Krig( const arma::mat& Z, 
-           const arma::mat& K, 
-           const arma::mat& k,
-           const arma::mat& G, 
-           const arma::mat& g,
+List Krig( const Eigen::MatrixXd& Z, 
+           const Eigen::MatrixXd& K, 
+           const Eigen::MatrixXd& k,
+           const Eigen::MatrixXd& G, 
+           const Eigen::MatrixXd& g,
            const std::string type = "ordinary", 
            const std::string cinv = "syminv" );
 

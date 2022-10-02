@@ -3,12 +3,15 @@
 
 
 //--------------------------------------------------------------------------------------------------
-arma::colvec vector_integrate_kernel( Function Kern, const arma::colvec x, 
-                                      const double& a, const double& b, const double& n ) {
+Eigen::VectorXd vector_integrate_kernel( Function Kern, 
+                                      const Eigen::VectorXd x, 
+                                      const double& a, 
+                                      const double& b, 
+                                      const double& n ) {
   int i, k;
   int m = x.size();
   double h = ( b - a ) / ( n - 1 );
-  arma::colvec I = arma::zeros( m );
+  Eigen::VectorXd I = Eigen::zeros( m );
   
   for ( k = 0; k < m; k++ ) {
     for ( i = 0; i < n; i++ ) {
@@ -35,16 +38,17 @@ double integrate_kernel( Function Kern, const double& a, const double& b, const 
 }
 
 //--------------------------------------------------------------------------------------------------
-List list_integrate_kernel( const DataFrame& Kernels, const arma::mat& X ) {
+List list_integrate_kernel( const DataFrame& Kernels, 
+                            const Eigen::MatrixXd& X ) {
   
   int k;
   int N = Kernels.nrows();
-  arma::mat integral( X.n_rows, N );
-  arma::colvec alpha( N );
+  Eigen::MatrixXd integral( X.n_rows, N );
+  Eigen::VectorXd alpha( N );
   
-  arma::colvec a = Kernels[1];
-  arma::colvec b = Kernels[2];
-  arma::colvec n = Kernels[3];
+  Eigen::VectorXd a = Kernels[1];
+  Eigen::VectorXd b = Kernels[2];
+  Eigen::VectorXd n = Kernels[3];
   CharacterVector FName = Kernels[0];
   
   for ( k = 0; k < N; k++ ) {
@@ -60,7 +64,9 @@ List list_integrate_kernel( const DataFrame& Kernels, const arma::mat& X ) {
 }
 
 //--------------------------------------------------------------------------------------------------
-List Kanova( const DataFrame& Kernels, const List& Integral, const arma::mat& X ) {
+List Kanova( const DataFrame& Kernels, 
+             const List& Integral, 
+             const Eigen::MatrixXd& X ) {
   
   int N, n, i, j, k;
   
@@ -68,10 +74,10 @@ List Kanova( const DataFrame& Kernels, const List& Integral, const arma::mat& X 
   n = X.n_rows;
   CharacterVector FName = Kernels[0];
 
-  arma::mat Kanova = arma::ones( n, n );
-  arma::cube Gamma( n, n, N );
-  arma::mat I = Integral[0];
-  arma::colvec a = Integral[1];
+  Eigen::MatrixXd Kanova = Eigen::MatrixXd::Ones( n, n );
+  Eigen::ArrayXd Gamma( n, n, N );
+  Eigen::MatrixXd I = Integral[0];
+  Eigen::VectorXd a = Integral[1];
   
   for ( k = 0; k < N; k++ ) {
     

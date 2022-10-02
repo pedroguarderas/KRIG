@@ -6,7 +6,6 @@
 #' sensitivity analysis under an approximation designed over reproducing kernel Hilbert spaces and 
 #' computation of Sobol indexes under this framework.
 #' 
-#' The linear algebra operations are supported by RcppArmadillo.
 #' @examples 
 #' library( KRIG )
 #' vignette( topic = 'copper_mining_2d', package = 'KRIG' )
